@@ -86,6 +86,7 @@ export const en = {
   'settings.sound': 'Sound',
   'settings.help': 'How to play',
   'settings.clueList': 'Show the word list',
+  'settings.british': 'British narrator',
   'settings.credits': 'About the books',
   'settings.eraseBook': 'Start this book again',
   'settings.eraseAll': 'Erase all progress',

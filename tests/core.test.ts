@@ -287,7 +287,7 @@ describe('the passage as the clue', () => {
 });
 
 describe('narration', () => {
-  const narrations = import.meta.glob<{ audio: string; words: ([number, number] | null)[] }>('../src/narration/*.json', { eager: true, import: 'default' });
+  const narrations = import.meta.glob<{ audio: string; words: ([number, number] | null)[] }>('../src/narration/*/*.json', { eager: true, import: 'default' });
 
   it('times every word of its chapter’s passage, in order, with its recording beside it', () => {
     for (const [path, narration] of Object.entries(narrations)) {

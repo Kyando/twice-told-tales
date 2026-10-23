@@ -275,8 +275,9 @@ export class App {
       nextLocked: next !== undefined && !this.playable(next),
       nextTitle: next === undefined ? undefined : CATALOG[next].def.title,
       onChapters: () => this.up(),
-      menuItems: () => [this.soundItem(), this.clueItem(), this.helpItem()],
+      menuItems: () => [this.soundItem(), this.accentItem(), this.clueItem(), this.helpItem()],
       clue: this.save.settings.clue,
+      accent: this.save.settings.accent,
       intro: true,
     });
   }
@@ -296,6 +297,20 @@ export class App {
 
   private soundItem(): SheetItem {
     return { icon: ICONS.soundOn, label: t('settings.sound'), on: this.save.settings.sound, onSelect: () => this.toggleSound() };
+  }
+
+  /** The narrator's voice: American by default, or British. Switching rebuilds an open chapter with it. */
+  private accentItem(): SheetItem {
+    return {
+      icon: ICONS.listen,
+      label: t('settings.british'),
+      on: this.save.settings.accent === 'british',
+      onSelect: () => {
+        this.save.settings.accent = this.save.settings.accent === 'british' ? 'american' : 'british';
+        this.persist();
+        if (this.route.screen === 'level') this.refresh();
+      },
+    };
   }
 
   /** While both are playtested: the old list of words to find, instead of the unmarked passage. */
@@ -318,7 +333,7 @@ export class App {
 
   /** Settings, from the shelf or (with `book`) a book's chapters, where starting it again belongs. */
   private openSettings(book?: string): void {
-    const items: SheetItem[] = [this.soundItem(), this.clueItem(), this.helpItem(), { icon: ICONS.info, label: t('settings.credits'), onSelect: () => this.openCredits() }];
+    const items: SheetItem[] = [this.soundItem(), this.accentItem(), this.clueItem(), this.helpItem(), { icon: ICONS.info, label: t('settings.credits'), onSelect: () => this.openCredits() }];
     if (book && this.chaptersOf(book).some((i) => this.isDone(i))) {
       items.push({ icon: ICONS.restart, label: t('settings.eraseBook'), danger: true, onSelect: () => this.confirmErase(book) });
     } else if (!book && Object.keys(this.save.levels).length) {

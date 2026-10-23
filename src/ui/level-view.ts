@@ -17,7 +17,7 @@ import { confirmAction, openSheet, toast, type SheetItem } from './overlay.ts';
 import { INK_STAGGER_MS, inkDuration, PieceLayer } from './pieces.ts';
 import { pieceOutline } from './shape.ts';
 import type { Sfx } from './sfx.ts';
-import { NARRATION } from '../narration/index.ts';
+import { narrationFor, type Accent } from '../narration/index.ts';
 import { lightSpokenWord, Narrator } from './narrator.ts';
 import { buildPassage } from './passage-dom.ts';
 import { openReader } from './reader.ts';
@@ -40,6 +40,8 @@ export interface LevelViewOptions {
   menuItems(): SheetItem[];
   /** What the player reads to find the words: the unmarked passage (default), or the list of words. */
   clue?: Clue;
+  /** The narrator's accent, where the chapter has narration (American by default). */
+  accent?: Accent;
 }
 
 const SVG_NS = 'http://www.w3.org/2000/svg';
@@ -160,7 +162,7 @@ export class LevelView {
       this.arrivals = [];
       this.passageBox = h('div', { class: 'passage-box' }, h('p', { class: 'passage', 'aria-label': t('level.passage') }, ...dom.sentences));
       // Chapters with a recorded reading get a button to listen, beside the dots.
-      const narration = NARRATION[def.id];
+      const narration = narrationFor(def.id, opts.accent ?? 'american');
       let listen: HTMLButtonElement | '' = '';
       if (narration && narration.words.length === dom.words.length) {
         const narrator = (this.narrator = new Narrator(narration));
