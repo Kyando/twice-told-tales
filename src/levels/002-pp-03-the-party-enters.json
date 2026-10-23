@@ -6,43 +6,43 @@
   "rows": 8,
   "cols": 6,
   "grid": [
-    "YGNYLN",
-    "ELIBBO",
-    "WSREMB",
-    "OTESDL",
-    "RSASNE",
-    "LISPAS",
-    "DEDRTU",
-    "TSUOHO"
+    "YEELBW",
+    "DLSIOO",
+    "NGNSNR",
+    "ABITDL",
+    "STSERS",
+    "UOEORY",
+    "THDUPL",
+    "ASSEMB"
   ],
   "words": [
     {
       "text": "ASSEMBLY",
-      "path": [26, 27, 21, 15, 16, 10, 4, 3]
+      "path": [42, 43, 44, 45, 46, 47, 41, 35]
     },
     {
       "text": "BINGLEY",
-      "path": [9, 8, 2, 1, 7, 6, 0]
+      "path": [19, 20, 14, 13, 7, 1, 0]
     },
     {
       "text": "SISTERS",
-      "path": [32, 31, 25, 19, 20, 14, 13]
+      "path": [8, 9, 15, 21, 27, 28, 29]
     },
     {
       "text": "NOBLE",
-      "path": [5, 11, 17, 23, 29]
+      "path": [16, 10, 4, 3, 2]
     },
     {
       "text": "THOUSAND",
-      "path": [40, 46, 47, 41, 35, 34, 28, 22]
+      "path": [36, 37, 31, 30, 24, 18, 12, 6]
     },
     {
       "text": "PROUDEST",
-      "path": [33, 39, 45, 44, 38, 37, 43, 42]
+      "path": [40, 34, 33, 39, 38, 32, 26, 25]
     },
     {
       "text": "WORLD",
-      "path": [12, 18, 24, 30, 36]
+      "path": [5, 11, 17, 23, 22]
     }
   ],
   "story": {

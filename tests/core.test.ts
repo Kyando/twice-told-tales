@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { BOOKS, unintroducedNames } from '../src/core/books.ts';
-import { generateLevel } from '../src/core/generate.ts';
+import { easySpread, easyStart, generateLevel } from '../src/core/generate.ts';
 import { findPaths, isPath, turns } from '../src/core/grid.ts';
 import { existsSync } from 'node:fs';
 import { decoysOf, endsSentence, passageParts, passageTokens } from '../src/core/passage.ts';
@@ -106,11 +106,11 @@ describe('generator', () => {
     expect(a).toEqual(b);
   });
 
-  it('lays the easy words of the first chapters straight, left to right or top to bottom', () => {
+  it('starts the first chapters’ easy words straight and far apart', () => {
     for (const spec of SPECS.filter((s) => s.easy)) {
       const def = levels.find((l) => l.id === spec.id)!;
-      const easy = def.words.filter((w) => !turns(w.path) && w.path.every((c, i) => i === 0 || c > w.path[i - 1]));
-      expect(easy.length, spec.id).toBeGreaterThanOrEqual(spec.easy!);
+      expect(def.words.filter((w) => easyStart(w.path, def.cols)).length, spec.id).toBeGreaterThanOrEqual(spec.easy!);
+      expect(easySpread(def.words, spec.easy!, def.cols), spec.id).toBeGreaterThanOrEqual(Math.ceil((def.rows + def.cols) / spec.easy!));
     }
   });
 

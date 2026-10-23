@@ -16,9 +16,10 @@ export interface LevelSpec {
   /** Cells left empty, for boards that aren't a full rectangle. */
   holes?: number[];
   /**
-   * For the first chapters, which teach the game: at least this many words lie in a straight line,
-   * read left to right or top to bottom, so they're easy to spot while the player is still learning
-   * to read the passage for clues. The other words bend as usual.
+   * For the first chapters, which teach the game: at least this many words start easy to spot, while
+   * the player is still learning to read the passage for clues. Each begins with a straight run of
+   * EASY_RUN letters or more, read left to right or top to bottom, and then bends once; and they
+   * start far apart, in different parts of the board. The other words bend as usual.
    */
   easy?: number;
 }
@@ -152,6 +153,41 @@ function youngScore(def: LevelDef): number {
   return def.words.reduce((sum, w) => sum + (forwards(w.path) ? 3 : 0) + (turns(w.path) ? 0 : 1), 0);
 }
 
+/** A word made easy to spot (see LevelSpec.easy): a straight start of EASY_RUN letters or more, rightwards or downwards, then one bend. */
+export function easyStart(path: number[], cols: number): boolean {
+  if (turns(path) !== 1) return false;
+  const step = path[1] - path[0];
+  if (step !== 1 && step !== cols) return false;
+  let run = 1;
+  while (run < path.length && path[run] - path[run - 1] === step) run++;
+  return run >= EASY_RUN;
+}
+
+/** Letters an easy word runs straight before it bends. */
+export const EASY_RUN = 3;
+
+/**
+ * How far apart `count` easy words can start (in steps across the board, the closest pair), choosing
+ * among the words that start easy; -1 if there aren't that many.
+ */
+export function easySpread(words: WordDef[], count: number, cols: number): number {
+  const starts = words.filter((w) => easyStart(w.path, cols)).map((w) => [Math.floor(w.path[0] / cols), w.path[0] % cols]);
+  if (starts.length < count) return -1;
+  let best = -1;
+  const pick = (from: number, chosen: number[][]) => {
+    if (chosen.length === count) {
+      let closest = Infinity;
+      for (let i = 0; i < chosen.length; i++)
+        for (let j = i + 1; j < chosen.length; j++) closest = Math.min(closest, Math.abs(chosen[i][0] - chosen[j][0]) + Math.abs(chosen[i][1] - chosen[j][1]));
+      best = Math.max(best, closest);
+      return;
+    }
+    for (let k = from; k < starts.length; k++) pick(k + 1, [...chosen, starts[k]]);
+  };
+  pick(0, []);
+  return best;
+}
+
 /** Best of `attempts` random valid layouts, or null if none passed validation. */
 export function generateLevel(spec: LevelSpec, seed: number, attempts = spec.easy ? 20000 : 400): LevelDef | null {
   const { rows, cols } = spec;
@@ -182,9 +218,12 @@ export function generateLevel(spec: LevelSpec, seed: number, attempts = spec.eas
       story: spec.story,
     };
     if (young && words.some((w) => turns(w.path) > 1)) continue;
-    if (spec.easy && words.filter((w) => !turns(w.path) && forwards(w.path)).length < spec.easy) continue;
+    const spread = spec.easy ? easySpread(words, spec.easy, cols) : 0;
+    // Two easy words start at least half the board's span apart; three, a third of it each.
+    if (spread < (spec.easy ? Math.ceil((rows + cols) / spec.easy) : 0)) continue;
     if (validateLevel(def).length) continue;
-    const s = (young ? youngScore(def) : score(def)) + rng();
+    // Among boards that pass, the easy words as far apart as can be.
+    const s = (young ? youngScore(def) : score(def)) + spread * 2 + rng();
     if (s > bestScore) {
       best = def;
       bestScore = s;
