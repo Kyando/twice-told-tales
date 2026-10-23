@@ -794,28 +794,10 @@ button {
   gap: 8px;
 }
 
-.passage-scroll {
-  min-height: 0;
-  max-height: 34svh;
-  /* Room for the highlight's overhang at the line ends, never a sideways scroll. */
-  padding-inline: 4px;
-  margin-inline: -4px;
-  overflow-x: hidden;
-  overflow-y: auto;
-  overscroll-behavior: contain;
-  scrollbar-width: thin;
-}
-
-.passage-scroll.has-below {
-  mask-image: linear-gradient(#000 calc(100% - 26px), transparent);
-}
-
-.passage-scroll.has-above {
-  mask-image: linear-gradient(transparent, #000 26px);
-}
-
-.passage-scroll.has-above.has-below {
-  mask-image: linear-gradient(transparent, #000 26px, #000 calc(100% - 26px), transparent);
+/* The whole passage always shows: it never scrolls. On a tight screen its type steps down a little
+   (see LevelView.fit) so the board keeps tiles big enough for the thumb. */
+.passage-box {
+  flex: none;
 }
 
 .passage {
@@ -882,17 +864,6 @@ button {
   }
 }
 
-/* Short phones: the board keeps tiles big enough for the thumb; a long passage scrolls sooner. */
-@media (max-width: 859px) and (max-height: 700px) {
-  .passage-scroll {
-    max-height: 28svh;
-  }
-
-  .passage {
-    font-size: 15.5px;
-  }
-}
-
 /* Wide screens: the passage beside the board. */
 @media (min-width: 860px) and (min-aspect-ratio: 5/4) {
   .stage--passage .play {
@@ -906,10 +877,6 @@ button {
     flex: 0 1 420px;
     max-height: 100%;
     padding: 26px 30px 18px;
-  }
-
-  .stage--passage .passage-scroll {
-    max-height: none;
   }
 
   .stage--passage .passage {

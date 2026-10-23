@@ -56,6 +56,9 @@ const STAGGER_MS = INK_STAGGER_MS;
  */
 const CHIP_START = 560;
 const CHIP_STEP = 85;
+/** A passage above the board steps its type down to this, at the least, to keep tiles this big (px). */
+const PASSAGE_MIN_PX = 14;
+const COMFORT_CELL = 44;
 /** The passage is laid down as a sheet: when it starts (ms) and how long it takes to settle. */
 const SHEET_START = 260;
 const SHEET_MS = 620;
@@ -97,8 +100,8 @@ export class LevelView {
   private readonly chips: HTMLElement[] = [];
   /** What arrives one by one before the deal: the passage's sentences, or the list's chips. */
   private readonly arrivals: HTMLElement[];
-  /** The passage's own scrolling box (a long passage on a small phone); null with the word list. */
-  private readonly scroller: HTMLElement | null;
+  /** The passage's box: always shown whole, never scrolled (see fitPassage); null with the word list. */
+  private readonly passageBox: HTMLElement | null;
   /** The passage's words that aren't hidden: tracing one gets a gentle word, not a miss. */
   private readonly decoys: Set<string>;
   private readonly resizeObserver: ResizeObserver;
@@ -152,10 +155,9 @@ export class LevelView {
         return mark;
       });
       this.arrivals = [];
-      this.scroller = h('div', { class: 'passage-scroll' }, h('p', { class: 'passage', 'aria-label': t('level.passage') }, ...text));
-      this.panel = h('section', { class: 'story-panel story-panel--passage' }, this.scroller, this.dots);
+      this.passageBox = h('div', { class: 'passage-box' }, h('p', { class: 'passage', 'aria-label': t('level.passage') }, ...text));
+      this.panel = h('section', { class: 'story-panel story-panel--passage' }, this.passageBox, this.dots);
       this.decoys = new Set(decoysOf(story.text, p.words.map((w) => w.text)));
-      this.scroller.addEventListener('scroll', () => this.fade(), { passive: true });
     } else {
       // The word list, as first made: the words to find, alphabetical so it doesn't spoil the
       // story's order. The scene itself waits for the end, on the desk.
@@ -171,7 +173,7 @@ export class LevelView {
           }),
       );
       this.arrivals = [...list.children] as HTMLElement[];
-      this.scroller = null;
+      this.passageBox = null;
       this.panel = h('section', { class: 'story-panel' }, list);
       this.decoys = new Set();
     }
@@ -485,7 +487,6 @@ export class LevelView {
    */
   private flyTiles(word: Word): void {
     const chip = this.chips[word.index];
-    this.reveal(chip);
     const to = chip.getBoundingClientRect();
     const tx = to.left + to.width / 2;
     const ty = to.top + to.height / 2;
@@ -552,27 +553,6 @@ export class LevelView {
     const back = [...letters].reverse().join('');
     if (!this.decoys.has(letters) && !this.decoys.has(back)) return false;
     return !insideWord(trace, this.s.puzzle.words.map((w) => w.path));
-  }
-
-  /** Scrolls the passage (if it scrolls) so a found word's place is in view before its tiles fly there. */
-  private reveal(mark: HTMLElement): void {
-    const box = this.scroller;
-    if (!box || box.scrollHeight <= box.clientHeight) return;
-    const top = mark.getBoundingClientRect().top - box.getBoundingClientRect().top + box.scrollTop;
-    const margin = mark.offsetHeight;
-    if (top < box.scrollTop + margin || top + mark.offsetHeight > box.scrollTop + box.clientHeight - margin) {
-      box.scrollTop = Math.max(0, top - (box.clientHeight - mark.offsetHeight) / 2);
-    }
-    this.fade();
-  }
-
-  /** A soft fade at whichever edge of the passage has more text beyond it. */
-  private fade(): void {
-    const box = this.scroller;
-    if (!box) return;
-    const more = box.scrollHeight - box.clientHeight;
-    box.classList.toggle('has-above', more > 1 && box.scrollTop > 1);
-    box.classList.toggle('has-below', more > 1 && box.scrollTop < more - 1);
   }
 
   /** The chapter's menu: starting over (once there's something to lose), then the App's items. */
@@ -761,19 +741,12 @@ export class LevelView {
   /** Sizes cells to the space available. */
   private fit(): void {
     const p = this.s.puzzle;
-    // Layout sizes, not the on-screen box: while the page is turning in, it is rotated and looks narrower.
-    const wrap = { width: this.boardWrap.offsetWidth, height: this.boardWrap.offsetHeight };
-    const width = wrap.width;
-    const floating = getComputedStyle(this.traceEl).position === 'absolute';
-    if (floating) {
+    if (getComputedStyle(this.traceEl).position === 'absolute') {
       this.traceEl.style.setProperty('--head-top', `${this.heading.offsetTop}px`);
       this.traceEl.style.setProperty('--head-h', `${this.heading.offsetHeight}px`);
     }
-    const height = wrap.height - (floating ? 0 : this.traceEl.offsetHeight + 6);
-    const gap = width < 480 ? 4 : 7;
-    const byWidth = (width - gap * (p.cols - 1)) / p.cols;
-    const byHeight = (height - gap * (p.rows - 1)) / p.rows;
-    const size = Math.max(34, Math.min(92, Math.floor(Math.min(byWidth, byHeight))));
+    this.fitPassage();
+    const { size, gap } = this.measureCell();
     this.cellPx = size;
     this.gapPx = gap;
     this.el.style.setProperty('--cell', `${size}px`);
@@ -790,7 +763,36 @@ export class LevelView {
       for (const word of p.words) if (this.s.isFound(word.index)) this.pieces.add(word.index, word.path);
       if (this.board.classList.contains('is-complete')) this.pieces.showWhole((cell) => this.s.ownerAt(cell), false);
     }
-    this.fade();
     this.drawTrace();
+  }
+
+  /** The cell size the board's space allows now, and the gap between cells. */
+  private measureCell(): { size: number; gap: number } {
+    const p = this.s.puzzle;
+    // Layout sizes, not the on-screen box: while the page is turning in, it is rotated and looks narrower.
+    const width = this.boardWrap.offsetWidth;
+    const floating = getComputedStyle(this.traceEl).position === 'absolute';
+    const height = this.boardWrap.offsetHeight - (floating ? 0 : this.traceEl.offsetHeight + 6);
+    const gap = width < 480 ? 4 : 7;
+    const byWidth = (width - gap * (p.cols - 1)) / p.cols;
+    const byHeight = (height - gap * (p.rows - 1)) / p.rows;
+    return { size: Math.max(34, Math.min(92, Math.floor(Math.min(byWidth, byHeight)))), gap };
+  }
+
+  /**
+   * The passage never scrolls: it shows whole, above the board. Where that leaves the tiles too small
+   * for the thumb, its type steps down a little at a time (never below PASSAGE_MIN_PX) until they fit.
+   * Beside the board (wide screens) it doesn't take the board's height, so it keeps its size.
+   */
+  private fitPassage(): void {
+    const text = this.passageBox?.firstElementChild as HTMLElement | null;
+    if (!text) return;
+    text.style.fontSize = '';
+    if (getComputedStyle(this.panel.parentElement!).flexDirection !== 'column') return;
+    const base = parseFloat(getComputedStyle(text).fontSize);
+    for (let px = base; px - 0.5 >= PASSAGE_MIN_PX && this.measureCell().size < COMFORT_CELL; ) {
+      px -= 0.5;
+      text.style.fontSize = `${px}px`;
+    }
   }
 }
