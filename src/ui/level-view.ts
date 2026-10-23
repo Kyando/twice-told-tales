@@ -56,8 +56,9 @@ const STAGGER_MS = INK_STAGGER_MS;
  */
 const CHIP_START = 560;
 const CHIP_STEP = 85;
-/** The passage's sentences are written in this far apart (ms). */
-const SENTENCE_STEP = 240;
+/** The passage is laid down as a sheet: when it starts (ms) and how long it takes to settle. */
+const SHEET_START = 260;
+const SHEET_MS = 620;
 const DIAG_STEP = 110;
 const CARD_JITTER = 60;
 const CARD_FLIGHT = 600;
@@ -120,7 +121,10 @@ export class LevelView {
 
     // The game's bar: back to the chapters, the chapter (flanked by arrows to its neighbours, with
     // a dot per word), and its menu. No site header above it: the board gets the height.
-    this.dots = h('span', { class: 'word-dots', role: 'img' }, ...p.words.map(() => h('i', {})));
+    // With the passage, the dots sit under it instead, where the eye already is while reading.
+    this.clue = opts.clue ?? 'passage';
+    const reading = this.clue === 'passage';
+    this.dots = h('span', { class: reading ? 'word-dots passage-dots' : 'word-dots', role: 'img' }, ...p.words.map(() => h('i', {})));
     const heading = (this.heading = h(
       'header',
       { class: 'chapter' },
@@ -131,41 +135,25 @@ export class LevelView {
         { class: 'chapter-text' },
         h('p', { class: 'eyebrow' }, t('level.eyebrow', { chapter: roman(def.chapter) })),
         h('h1', {}, def.title),
-        this.dots,
+        reading ? '' : this.dots,
       ),
       (this.nextArrow = opts.nextLocked ? arrow(t('level.nextLocked'), ICONS.next) : arrow(t('level.next'), ICONS.next, opts.onNext)),
       barButton(t('level.menu'), ICONS.more, () => this.openMenu(), 'bar-more'),
     ));
 
-    this.clue = opts.clue ?? 'passage';
-    if (this.clue === 'passage') {
+    if (reading) {
       // The scene's passage, with nothing marked: the hidden words are somewhere in it, and each one
-      // found lights up where it stands. Sentences are kept apart so they can arrive one by one.
+      // found is underlined in ink where it stands. A dot per hidden word below it.
       const index = new Map(p.words.map((w) => [w.text, w.index]));
-      const sentences: HTMLElement[] = [];
-      let sentence = h('span', { class: 'passage-sentence' });
-      const close = () => {
-        if (sentence.textContent?.trim()) sentences.push(sentence);
-        sentence = h('span', { class: 'passage-sentence' });
-      };
-      for (const part of passageParts(story.text, BOOKS[def.book].names)) {
-        if (part.word) {
-          const mark = h('span', { class: 'passage-word' }, part.text);
-          this.chips[index.get(part.word)!] = mark;
-          sentence.append(mark);
-          continue;
-        }
-        // A sentence ends at its stop (and any closing quote) and the space after it.
-        for (const piece of part.text.split(/(?<=[.!?][”"’)]*\s+)/)) {
-          sentence.append(piece);
-          if (/[.!?][”"’)]*\s+$/.test(piece)) close();
-        }
-      }
-      close();
-      this.arrivals = sentences;
-      this.scroller = h('div', { class: 'passage-scroll' }, h('p', { class: 'passage', 'aria-label': t('level.passage') }, ...sentences));
-      const note = h('p', { class: 'passage-note' }, tn('level.hidden', p.words.length));
-      this.panel = h('section', { class: 'story-panel story-panel--passage' }, this.scroller, note);
+      const text = passageParts(story.text, BOOKS[def.book].names).map((part) => {
+        if (!part.word) return part.text;
+        const mark = h('span', { class: 'passage-word' }, part.text);
+        this.chips[index.get(part.word)!] = mark;
+        return mark;
+      });
+      this.arrivals = [];
+      this.scroller = h('div', { class: 'passage-scroll' }, h('p', { class: 'passage', 'aria-label': t('level.passage') }, ...text));
+      this.panel = h('section', { class: 'story-panel story-panel--passage' }, this.scroller, this.dots);
       this.decoys = new Set(decoysOf(story.text, p.words.map((w) => w.text)));
       this.scroller.addEventListener('scroll', () => this.fade(), { passive: true });
     } else {
@@ -248,28 +236,37 @@ export class LevelView {
     const chips = this.arrivals;
     const anims: Animation[] = [];
     const reading = this.clue === 'passage';
-    // The word chips pop up one by one; the passage's sentences ink in, one after another, like a
-    // page being written.
-    const step = reading ? SENTENCE_STEP : CHIP_STEP;
+    if (reading) {
+      // The passage is laid down like a sheet of paper on the table: it drops in a little turned,
+      // lands, and settles flat, its shadow closing in under it.
+      anims.push(
+        this.panel.animate(
+          [
+            { transform: 'translateY(-34px) rotate(-2.2deg) scale(1.04)', boxShadow: '0 22px 30px rgb(59 43 32 / 0.22)', opacity: 0 },
+            { opacity: 1, offset: 0.35 },
+            { transform: 'translateY(2px) rotate(0.4deg) scale(1)', boxShadow: '0 3px 6px rgb(59 43 32 / 0.14)', offset: 0.78 },
+            { transform: 'none', boxShadow: '0 0 0 rgb(59 43 32 / 0)', opacity: 1 },
+          ],
+          { duration: SHEET_MS, delay: SHEET_START, easing: 'cubic-bezier(0.25, 0.6, 0.35, 1)', fill: 'backwards' },
+        ),
+      );
+    }
+    // The word chips pop up one by one.
     chips.forEach((chip, i) =>
       anims.push(
         chip.animate(
-          reading
-            ? [{ opacity: 0, filter: 'blur(3px)' }, { opacity: 1, filter: 'none' }]
-            : [
-                { transform: 'scale(0.3)', opacity: 0 },
-                { transform: 'scale(1.14)', opacity: 1, offset: 0.6 },
-                { transform: 'none', opacity: 1 },
-              ],
-          reading
-            ? { duration: 520, delay: CHIP_START + i * step, easing: 'ease-out', fill: 'backwards' }
-            : { duration: 380, delay: CHIP_START + i * step, easing: 'cubic-bezier(0.3, 1.3, 0.5, 1)', fill: 'backwards' },
+          [
+            { transform: 'scale(0.3)', opacity: 0 },
+            { transform: 'scale(1.14)', opacity: 1, offset: 0.6 },
+            { transform: 'none', opacity: 1 },
+          ],
+          { duration: 380, delay: CHIP_START + i * CHIP_STEP, easing: 'cubic-bezier(0.3, 1.3, 0.5, 1)', fill: 'backwards' },
         ),
       ),
     );
 
-    // The deal starts as the last word chip pops up (or the last sentence is written), so their sounds don't pile up.
-    const start = CHIP_START + Math.max(2, chips.length) * step;
+    // The deal starts as the sheet lands (or the last word chip pops up), so their sounds don't pile up.
+    const start = reading ? SHEET_START + SHEET_MS * 0.8 : CHIP_START + Math.max(2, chips.length) * CHIP_STEP;
     const cols = this.s.puzzle.cols;
     const diagonal = (cell: number) => rowOf(cell, cols) + colOf(cell, cols);
     const cards = this.tiles
@@ -324,7 +321,8 @@ export class LevelView {
         const now = Number(document.timeline.currentTime ?? 0);
         const skew = (now - Number(first.startTime ?? now)) / 1000 + sfx.latency;
         const at = (ms: number) => ms / 1000 - skew;
-        if (!reading) sfx.pops(chips.length, at(CHIP_START + 25), CHIP_STEP / 1000);
+        if (reading) window.setTimeout(() => sfx.sheet(), SHEET_START + SHEET_MS * 0.45);
+        else sfx.pops(chips.length, at(CHIP_START + 25), CHIP_STEP / 1000);
         sfx.deal(at(start), lands.map((s) => s - skew));
         sfx.settle(at(hop));
       }).catch(() => undefined);
