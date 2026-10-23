@@ -54,6 +54,11 @@ export class Session {
     return { kind: 'found', word, solved: this.solved };
   }
 
+  /** Counts a hint taken (see LevelView's hints). */
+  noteHint(): void {
+    this.progress.hints++;
+  }
+
   /** Clears the board to play the chapter again. */
   reset(): void {
     this.found.fill(false);

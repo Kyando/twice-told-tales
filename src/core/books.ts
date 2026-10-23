@@ -39,6 +39,12 @@ export const SHELVES: Record<ShelfId, { title: string; blurb: string }> = {
   heroines: { title: 'The Heroines', blurb: 'Jane Eyre and Little Women.' },
 };
 
+/**
+ * The book a new player is shown first, with a button straight into its first chapter: short,
+ * complete and free. A Christmas Carol for the end of the year; change it with the season.
+ */
+export const FEATURED_BOOK = 'a-christmas-carol';
+
 /** Scenes of a paid book anyone can play. */
 export const FREE_CHAPTERS = 4;
 

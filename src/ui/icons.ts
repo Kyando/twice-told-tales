@@ -2,6 +2,8 @@ const base = (paths: string) =>
   `<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${paths}</svg>`;
 
 export const ICONS = {
+  /** A hint: a light bulb. */
+  bulb: base('<path d="M9 17.5h6"/><path d="M10 20.5h4"/><path d="M8.6 14.6A6 6 0 1 1 15.4 14.6c-.6.5-.9 1.2-.9 1.9v1H9.5v-1c0-.7-.3-1.4-.9-1.9z"/>'),
   book: base('<path d="M4 5.5C4 4.7 4.7 4 5.5 4H11v16H5.5c-.8 0-1.5-.7-1.5-1.5z"/><path d="M20 5.5c0-.8-.7-1.5-1.5-1.5H13v16h5.5c.8 0 1.5-.7 1.5-1.5z"/>'),
   shelf: base('<path d="M3 20h18"/><path d="M5 20V6h3v14"/><path d="M10 20V4h3v16"/><path d="m15.4 7.3 2.9-.8 2.6 13-2.9.6z"/>'),
   help: base('<circle cx="12" cy="12" r="9"/><path d="M9.5 9.2a2.6 2.6 0 0 1 5 .9c0 1.7-2.5 2.2-2.5 3.9"/><path d="M12 17.2h.01"/>'),

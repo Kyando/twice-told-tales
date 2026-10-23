@@ -1,5 +1,5 @@
 import { BOOKS } from '../core/books.ts';
-import { adjacent, colOf, rowOf } from '../core/grid.ts';
+import { adjacent, colOf, rowOf, turns } from '../core/grid.ts';
 import { decoysOf, passageParts } from '../core/passage.ts';
 import { HOLE_LETTER, insideWord, matchTrace, type Word } from '../core/puzzle.ts';
 import { steer } from '../core/steer.ts';
@@ -42,6 +42,25 @@ export interface LevelViewOptions {
   clue?: Clue;
   /** The narrator's accent, where the chapter has narration (American by default). */
   accent?: Accent;
+  /** The player's first chapter: walk them through finding one word, then through the hint. */
+  guide?: boolean;
+  /** The guide is over (or the chapter was finished during it): not to be shown again. */
+  onGuided?(): void;
+}
+
+/**
+ * A hint, one word at a time, a little more each tap: the word marked in the passage (with the word
+ * list, its chip, which names it already), then its first letter on the board, then its whole path.
+ */
+const HINT_STEPS = 3;
+
+/** A word easy to show first: it runs straight for three letters or more, rightwards or downwards, before it bends. */
+function startsStraight(path: number[], cols: number): boolean {
+  const step = path[1] - path[0];
+  if (turns(path) > 1 || (step !== 1 && step !== cols)) return false;
+  let run = 1;
+  while (run < path.length && path[run] - path[run - 1] === step) run++;
+  return run >= 3;
 }
 
 const SVG_NS = 'http://www.w3.org/2000/svg';
@@ -122,6 +141,15 @@ export class LevelView {
   private gapPx = 0;
   private readonly heading: HTMLElement;
   private nextArrow!: HTMLButtonElement;
+  /** The word being hinted at, and how much of it is shown (1 to HINT_STEPS). */
+  private hint: { word: number; step: number } | null = null;
+  private readonly hintButton: HTMLButtonElement;
+  /** The first chapter's guide: 1 while tracing the shown word, 2 after it, 3 at the hint; 0 when off. */
+  private guideStep = 0;
+  /** The guide's card, between the chapter's title and the play area. */
+  private coach: HTMLElement | null = null;
+  /** Runs once the letters are dealt (the guide waits for them). */
+  private afterDeal: (() => void) | null = null;
 
   constructor(opts: LevelViewOptions) {
     this.opts = opts;
@@ -135,6 +163,11 @@ export class LevelView {
     // With the passage, the dots sit under it instead, where the eye already is while reading.
     this.clue = opts.clue ?? 'passage';
     const reading = this.clue === 'passage';
+    this.hintButton = h(
+      'button',
+      { type: 'button', class: 'hint-btn', 'aria-label': t('hint.button'), title: t('hint.button'), onclick: () => this.takeHint() },
+      svg(ICONS.bulb),
+    );
     this.dots = h('span', { class: reading ? 'word-dots passage-dots' : 'word-dots', role: 'img' }, ...p.words.map(() => h('i', {})));
     const heading = (this.heading = h(
       'header',
@@ -203,7 +236,7 @@ export class LevelView {
           this.passageBox!.click();
         }
       });
-      this.panel = h('section', { class: 'story-panel story-panel--passage' }, this.passageBox, h('div', { class: 'passage-foot' }, this.dots, listen));
+      this.panel = h('section', { class: 'story-panel story-panel--passage' }, this.passageBox, h('div', { class: 'passage-foot' }, this.hintButton, this.dots, listen));
       this.decoys = new Set(decoysOf(story.text, p.words.map((w) => w.text)));
     } else {
       // The word list, as first made: the words to find, alphabetical so it doesn't spoil the
@@ -221,7 +254,7 @@ export class LevelView {
       );
       this.arrivals = [...list.children] as HTMLElement[];
       this.passageBox = null;
-      this.panel = h('section', { class: 'story-panel' }, list);
+      this.panel = h('section', { class: 'story-panel' }, list, h('div', { class: 'passage-foot passage-foot--list' }, this.hintButton));
       this.decoys = new Set();
     }
     const panel = this.panel;
@@ -260,7 +293,86 @@ export class LevelView {
       // Hidden until the deal starts, once the board is in the page and measured.
       this.el.classList.add('is-entering', 'is-dealing');
       requestAnimationFrame(() => this.dealIn());
+      if (opts.guide) this.afterDeal = () => this.startGuide();
+    } else if (opts.guide) requestAnimationFrame(() => this.startGuide());
+  }
+
+  // ── hints and the first chapter's guide ─────────────────────────────────
+
+  /** The word to show next: the guide's an easy one to see (straight at first), a hint's the story's next. */
+  private nextWord(easy: boolean): number {
+    const { words, cols } = this.s.puzzle;
+    const open = words.filter((w) => !this.s.isFound(w.index));
+    const straight = easy ? open.filter((w) => startsStraight(w.path, cols)) : [];
+    const pool = straight.length ? straight : open;
+    return (easy ? [...pool].sort((a, b) => a.path.length - b.path.length)[0] : pool[0]).index;
+  }
+
+  /** One more step of a hint: the same word until it's found, then the next. */
+  private takeHint(): void {
+    if (this.s.solved) return;
+    if (!this.hint || this.s.isFound(this.hint.word)) this.hint = { word: this.nextWord(false), step: 0 };
+    const hint = this.hint;
+    if (hint.step >= HINT_STEPS) {
+      toast(t('hint.more'));
+      return;
     }
+    // The word list names the word already: its hint starts at the first letter.
+    hint.step = hint.step === 0 && this.clue === 'list' ? 2 : hint.step + 1;
+    this.s.noteHint();
+    toast(t(hint.step === 1 ? 'hint.passage' : hint.step === 2 ? 'hint.start' : 'hint.path'));
+    if (this.guideStep === 3) this.endGuide();
+    this.render();
+  }
+
+  /** The guide begins: one word, easy to see, shown whole; the card says what to do with it. */
+  private startGuide(): void {
+    if (this.destroyed || this.s.solved) return;
+    this.hint = { word: this.nextWord(true), step: HINT_STEPS };
+    this.guideStep = 1;
+    this.showCoach(t(this.clue === 'passage' ? 'guide.find' : 'guide.findList'));
+    this.render();
+  }
+
+  /** The guide's next card, after a word is found. */
+  private guideFound(solved: boolean): void {
+    if (this.guideStep !== 1) return;
+    if (solved) {
+      this.endGuide();
+      return;
+    }
+    this.guideStep = 2;
+    this.showCoach(`${t(this.clue === 'passage' ? 'guide.found' : 'guide.foundList')} ${t('guide.bend')}`, t('guide.next'), () => {
+      this.guideStep = 3;
+      this.hintButton.classList.add('is-pointed');
+      this.showCoach(t('guide.hint'), t('guide.done'), () => this.endGuide());
+    });
+  }
+
+  private endGuide(): void {
+    this.guideStep = 0;
+    this.hintButton.classList.remove('is-pointed');
+    this.showCoach(null);
+    this.opts.onGuided?.();
+  }
+
+  /** The guide's card (or none): it takes its own room above the play area, so it covers nothing. */
+  private showCoach(text: string | null, action?: string, onAction?: () => void): void {
+    if (!text) {
+      this.coach?.remove();
+      this.coach = null;
+      return;
+    }
+    const card = h(
+      'div',
+      { class: 'coach', role: 'status', 'aria-live': 'polite' },
+      h('p', {}, text),
+      action ? h('button', { type: 'button', class: 'btn btn--primary coach-btn', onclick: () => onAction?.() }, action) : '',
+    );
+    if (this.coach) this.coach.replaceWith(card);
+    else this.heading.after(card);
+    this.coach = card;
+    replay(card, 'is-new');
   }
 
   /**
@@ -374,7 +486,12 @@ export class LevelView {
       }).catch(() => undefined);
     }
     this.el.classList.remove('is-dealing');
-    window.setTimeout(() => this.el.classList.remove('is-entering'), last);
+    window.setTimeout(() => {
+      this.el.classList.remove('is-entering');
+      const then = this.afterDeal;
+      this.afterDeal = null;
+      then?.();
+    }, last);
   }
 
   destroy(): void {
@@ -512,6 +629,8 @@ export class LevelView {
     // list, each along its own curve. Their letters stay behind as ink, which melts into the paper
     // underneath and spreads out into the word's piece of the picture.
     const { word } = result;
+    if (this.hint?.word === word.index) this.hint = null;
+    this.guideFound(result.solved);
     const calm = reducedMotion();
     if (!calm) this.flyTiles(word);
     this.render();
@@ -632,6 +751,7 @@ export class LevelView {
     this.pieces.clear();
     this.flying.clear();
     this.trace = [];
+    this.hint = null;
     this.traceEl.replaceChildren(h('span', { class: 'trace-hint' }, t('level.hint')));
     this.render();
     toast(t('level.restarted'));
@@ -647,6 +767,7 @@ export class LevelView {
    * onto the desk, with the chapter's scene on the pages under it.
    */
   private celebrate(): void {
+    if (this.guideStep) this.endGuide();
     this.opts.sfx.win();
     buzz('win');
     this.finish(true);
@@ -750,11 +871,17 @@ export class LevelView {
     const p = this.s.puzzle;
     const traced = new Set(this.trace);
     const end = this.trace[this.trace.length - 1];
+    const hint = this.hint && !this.s.isFound(this.hint.word) ? this.hint : null;
+    const hinted = hint ? p.words[hint.word].path : [];
     this.tiles.forEach((tile, cell) => {
       tile.classList.toggle('is-found', this.s.ownerAt(cell) >= 0);
       tile.classList.toggle('is-trace', traced.has(cell));
       tile.classList.toggle('is-end', cell === end && this.trace.length > 0);
+      tile.classList.toggle('is-hint-start', !!hint && hint.step >= 2 && cell === hinted[0]);
+      tile.classList.toggle('is-hint-path', !!hint && hint.step >= 3 && hinted.includes(cell));
     });
+    p.words.forEach((w) => this.chips[w.index].classList.toggle('is-hinted', hint?.word === w.index));
+    this.hintButton.disabled = this.s.solved;
     if (this.trace.length) this.showTrace(this.trace.map((c) => p.letters[c]).join(''));
     this.board.classList.toggle('is-tracing', this.trace.length > 0);
     p.words.forEach((w) => this.chips[w.index].classList.toggle('is-found', this.s.isFound(w.index) && !this.flying.has(w.index)));

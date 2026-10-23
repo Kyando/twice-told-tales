@@ -1,7 +1,8 @@
 import { FREE_CHAPTERS, SHELVES, type Book, type ShelfId } from '../core/books.ts';
 import { t, tn } from '../i18n/index.ts';
 import { barButton, screenBar, wordmark } from './bar.ts';
-import { h } from './dom.ts';
+import { roman } from './desk.ts';
+import { h, svg } from './dom.ts';
 import { ICONS } from './icons.ts';
 
 export interface ShelfBook {
@@ -14,8 +15,20 @@ export interface ShelfBook {
   sample: boolean;
 }
 
+/** The book put first, above the shelves, with a button straight into the chapter to read next. */
+export interface ShelfFeature {
+  key: string;
+  book: Book;
+  /** A new player's first book (start here), rather than the one they were reading (continue). */
+  fresh: boolean;
+  scenes: number;
+  next: { chapter: number; title: string };
+  onGo(): void;
+}
+
 export interface ShelfOptions {
   books: ShelfBook[];
+  feature?: ShelfFeature;
   onOpen(key: string): void;
   onSettings(): void;
 }
@@ -53,7 +66,30 @@ export class Shelf {
         h('ol', { class: 'bookcase' }, ...g.books.map((b) => h('li', {}, this.book(b, opts.books.indexOf(b), opts)))),
       ),
     );
-    this.el = h('section', { class: 'library shelf-view', 'aria-label': t('shelf.label') }, bar, h('div', { class: 'library-inner' }, head, ...sections));
+    const feature = opts.feature ? this.feature(opts.feature) : '';
+    this.el = h('section', { class: 'library shelf-view', 'aria-label': t('shelf.label') }, bar, h('div', { class: 'library-inner' }, head, feature, ...sections));
+  }
+
+  /**
+   * Where to begin: for a new player, one book chosen for them (start here), so the first tap is
+   * reading rather than choosing; afterwards, the book they were in, at the chapter they're on.
+   */
+  private feature(f: ShelfFeature): HTMLElement {
+    const go = h('button', { type: 'button', class: 'btn btn--primary feature-go', onclick: () => f.onGo() }, t(f.fresh ? 'shelf.begin' : 'shelf.resume'), svg(ICONS.arrow));
+    return h(
+      'section',
+      { class: 'feature', 'aria-label': t(f.fresh ? 'shelf.startHere' : 'shelf.continueHere') },
+      h('button', { type: 'button', class: 'feature-cover', tabindex: '-1', 'aria-hidden': 'true', onclick: () => f.onGo() }, h('img', { src: f.book.cover, alt: '', decoding: 'async' })),
+      h(
+        'div',
+        { class: 'feature-text' },
+        h('p', { class: 'eyebrow' }, t(f.fresh ? 'shelf.startHere' : 'shelf.continueHere')),
+        h('h2', {}, f.book.title),
+        h('p', { class: 'feature-by' }, `${f.book.author} · ${f.book.year}`),
+        h('p', { class: 'feature-blurb' }, f.fresh ? `${f.book.blurb} ${t('shelf.featuredNote', { count: f.scenes })}` : t('shelf.nextUp', { n: roman(f.next.chapter), title: f.next.title })),
+        go,
+      ),
+    );
   }
 
   private book({ key, book, done, total, sample }: ShelfBook, i: number, opts: ShelfOptions): HTMLElement {

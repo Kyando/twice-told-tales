@@ -9,6 +9,8 @@ export interface LevelProgress {
   done: boolean;
   /** Traces that weren't a word. */
   misses: number;
+  /** Hints taken (each step counts). */
+  hints: number;
 }
 
 export interface SaveData {
@@ -17,8 +19,11 @@ export interface SaveData {
   levels: Record<string, { done: true }>;
   /** The paid shelves the player owns (see SHELVES in core/books.ts). */
   shelves: string[];
-  /** `accent`: the narrator's voice, American or British (see VOICES in src/narration). */
-  settings: { sound: boolean; seenHelp: boolean; clue: Clue; accent: Accent };
+  /**
+   * `accent`: the narrator's voice, American or British (see VOICES in src/narration). `seenHelp`: the
+   * first chapter's guide is done. `lastBook`: the book last opened, which the shelf offers to continue.
+   */
+  settings: { sound: boolean; seenHelp: boolean; clue: Clue; accent: Accent; lastBook?: string };
 }
 
 /**
@@ -39,7 +44,7 @@ const defaults = (): SaveData => ({
   settings: { sound: true, seenHelp: false, clue: 'passage', accent: 'american' },
 });
 
-export const emptyProgress = (): LevelProgress => ({ found: [], done: false, misses: 0 });
+export const emptyProgress = (): LevelProgress => ({ found: [], done: false, misses: 0, hints: 0 });
 
 export function loadSave(): SaveData {
   try {
@@ -50,9 +55,9 @@ export function loadSave(): SaveData {
     // Older saves also kept the words found in unfinished chapters: only the finished ones stay.
     const levels: SaveData['levels'] = {};
     for (const [id, p] of Object.entries(data.levels ?? {})) if (p?.done) levels[id] = { done: true };
-    const { sound, seenHelp, clue, accent } = { ...defaults().settings, ...data.settings };
+    const { sound, seenHelp, clue, accent, lastBook } = { ...defaults().settings, ...data.settings };
     const shelves = Array.isArray(data.shelves) ? data.shelves.filter((s): s is string => typeof s === 'string') : [];
-    return { version: 1, levels, shelves, settings: { sound, seenHelp, clue: clue === 'list' ? 'list' : 'passage', accent: accent === 'british' ? 'british' : 'american' } };
+    return { version: 1, levels, shelves, settings: { sound, seenHelp, clue: clue === 'list' ? 'list' : 'passage', accent: accent === 'british' ? 'british' : 'american', ...(typeof lastBook === 'string' ? { lastBook } : {}) } };
   } catch {
     return defaults();
   }

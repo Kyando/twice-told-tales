@@ -1,4 +1,4 @@
-import { BOOKS, FREE_CHAPTERS, SHELVES, type ShelfId } from '../core/books.ts';
+import { BOOKS, FEATURED_BOOK, FREE_CHAPTERS, SHELVES, type ShelfId } from '../core/books.ts';
 import { emptyProgress, loadSave, writeSave, type Clue, type LevelProgress } from '../game/save.ts';
 import { Session } from '../game/session.ts';
 import { detectLocale, setLocale, t, type MessageKey } from '../i18n/index.ts';
@@ -11,7 +11,7 @@ import { LevelView } from './level-view.ts';
 import { Library, type ChapterState } from './library.ts';
 import { confirmAction, openModal, openSheet, popHandled, type SheetItem } from './overlay.ts';
 import { Sfx } from './sfx.ts';
-import { Shelf } from './shelf.ts';
+import { Shelf, type ShelfFeature } from './shelf.ts';
 
 /** Where the player is: the shelf, a book's chapters, or a chapter (by its index in CATALOG). */
 type Route = { screen: 'shelf' } | { screen: 'library'; book: string } | { screen: 'level'; index: number };
@@ -69,13 +69,9 @@ export class App {
     const kept = was?.route && this.valid(was.route);
     const start = kept ? was.route! : { screen: 'shelf' as const };
     history.replaceState({ route: start, depth: depthOf(start), pushed: kept && was.pushed } satisfies Entry, '');
+    // A new player isn't shown the rules: the shelf points them to a book, and its first chapter
+    // walks them through (see LevelView's guide). How to play stays in the menus.
     this.show(start, true);
-
-    if (!this.save.settings.seenHelp) {
-      this.save.settings.seenHelp = true;
-      this.persist();
-      this.openHelp(true);
-    }
   }
 
   private persist(): void {
@@ -245,9 +241,37 @@ export class App {
     });
     return new Shelf({
       books,
+      feature: this.featured(),
       onOpen: (key) => this.go({ screen: 'library', book: key }, 'push'),
       onSettings: () => this.openSettings(),
     });
+  }
+
+  /**
+   * The book the shelf puts first, with a button straight into it: for a new player, FEATURED_BOOK
+   * (start here); after that, the book last opened, at the chapter to read next (continue).
+   */
+  private featured(): ShelfFeature | undefined {
+    const fresh = !Object.keys(this.save.levels).length;
+    const key = fresh ? FEATURED_BOOK : this.save.settings.lastBook;
+    if (!key || !BOOKS[key]) return undefined;
+    const chapters = this.chaptersOf(key);
+    const next = this.currentChapter(key);
+    if (!chapters.length || next === undefined) return undefined;
+    const def = CATALOG[next].def;
+    return {
+      key,
+      book: BOOKS[key],
+      fresh,
+      scenes: chapters.length,
+      next: { chapter: def.chapter, title: def.title },
+      onGo: () => {
+        // The book's chapters go under the chapter, so stepping back leads there, then to the shelf.
+        const library: Route = { screen: 'library', book: key };
+        history.pushState({ route: library, depth: depthOf(library), pushed: true } satisfies Entry, '');
+        this.go({ screen: 'level', index: next }, 'push');
+      },
+    };
   }
 
   /** A book's chapters, finished ones showing their picture. */
@@ -272,9 +296,13 @@ export class App {
     let progress = this.playing.get(id);
     if (!progress) {
       progress = this.save.levels[id]?.done
-        ? { found: entry.puzzle.words.map((w) => w.text), done: true, misses: 0 }
+        ? { found: entry.puzzle.words.map((w) => w.text), done: true, misses: 0, hints: 0 }
         : emptyProgress();
       this.playing.set(id, progress);
+    }
+    if (this.save.settings.lastBook !== entry.def.book) {
+      this.save.settings.lastBook = entry.def.book;
+      this.persist();
     }
     const session = new Session(entry.puzzle, progress, () => {
       if (!progress.done || this.save.levels[id]) return;
@@ -297,6 +325,11 @@ export class App {
       clue: this.save.settings.clue,
       accent: this.save.settings.accent,
       intro: true,
+      guide: !this.save.settings.seenHelp,
+      onGuided: () => {
+        this.save.settings.seenHelp = true;
+        this.persist();
+      },
     });
   }
 
