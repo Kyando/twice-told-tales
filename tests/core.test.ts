@@ -88,7 +88,7 @@ describe('chapters', () => {
   });
 
   it('rejects a letter cell that belongs to no word', () => {
-    const def = generateLevel({ ...SPECS[0], id: 'holes', rows: 2, cols: 4, holes: [4], story: { ...SPECS[0].story, text: '{LAZY} {FOX}' } }, 3)!;
+    const def = generateLevel({ ...SPECS[0], easy: undefined, id: 'holes', rows: 2, cols: 4, holes: [4], story: { ...SPECS[0].story, text: '{LAZY} {FOX}' } }, 3)!;
     expect(validateLevel(def)).toEqual([]);
     expect(def.grid[1][0]).toBe('.');
     def.grid[1] = 'Q' + def.grid[1].slice(1);
@@ -98,11 +98,20 @@ describe('chapters', () => {
 
 describe('generator', () => {
   it('lays out a valid chapter deterministically', () => {
-    const a = generateLevel(SPECS[0], 42, 20);
-    const b = generateLevel(SPECS[0], 42, 20);
+    const plain = { ...SPECS[0], easy: undefined };
+    const a = generateLevel(plain, 42, 20);
+    const b = generateLevel(plain, 42, 20);
     expect(a).not.toBeNull();
     expect(validateLevel(a!)).toEqual([]);
     expect(a).toEqual(b);
+  });
+
+  it('lays the easy words of the first chapters straight, left to right or top to bottom', () => {
+    for (const spec of SPECS.filter((s) => s.easy)) {
+      const def = levels.find((l) => l.id === spec.id)!;
+      const easy = def.words.filter((w) => !turns(w.path) && w.path.every((c, i) => i === 0 || c > w.path[i - 1]));
+      expect(easy.length, spec.id).toBeGreaterThanOrEqual(spec.easy!);
+    }
   });
 
   it('refuses words that do not fill the grid', () => {

@@ -15,6 +15,12 @@ export interface LevelSpec {
   story: StoryDef;
   /** Cells left empty, for boards that aren't a full rectangle. */
   holes?: number[];
+  /**
+   * For the first chapters, which teach the game: at least this many words lie in a straight line,
+   * read left to right or top to bottom, so they're easy to spot while the player is still learning
+   * to read the passage for clues. The other words bend as usual.
+   */
+  easy?: number;
 }
 
 export function mulberry32(seed: number): () => number {
@@ -147,7 +153,7 @@ function youngScore(def: LevelDef): number {
 }
 
 /** Best of `attempts` random valid layouts, or null if none passed validation. */
-export function generateLevel(spec: LevelSpec, seed: number, attempts = 400): LevelDef | null {
+export function generateLevel(spec: LevelSpec, seed: number, attempts = spec.easy ? 20000 : 400): LevelDef | null {
   const { rows, cols } = spec;
   const texts = blanksOf(spec.story.text);
   const total = texts.reduce((s, t) => s + t.length, 0);
@@ -176,6 +182,7 @@ export function generateLevel(spec: LevelSpec, seed: number, attempts = 400): Le
       story: spec.story,
     };
     if (young && words.some((w) => turns(w.path) > 1)) continue;
+    if (spec.easy && words.filter((w) => !turns(w.path) && forwards(w.path)).length < spec.easy) continue;
     if (validateLevel(def).length) continue;
     const s = (young ? youngScore(def) : score(def)) + rng();
     if (s > bestScore) {

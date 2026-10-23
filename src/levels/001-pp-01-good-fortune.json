@@ -6,38 +6,38 @@
   "rows": 7,
   "cols": 6,
   "grid": [
-    "NASDAU",
-    "EMEVNG",
-    "LWIREH",
-    "TNFEET",
-    "EEGSRD",
-    "NFOAME",
-    "UTRRRI"
+    "MGELEE",
+    "ANNTMN",
+    "RESNAU",
+    "RRRUAT",
+    "IVEGDR",
+    "EETHFO",
+    "DSWIFE"
   ],
   "words": [
     {
       "text": "FORTUNE",
-      "path": [31, 32, 38, 37, 36, 30, 24]
+      "path": [34, 35, 29, 23, 17, 11, 5]
     },
     {
       "text": "WIFE",
-      "path": [13, 14, 20, 21]
+      "path": [38, 39, 40, 41]
     },
     {
       "text": "GENTLEMAN",
-      "path": [26, 25, 19, 18, 12, 6, 7, 1, 0]
+      "path": [1, 2, 8, 9, 3, 4, 10, 16, 15]
     },
     {
       "text": "DAUGHTERS",
-      "path": [3, 4, 5, 11, 17, 23, 22, 28, 27]
+      "path": [28, 22, 21, 27, 33, 32, 26, 20, 14]
     },
     {
       "text": "MARRIED",
-      "path": [34, 33, 39, 40, 41, 35, 29]
+      "path": [0, 6, 12, 18, 24, 30, 36]
     },
     {
       "text": "NERVES",
-      "path": [10, 16, 15, 9, 8, 2]
+      "path": [7, 13, 19, 25, 31, 37]
     }
   ],
   "story": {

@@ -32,6 +32,7 @@ const PRIDE: LevelSpec[] = [
     title: 'A Single Man of Good Fortune',
     rows: 7,
     cols: 6,
+    easy: 3,
     story: {
       text: 'It is a truth universally acknowledged that a single man with a good {FORTUNE} must be in want of a {WIFE}. So when Netherfield Park is let at last to Mr. Bingley, a rich young {GENTLEMAN}, Mrs. Bennet can think of nothing but seeing one of her five {DAUGHTERS} {MARRIED} to him. Mr. Bennet only teases her, and she protests that he has no pity for her poor {NERVES}.',
       image: art('thomson-1894/ch01-i_034.jpg'),
@@ -47,6 +48,7 @@ const PRIDE: LevelSpec[] = [
     title: 'The Party Enters',
     rows: 8,
     cols: 6,
+    easy: 2,
     story: {
       text: 'At the {ASSEMBLY} in Meryton, every head turns when Mr. {BINGLEY} arrives with his two {SISTERS} and his friend, Mr. Darcy: tall, handsome and {NOBLE} in bearing. Within five minutes the whole room has heard he has ten {THOUSAND} a year. Within the hour, everyone has decided he is the {PROUDEST} man in the {WORLD}.',
       image: art('thomson-1894/ch03-i_041.jpg'),
