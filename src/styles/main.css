@@ -811,23 +811,36 @@ button {
 }
 
 /*
- * A hidden word, unmarked until found; then a pen underlines it, left to right, in a single loose
- * stroke, and the word itself takes darker ink. Inline like the words around it, so punctuation
- * after it never breaks onto a line of its own, and nothing shifts when it's marked.
+ * A hidden word, unmarked until found; then a pen draws a loose loop around it, in one stroke. The
+ * loop sits over the text, so nothing around it moves, and the word stays inline, so punctuation
+ * after it never breaks onto a line of its own.
  */
 .passage-word {
-  padding-bottom: 0.12em;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 10' preserveAspectRatio='none'%3E%3Cpath d='M1.5 6.2C18 4.6 34 7.4 52 5.6S86 4.3 98.5 5.1' fill='none' stroke='%23e0704a' stroke-width='2.2' stroke-linecap='round' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E")
-    no-repeat 0 100% / 0% 0.42em;
-  box-decoration-break: clone;
-  -webkit-box-decoration-break: clone;
-  transition: background-size 0.5s cubic-bezier(0.45, 0, 0.3, 1), color 0.3s;
+  position: relative;
 }
 
-.passage-word.is-found {
-  background-size: 100% 0.42em;
-  color: var(--stroke);
-  -webkit-text-stroke: 0.3px currentColor;
+.passage-word svg {
+  position: absolute;
+  left: -0.32em;
+  top: -0.12em;
+  width: calc(100% + 0.64em);
+  height: calc(100% + 0.28em);
+  overflow: visible;
+  pointer-events: none;
+}
+
+.passage-word path {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+
+.passage-word.is-found path {
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 0.55s cubic-bezier(0.45, 0, 0.3, 1);
 }
 
 /* The dots under the passage: one per hidden word, filled as they're found. */

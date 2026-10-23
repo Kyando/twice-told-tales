@@ -59,9 +59,26 @@ const CHIP_STEP = 85;
 /** A passage above the board steps its type down to this, at the least, to keep tiles this big (px). */
 const PASSAGE_MIN_PX = 14;
 const COMFORT_CELL = 44;
-/** The passage is laid down as a sheet: when it starts (ms) and how long it takes to settle. */
-const SHEET_START = 260;
-const SHEET_MS = 620;
+/** The passage unfolds: when it starts (ms) and how long it takes to open. */
+const SHEET_START = 160;
+const SHEET_MS = 650;
+
+/**
+ * A loose loop of ink, drawn around a hidden word once found (see .passage-word in the styles):
+ * one stroke, so the pen can trace it.
+ */
+function penLoop(): SVGSVGElement {
+  const loop = document.createElementNS(SVG_NS, 'svg');
+  loop.setAttribute('viewBox', '0 0 100 40');
+  loop.setAttribute('preserveAspectRatio', 'none');
+  loop.setAttribute('aria-hidden', 'true');
+  const path = document.createElementNS(SVG_NS, 'path');
+  path.setAttribute('pathLength', '1');
+  path.setAttribute('vector-effect', 'non-scaling-stroke');
+  path.setAttribute('d', 'M58 3C30 1 4 7 3 20s25 18 50 17 45-6 44-18S70 2 40 5');
+  loop.append(path);
+  return loop;
+}
 const DIAG_STEP = 110;
 const CARD_JITTER = 60;
 const CARD_FLIGHT = 600;
@@ -146,11 +163,11 @@ export class LevelView {
 
     if (reading) {
       // The scene's passage, with nothing marked: the hidden words are somewhere in it, and each one
-      // found is underlined in ink where it stands. A dot per hidden word below it.
+      // found is circled where it stands, the pen drawing a loose loop. A dot per hidden word below it.
       const index = new Map(p.words.map((w) => [w.text, w.index]));
       const text = passageParts(story.text, BOOKS[def.book].names).map((part) => {
         if (!part.word) return part.text;
-        const mark = h('span', { class: 'passage-word' }, part.text);
+        const mark = h('span', { class: 'passage-word' }, part.text, penLoop());
         this.chips[index.get(part.word)!] = mark;
         return mark;
       });
@@ -239,17 +256,14 @@ export class LevelView {
     const anims: Animation[] = [];
     const reading = this.clue === 'passage';
     if (reading) {
-      // The passage is laid down like a sheet of paper on the table: it drops in a little turned,
-      // lands, and settles flat, its shadow closing in under it.
+      // The passage unfolds from the top down, like a letter opened: its text already printed.
       anims.push(
         this.panel.animate(
           [
-            { transform: 'translateY(-34px) rotate(-2.2deg) scale(1.04)', boxShadow: '0 22px 30px rgb(59 43 32 / 0.22)', opacity: 0 },
-            { opacity: 1, offset: 0.35 },
-            { transform: 'translateY(2px) rotate(0.4deg) scale(1)', boxShadow: '0 3px 6px rgb(59 43 32 / 0.14)', offset: 0.78 },
-            { transform: 'none', boxShadow: '0 0 0 rgb(59 43 32 / 0)', opacity: 1 },
+            { clipPath: 'inset(0 0 100% 0 round 16px)', transform: 'translateY(-6px)' },
+            { clipPath: 'inset(0 0 0% 0 round 16px)', transform: 'none' },
           ],
-          { duration: SHEET_MS, delay: SHEET_START, easing: 'cubic-bezier(0.25, 0.6, 0.35, 1)', fill: 'backwards' },
+          { duration: SHEET_MS, delay: SHEET_START, easing: 'cubic-bezier(0.3, 0.7, 0.3, 1)', fill: 'backwards' },
         ),
       );
     }
