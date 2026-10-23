@@ -46,6 +46,10 @@ export interface LevelViewOptions {
   guide?: boolean;
   /** The guide is over (or the chapter was finished during it): not to be shown again. */
   onGuided?(): void;
+  /** Has the chapter been finished without a hint (now or before)? Its desk shows the seal. */
+  sealed?(): boolean;
+  /** On the book's last chapter: opens the player's edition of the book, from its desk. */
+  onEdition?(): void;
 }
 
 /**
@@ -811,6 +815,8 @@ export class LevelView {
       words: this.s.puzzle.words,
       image: this.pieces.picture,
       nextTitle: this.opts.nextTitle,
+      sealed: this.opts.sealed?.() ?? false,
+      onEdition: this.opts.onEdition,
       onNext: () => (this.opts.onNext ?? this.opts.onChapters)(),
       onRestart: () => this.restart(),
       onTurn: () => this.opts.sfx.sheet(),

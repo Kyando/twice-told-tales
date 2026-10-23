@@ -65,6 +65,7 @@ export class Session {
     this.owner.fill(-1);
     this.progress.found = [];
     this.progress.misses = 0;
+    this.progress.hints = 0;
     this.persist();
   }
 

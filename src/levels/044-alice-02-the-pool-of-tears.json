@@ -6,49 +6,49 @@
   "rows": 6,
   "cols": 8,
   "grid": [
-    "FARESUHE",
-    "MNURIODA",
-    "OUCSCRLP",
-    "SSERTIOO",
-    "HRIAEESS",
-    "SKNHSALP"
+    "PDAEMHSS",
+    "OOLHOSAH",
+    "SEESUPLR",
+    "FIRTSKNI",
+    "ANCEARSC",
+    "RESUOIRU"
   ],
   "words": [
     {
       "text": "CURIOUSER",
-      "path": [18, 10, 11, 12, 13, 5, 4, 3, 2]
+      "path": [39, 47, 46, 45, 44, 43, 42, 41, 40]
     },
     {
       "text": "HEAD",
-      "path": [6, 7, 15, 14]
+      "path": [11, 3, 2, 1]
     },
     {
       "text": "CRIES",
-      "path": [20, 21, 29, 37, 38]
+      "path": [34, 26, 25, 17, 16]
     },
     {
       "text": "TEARS",
-      "path": [28, 36, 35, 27, 19]
+      "path": [27, 35, 36, 37, 38]
     },
     {
       "text": "FAN",
-      "path": [0, 1, 9]
+      "path": [24, 32, 33]
     },
     {
       "text": "SHRINKS",
-      "path": [24, 32, 33, 34, 42, 41, 40]
+      "path": [7, 15, 23, 31, 30, 29, 28]
     },
     {
       "text": "SPLASH",
-      "path": [39, 47, 46, 45, 44, 43]
+      "path": [13, 21, 22, 14, 6, 5]
     },
     {
       "text": "POOL",
-      "path": [23, 31, 30, 22]
+      "path": [0, 8, 9, 10]
     },
     {
       "text": "MOUSE",
-      "path": [8, 16, 17, 25, 26]
+      "path": [4, 12, 20, 19, 18]
     }
   ],
   "story": {

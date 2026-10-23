@@ -6,43 +6,43 @@
   "rows": 8,
   "cols": 6,
   "grid": [
-    "ELBNOT",
-    "TPARRY",
-    "EMDEEE",
-    "TRALMM",
-    "YCTOSO",
-    "LAANDH",
-    "GUHZAT",
-    "HELIBE"
+    "LEMOSD",
+    "AUHTEN",
+    "HGELBA",
+    "MRABAH",
+    "EELEZT",
+    "RTOLIE",
+    "YTYTPM",
+    "NOCRAD"
   ],
   "words": [
     {
       "text": "MERYTON",
-      "path": [22, 16, 10, 11, 5, 4, 3]
+      "path": [18, 24, 30, 36, 37, 43, 42]
     },
     {
       "text": "DARCY",
-      "path": [14, 20, 19, 25, 24]
+      "path": [47, 46, 45, 44, 38]
     },
     {
       "text": "TOLERABLE",
-      "path": [26, 27, 21, 15, 9, 8, 2, 1, 0]
+      "path": [31, 32, 26, 25, 19, 20, 21, 15, 14]
     },
     {
       "text": "HANDSOME",
-      "path": [38, 32, 33, 34, 28, 29, 23, 17]
+      "path": [23, 17, 11, 5, 4, 3, 2, 1]
     },
     {
       "text": "TEMPT",
-      "path": [18, 12, 13, 7, 6]
+      "path": [29, 35, 41, 40, 39]
     },
     {
       "text": "ELIZABETH",
-      "path": [43, 44, 45, 39, 40, 46, 47, 41, 35]
+      "path": [27, 33, 34, 28, 22, 16, 10, 9, 8]
     },
     {
       "text": "LAUGH",
-      "path": [30, 31, 37, 36, 42]
+      "path": [0, 6, 7, 13, 12]
     }
   ],
   "story": {

@@ -6,6 +6,7 @@ import { CATALOG } from '../levels/catalog.ts';
 import { h } from './dom.ts';
 import { ICONS } from './icons.ts';
 import { FONTS } from './desk.ts';
+import { openEdition } from './edition.ts';
 import { turnPage } from './fx.ts';
 import { LevelView } from './level-view.ts';
 import { Library, type ChapterState } from './library.ts';
@@ -279,7 +280,8 @@ export class App {
     const chapters = this.chaptersOf(book);
     const current = this.currentChapter(book);
     return new Library({
-      chapters: chapters.map((i) => ({ def: CATALOG[i].def, state: this.stateOf(i) })),
+      chapters: chapters.map((i) => ({ def: CATALOG[i].def, state: this.stateOf(i), sealed: !!this.save.levels[CATALOG[i].def.id]?.unaided })),
+      onEdition: () => this.openEdition(book),
       current: current === undefined ? -1 : chapters.indexOf(current),
       onOpen: (i) => this.go({ screen: 'level', index: chapters[i] }, 'push'),
       onBack: () => this.up(),
@@ -305,8 +307,12 @@ export class App {
       this.persist();
     }
     const session = new Session(entry.puzzle, progress, () => {
-      if (!progress.done || this.save.levels[id]) return;
-      this.save.levels[id] = { done: true };
+      if (!progress.done) return;
+      // Every word found just now, with no hint taken: the chapter earns its seal (and keeps it).
+      const unaided = progress.found.length === entry.puzzle.words.length && progress.hints === 0;
+      const kept = this.save.levels[id];
+      if (kept && (kept.unaided || !unaided)) return;
+      this.save.levels[id] = unaided ? { done: true, unaided: true } : { done: true };
       this.persist();
     });
     const prev = this.neighbour(index, -1);
@@ -330,10 +336,27 @@ export class App {
         this.save.settings.seenHelp = true;
         this.persist();
       },
+      sealed: () => !!this.save.levels[id]?.unaided,
+      // The book's last chapter ends the book: its desk opens the player's edition of it.
+      onEdition: next === undefined ? () => this.openEdition(entry.def.book, true) : undefined,
     });
   }
 
   // ── menus and dialogs ───────────────────────────────────────────────────
+
+  /** The player's edition of a book: the chapters pieced together so far, read through. */
+  private openEdition(book: string, finale = false): void {
+    const chapters = this.chaptersOf(book);
+    const next = this.currentChapter(book);
+    openEdition({
+      book: BOOKS[book],
+      chapters: chapters.filter((i) => this.isDone(i)).map((i) => ({ def: CATALOG[i].def, sealed: !!this.save.levels[CATALOG[i].def.id]?.unaided })),
+      total: chapters.length,
+      next: next === undefined ? undefined : CATALOG[next].def,
+      finale,
+      accent: this.save.settings.accent,
+    });
+  }
 
   /** What a paid shelf holds. Buying comes with the store releases; until then, this says so. */
   private openUnlock(shelf: ShelfId): void {

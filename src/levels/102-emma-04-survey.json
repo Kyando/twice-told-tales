@@ -6,43 +6,43 @@
   "rows": 8,
   "cols": 5,
   "grid": [
-    "SUPAR",
-    "SMRRL",
-    "UMEUO",
-    "RVELE",
-    "FAYAN",
-    "MREMI",
-    "EEHOM",
-    "RVORP"
+    "YEVOH",
+    "EUSRO",
+    "VRRPM",
+    "SMEME",
+    "URAIP",
+    "MRFRA",
+    "MEELR",
+    "LANOU"
   ],
   "words": [
     {
       "text": "PARLOUR",
-      "path": [2, 3, 4, 9, 14, 13, 8]
+      "path": [24, 29, 28, 33, 38, 39, 34]
     },
     {
       "text": "IMPROVE",
-      "path": [29, 34, 39, 38, 37, 36, 31]
+      "path": [23, 18, 13, 8, 3, 2, 1]
     },
     {
       "text": "HOME",
-      "path": [32, 33, 28, 27]
+      "path": [4, 9, 14, 19]
     },
     {
       "text": "SUMMER",
-      "path": [0, 1, 6, 11, 12, 7]
+      "path": [15, 20, 25, 30, 31, 26]
     },
     {
       "text": "LANE",
-      "path": [18, 23, 24, 19]
+      "path": [35, 36, 37, 32]
     },
     {
       "text": "SURVEY",
-      "path": [5, 10, 15, 16, 17, 22]
+      "path": [7, 6, 11, 10, 5, 0]
     },
     {
       "text": "FARMER",
-      "path": [20, 21, 26, 25, 30, 35]
+      "path": [27, 22, 21, 16, 17, 12]
     }
   ],
   "story": {

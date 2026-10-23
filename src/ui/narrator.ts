@@ -32,7 +32,16 @@ export class Narrator {
     this.audio.addEventListener('ended', () => {
       this.audio.currentTime = 0;
       this.tell();
+      this.enders.forEach((fn) => fn());
     });
+  }
+
+  private readonly enders = new Set<() => void>();
+
+  /** Calls `fn` each time the reading gets to the end (the edition goes on to the next chapter). */
+  onEnded(fn: () => void): () => void {
+    this.enders.add(fn);
+    return () => this.enders.delete(fn);
   }
 
   get playing(): boolean {
@@ -109,6 +118,7 @@ export class Narrator {
   destroy(): void {
     cancelAnimationFrame(this.frame);
     this.followers.clear();
+    this.enders.clear();
     this.audio.pause();
     this.audio.removeAttribute('src');
     this.audio.load();

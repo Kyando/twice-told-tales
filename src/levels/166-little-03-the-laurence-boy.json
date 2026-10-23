@@ -6,45 +6,45 @@
   "rows": 6,
   "cols": 7,
   "grid": [
-    "AKDEHSC",
-    "OLOWCRO",
-    "PSRROSS",
-    "YHLABCE",
-    "DCEUREH",
-    "ANHGLLA"
+    "DYDARAK",
+    "EHBNECL",
+    "WSOCEEO",
+    "ORRHCSP",
+    "HSCORSL",
+    "GUALHAL"
   ],
   "words": [
     {
       "text": "DANCE",
-      "path": [28, 35, 36, 29, 30]
+      "path": [2, 3, 10, 17, 18]
     },
     {
       "text": "BORROWED",
-      "path": [25, 18, 17, 16, 9, 10, 3, 2]
+      "path": [9, 16, 23, 22, 21, 14, 7, 0]
     },
     {
       "text": "SCORCH",
-      "path": [5, 6, 13, 12, 11, 4]
+      "path": [29, 30, 31, 32, 25, 24]
     },
     {
       "text": "RECESS",
-      "path": [32, 33, 26, 27, 20, 19]
+      "path": [4, 11, 12, 19, 26, 33]
     },
     {
       "text": "SHY",
-      "path": [15, 22, 21]
+      "path": [15, 8, 1]
     },
     {
       "text": "LAUGH",
-      "path": [23, 24, 31, 38, 37]
+      "path": [38, 37, 36, 35, 28]
     },
     {
       "text": "POLKA",
-      "path": [14, 7, 8, 1, 0]
+      "path": [27, 20, 13, 6, 5]
     },
     {
       "text": "HALL",
-      "path": [34, 41, 40, 39]
+      "path": [39, 40, 41, 34]
     }
   ],
   "story": {

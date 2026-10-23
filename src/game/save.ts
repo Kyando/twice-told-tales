@@ -13,10 +13,15 @@ export interface LevelProgress {
   hints: number;
 }
 
+export interface LevelRecord {
+  done: true;
+  unaided?: true;
+}
+
 export interface SaveData {
   version: 1;
-  /** The finished chapters, by id. */
-  levels: Record<string, { done: true }>;
+  /** The finished chapters, by id; `unaided` once one has been finished without a hint (its seal). */
+  levels: Record<string, LevelRecord>;
   /** The paid shelves the player owns (see SHELVES in core/books.ts). */
   shelves: string[];
   /**
@@ -50,11 +55,11 @@ export function loadSave(): SaveData {
   try {
     const raw = localStorage.getItem(KEY);
     if (!raw) return defaults();
-    const data = JSON.parse(raw) as { version?: number; levels?: Record<string, { done?: boolean }>; settings?: Partial<SaveData['settings']>; shelves?: unknown };
+    const data = JSON.parse(raw) as { version?: number; levels?: Record<string, { done?: boolean; unaided?: boolean }>; settings?: Partial<SaveData['settings']>; shelves?: unknown };
     if (data.version !== 1) return defaults();
     // Older saves also kept the words found in unfinished chapters: only the finished ones stay.
     const levels: SaveData['levels'] = {};
-    for (const [id, p] of Object.entries(data.levels ?? {})) if (p?.done) levels[id] = { done: true };
+    for (const [id, p] of Object.entries(data.levels ?? {})) if (p?.done) levels[id] = p.unaided === true ? { done: true, unaided: true } : { done: true };
     const { sound, seenHelp, clue, accent, lastBook } = { ...defaults().settings, ...data.settings };
     const shelves = Array.isArray(data.shelves) ? data.shelves.filter((s): s is string => typeof s === 'string') : [];
     return { version: 1, levels, shelves, settings: { sound, seenHelp, clue: clue === 'list' ? 'list' : 'passage', accent: accent === 'british' ? 'british' : 'american', ...(typeof lastBook === 'string' ? { lastBook } : {}) } };

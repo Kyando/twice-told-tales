@@ -6,43 +6,43 @@
   "rows": 8,
   "cols": 6,
   "grid": [
-    "PHANDE",
-    "SEWTCH",
-    "PEMOTP",
-    "WISREO",
-    "ENWWEW",
-    "XDOGRM",
-    "HSTNIO",
-    "AUEDNA"
+    "MWPOWE",
+    "OODNSR",
+    "ANWIPW",
+    "DINDEE",
+    "ETGESM",
+    "ESWHPO",
+    "XURCHT",
+    "HAETAN"
   ],
   "words": [
     {
       "text": "WINDOW",
-      "path": [18, 19, 25, 31, 32, 26]
+      "path": [14, 15, 9, 8, 7, 1]
     },
     {
       "text": "PHANTOMS",
-      "path": [0, 1, 2, 3, 9, 15, 14, 20]
+      "path": [34, 40, 46, 47, 41, 35, 29, 28]
     },
     {
       "text": "MOANING",
-      "path": [35, 41, 47, 46, 40, 39, 33]
+      "path": [0, 6, 12, 13, 19, 20, 26]
     },
     {
       "text": "WEEPS",
-      "path": [8, 7, 13, 12, 6]
+      "path": [17, 23, 22, 16, 10]
     },
     {
       "text": "WRETCHED",
-      "path": [27, 21, 22, 16, 10, 11, 5, 4]
+      "path": [32, 38, 44, 45, 39, 33, 27, 21]
     },
     {
       "text": "POWER",
-      "path": [17, 23, 29, 28, 34]
+      "path": [2, 3, 4, 5, 11]
     },
     {
       "text": "EXHAUSTED",
-      "path": [24, 30, 36, 42, 43, 37, 38, 44, 45]
+      "path": [30, 36, 42, 43, 37, 31, 25, 24, 18]
     }
   ],
   "story": {

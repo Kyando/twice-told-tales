@@ -6,43 +6,43 @@
   "rows": 8,
   "cols": 6,
   "grid": [
-    "EESSFO",
-    "PACTDR",
-    "MYRIEG",
-    "AEIPCC",
-    "RLSSLI",
-    "DLKNAT",
-    "AOCKUS",
-    "PGNIAC"
+    "CITEPA",
+    "AUSESC",
+    "CDSKMA",
+    "GEOCLR",
+    "ROLYES",
+    "GFDAPT",
+    "NNALCI",
+    "IKSPIR"
   ],
   "words": [
     {
       "text": "CLANKING",
-      "path": [22, 28, 34, 33, 39, 45, 44, 43]
+      "path": [40, 39, 38, 37, 43, 42, 36, 30]
     },
     {
       "text": "MARLEY",
-      "path": [12, 18, 24, 25, 19, 13]
+      "path": [16, 17, 23, 22, 28, 27]
     },
     {
       "text": "PADLOCKS",
-      "path": [42, 36, 30, 31, 37, 38, 32, 26]
+      "path": [34, 33, 32, 26, 20, 21, 15, 14]
     },
     {
       "text": "CAUSTIC",
-      "path": [47, 46, 40, 41, 35, 29, 23]
+      "path": [12, 6, 7, 8, 2, 1, 0]
     },
     {
       "text": "FORGED",
-      "path": [4, 5, 11, 17, 16, 10]
+      "path": [31, 25, 24, 18, 19, 13]
     },
     {
       "text": "ESCAPE",
-      "path": [1, 2, 8, 7, 6, 0]
+      "path": [9, 10, 11, 5, 4, 3]
     },
     {
       "text": "SPIRITS",
-      "path": [27, 21, 20, 14, 15, 9, 3]
+      "path": [44, 45, 46, 47, 41, 35, 29]
     }
   ],
   "story": {

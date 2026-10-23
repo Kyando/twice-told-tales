@@ -64,6 +64,7 @@ const PRIDE: LevelSpec[] = [
     title: 'She Is Tolerable',
     rows: 8,
     cols: 6,
+    easy: 1,
     story: {
       text: 'Across the ballroom at {MERYTON}, Bingley begs his friend to dance with Elizabeth Bennet. {DARCY} barely glances at her: “She is {TOLERABLE}, but not {HANDSOME} enough to {TEMPT} me.” {ELIZABETH} hears every word, and turns it into a story that makes all her friends {LAUGH}.',
       // Black and white, as first made: art('thomson-1894/ch03-i_044.jpg'), credit THOMSON, crop [0, 0, 1, 0.925].
@@ -81,6 +82,7 @@ const PRIDE: LevelSpec[] = [
     title: 'A Pair of Fine Eyes',
     rows: 8,
     cols: 6,
+    easy: 1,
     story: {
       text: 'At Lucas Lodge, Sir William Lucas tries to {PRESENT} Elizabeth to Mr. Darcy as a {PARTNER} for the next {DANCE}, but she {REFUSES} with a smile. Darcy is left thinking about her pair of {FINE} {EYES}. Meanwhile Charlotte Lucas, Elizabeth’s closest {FRIEND}, warns that Jane hides her {FEELINGS} so well that Mr. Bingley may never know she cares.',
       // Black and white, as first made: art('brock-1895/mr-darcy-you-must-allow-me-to-present-this-young-lady-to-you-as-a-very-desirable.jpg'), credit BROCK, crop [0.044, 0.068, 0.95, 0.8].
@@ -715,6 +717,7 @@ const ALICE: LevelSpec[] = [
     title: 'The Pool of Tears',
     rows: 6,
     cols: 8,
+    easy: 1,
     story: {
       text: '“{CURIOUSER} and curiouser!” Now Alice opens out like the largest telescope that ever was, until her {HEAD} strikes the ceiling. Poor Alice {CRIES}, shedding gallons of {TEARS}. Picking up the White Rabbit’s {FAN}, she {SHRINKS} again, slips, and {SPLASH}! She is up to her chin in a {POOL} of her own tears, swimming beside a {MOUSE}.',
       image: nursery('a80108-44'),
@@ -731,6 +734,7 @@ const ALICE: LevelSpec[] = [
     title: 'A Caucus-Race',
     rows: 7,
     cols: 7,
+    easy: 1,
     story: {
       text: 'Everyone climbs out of the pool, dripping wet. The best thing to get them dry, says the Dodo, is a {CAUCUS} {RACE}: they all run round in a {CIRCLE}, starting and stopping whenever they like. After half an hour the {DODO} declares, “{EVERYBODY} has won, and all must have {PRIZES}!” Alice hands round her {COMFITS}, and the Dodo solemnly presents her with her own {THIMBLE}.',
       image: nursery('c06543-02'),
@@ -1126,6 +1130,7 @@ const CAROL: LevelSpec[] = [
     title: 'Marley’s Ghost',
     rows: 8,
     cols: 6,
+    easy: 1,
     story: {
       text: 'That night, in his gloomy rooms, Scrooge hears the {CLANKING} of a chain. Through the locked door comes the ghost of Jacob {MARLEY}, wrapped in cash-boxes, keys and {PADLOCKS}. “How now?” says Scrooge, {CAUSTIC} and cold as ever. “I wear the chain I {FORGED} in life,” the ghost answers. Scrooge may yet {ESCAPE} his fate: three {SPIRITS} will come.',
       image: rackham('001-img01'),
@@ -1141,6 +1146,7 @@ const CAROL: LevelSpec[] = [
     title: 'The Air Filled with Phantoms',
     rows: 8,
     cols: 6,
+    easy: 1,
     story: {
       text: 'Marley’s ghost floats out of the open {WINDOW}, and Scrooge follows to look. The air is filled with {PHANTOMS}, wandering hither and thither, {MOANING} as they go. Each wears a chain, and each one {WEEPS} because it longs to help the {WRETCHED} people below, and has lost the {POWER} for ever. Scrooge closes the window and, {EXHAUSTED}, falls asleep at once.',
       image: rackham('012-img04'),
@@ -1379,6 +1385,7 @@ const PERSUASION: LevelSpec[] = [
     title: 'So You Are Come at Last',
     rows: 7,
     cols: 5,
+    easy: 1,
     story: {
       text: 'Anne goes to Uppercross {COTTAGE} to keep her sister Mary {COMPANY}. Mary is lying on the faded {SOFA}, sure she is ill. “So you are come at last!” she cries. “I can hardly {SPEAK}.” Mary married Charles Musgrove, heir of the Great House, where his young sisters are all {MUSIC} and {FASHION}.',
       image: art('persuasion-brock-1898/pers-brock-06.jpg'),
@@ -1395,6 +1402,7 @@ const PERSUASION: LevelSpec[] = [
     title: 'Well Done, Miss Anne!',
     rows: 8,
     cols: 5,
+    easy: 1,
     story: {
       text: 'At Uppercross, Anne finds that nobody gives Kellynch a thought. She becomes everyone’s {CONFIDANTE}: Mary {GRUMBLES} about the Musgroves, and the Musgroves about Mary’s {SPOILED} boys. In the evenings Anne plays for the young ones to dance. “Well done, Miss Anne!” they say {POLITELY}, and nobody listens. Then the Crofts come to Kellynch, and Mrs. Croft’s {BROTHER} is expected.',
       image: art('persuasion-brock-1898/2pers-02.jpg'),
@@ -1654,6 +1662,7 @@ const EMMA: LevelSpec[] = [
     title: 'An Opportunity of Survey',
     rows: 8,
     cols: 5,
+    easy: 1,
     story: {
       text: 'Emma takes up pretty Harriet Smith, a {PARLOUR} boarder at the school, and means to {IMPROVE} her. Harriet talks only of the Martins, whose {HOME} she shared one happy {SUMMER}. Then young Robert Martin meets them in the {LANE}, and Emma is glad of the chance to {SURVEY} him: a {FARMER}, quite beneath Harriet.',
       image: art('emma-thomson-1896/emma-frontispice-ch04.jpg'),
@@ -1669,6 +1678,7 @@ const EMMA: LevelSpec[] = [
     title: 'Frequently Coming to Look',
     rows: 8,
     cols: 5,
+    easy: 1,
     story: {
       text: 'Emma decides that Mr. Elton, the handsome {VICAR}, is just the man for Harriet. To show off her friend, she {PAINTS} Harriet’s {PORTRAIT}, and Mr. Elton cannot keep still, {FREQUENTLY} coming to look. He {SIGHS} over every stroke, and offers to carry it to London to be {FRAMED}.',
       image: art('emma-brock-1909/emma-ce-brock-1909-vol-i-chapter-vi.jpg'),
@@ -2024,6 +2034,7 @@ const SENSE: LevelSpec[] = [
     title: 'So Shy Before Company',
     rows: 8,
     cols: 6,
+    easy: 1,
     story: {
       text: 'The Dashwood women move to Barton {COTTAGE} in Devonshire, lent by a {COUSIN}, Sir John Middleton, a hearty man who loves a {CROWD}. His wife is elegant and {COLD}, and their spoilt boy is “so {SHY} before company”. His friend Colonel Brandon is quiet and {SOLEMN}, and past thirty-five: to Marianne, an old man who must wear {FLANNEL} {WAISTCOATS}.',
       image: sense('004-so-shy-before-company'),
@@ -2038,6 +2049,7 @@ const SENSE: LevelSpec[] = [
     title: 'They Sang Together',
     rows: 8,
     cols: 5,
+    easy: 1,
     story: {
       text: 'At Barton Cottage, Marianne runs down a rainy hill, falls and twists her {ANKLE}. A handsome {STRANGER}, John Willoughby, {CARRIES} her home in his arms. He loves the same {MUSIC}, the same {POETS}, the same everything. They sing together, and soon the whole {VALLEY} says they are in {LOVE}. Only Colonel Brandon, silent and grave, looks on.',
       image: sense('005-they-sang-together'),
@@ -2388,6 +2400,7 @@ const JANE: LevelSpec[] = [
     title: 'Who Did It?',
     rows: 7,
     cols: 6,
+    easy: 1,
     story: {
       text: 'Mr. Rochester, the master of {THORNFIELD}, is moody and abrupt, yet Jane loves to talk with him. One night she hears a {DEMONIAC} {LAUGH} outside her door, and {SMOKE}! His bed is in {FLAMES}. She drenches it with {WATER} and saves his life. “What is it and who did it?” he asks, and makes her swear to say nothing of his {BED}.',
       image: townsend('003-what-is-it-and-who-did-it-he-asked'),
@@ -2403,6 +2416,7 @@ const JANE: LevelSpec[] = [
     title: 'She Never Turned a Page',
     rows: 8,
     cols: 6,
+    easy: 1,
     story: {
       text: 'Thornfield fills with grand {GUESTS}, and Mr. Rochester seems set to marry the {PROUD}, {BEAUTIFUL} Blanche Ingram. Jane, unseen in a corner, watches, and her heart {ACHES}. Then an old {GYPSY} comes to tell {FORTUNES}. Blanche comes back from her, sits with a book and never turns a {PAGE}, her face growing {DARKER} every minute.',
       image: townsend('004-during-all-that-time-she-never-turned-a-page'),
@@ -2620,6 +2634,7 @@ const LITTLE: LevelSpec[] = [
     title: 'The Laurence Boy',
     rows: 6,
     cols: 7,
+    easy: 1,
     story: {
       text: 'Meg and Jo go to a New Year’s {DANCE}, Meg wearing a {BORROWED} pearl pin and Jo hiding the {SCORCH} on her dress. Jo slips into a curtained {RECESS}, and comes face to face with the Laurence boy from next door. Laurie is {SHY} too, and they talk and {LAUGH} like old friends, and even {POLKA} in the {HALL}.',
       image: merrill('025-face-to-face-with-the-laurence-boy'),
@@ -2634,6 +2649,7 @@ const LITTLE: LevelSpec[] = [
     title: 'Being Neighbourly',
     rows: 7,
     cols: 5,
+    easy: 1,
     story: {
       text: 'Laurie is ill and {LONESOME} in the big house next door, so Jo marches over through the {SNOW} with blancmange and Beth’s {KITTENS}. She makes him laugh, and meets his {GRUFF} old grandfather, Mr. Laurence, who likes her {HONESTY} at once. “He’s got {KIND} eyes,” Jo decides.',
       image: merrill('037-putting-his-finger-under-her-chin'),

@@ -12,7 +12,10 @@ import { commonsThumb, loadPicture } from './picture.ts';
 export type ChapterState = 'done' | 'open' | 'locked' | 'sealed';
 
 export interface LibraryOptions {
-  chapters: { def: LevelDef; state: ChapterState }[];
+  /** `sealed`: finished without a hint (see Desk's seal). */
+  chapters: { def: LevelDef; state: ChapterState; sealed?: boolean }[];
+  /** The player's edition of the book (its finished chapters, read through): offered once one is done. */
+  onEdition(): void;
   /** The chapter to pick up: the first not yet finished. */
   current: number;
   onOpen(index: number): void;
@@ -81,6 +84,10 @@ export class Library {
         : shelf
           ? unlock(true)
           : h('p', { class: 'library-end' }, t('library.finished')),
+      // The chapters pieced together so far, as a book to read through (with its pictures and voice).
+      started
+        ? h('button', { type: 'button', class: `btn${finished ? ' btn--primary' : ''} library-edition`, onclick: () => opts.onEdition() }, svg(ICONS.book), t('edition.open'))
+        : '',
     );
 
     const shelves = (book?.volumes ?? [{ from: 1, name: '', title: '' }]).map((volume, v, all) => {
@@ -91,7 +98,7 @@ export class Library {
         'section',
         { class: 'volume' },
         volume.name ? h('h2', { class: 'volume-title' }, volume.name, h('small', {}, volume.title)) : '',
-        h('ol', { class: 'shelf' }, ...items.map(({ def, state, i }) => h('li', {}, this.print(def, state, i, i === current, opts)))),
+        h('ol', { class: 'shelf' }, ...items.map(({ def, state, sealed, i }) => h('li', {}, this.print(def, state, i, i === current, opts, sealed)))),
       );
     });
 
@@ -102,13 +109,14 @@ export class Library {
     this.el = h('section', { class: 'library', 'aria-label': t('library.label') }, bar, h('div', { class: 'library-inner' }, head, ...shelves.filter((s) => s !== null), more));
   }
 
-  private print(def: LevelDef, state: ChapterState, i: number, isCurrent: boolean, opts: LibraryOptions): HTMLElement {
+  private print(def: LevelDef, state: ChapterState, i: number, isCurrent: boolean, opts: LibraryOptions, sealed = false): HTMLElement {
     const number = t('library.chapter', { n: roman(def.chapter) });
     const pic = h('span', { class: 'print-pic' });
     if (state === 'done') {
       const img = h('img', { alt: '', loading: 'lazy', decoding: 'async' });
       void cover(def).then((src) => (img.src = src));
       pic.append(img);
+      if (sealed) pic.append(h('span', { class: 'seal seal--small', title: t('seal.label') }, svg(ICONS.seal)));
     } else {
       pic.append(h('span', { class: 'print-numeral', 'aria-hidden': 'true' }, roman(def.chapter)));
     }

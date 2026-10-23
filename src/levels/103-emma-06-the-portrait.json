@@ -6,39 +6,39 @@
   "rows": 8,
   "cols": 5,
   "grid": [
-    "TRSTN",
-    "IACAI",
-    "AVIPS",
-    "RTPGI",
-    "DROHS",
-    "EFRUE",
-    "MAEQN",
-    "FRYLT"
+    "FFRAM",
+    "RNTLE",
+    "EEVYD",
+    "QUITI",
+    "STCRA",
+    "PNATP",
+    "AIRRO",
+    "SIGHS"
   ],
   "words": [
     {
       "text": "VICAR",
-      "path": [11, 12, 7, 6, 1]
+      "path": [12, 17, 22, 27, 32]
     },
     {
       "text": "PAINTS",
-      "path": [13, 8, 9, 4, 3, 2]
+      "path": [25, 30, 31, 26, 21, 20]
     },
     {
       "text": "PORTRAIT",
-      "path": [17, 22, 21, 16, 15, 10, 5, 0]
+      "path": [29, 34, 33, 28, 23, 24, 19, 18]
     },
     {
       "text": "FREQUENTLY",
-      "path": [26, 27, 32, 33, 28, 29, 34, 39, 38, 37]
+      "path": [0, 5, 10, 15, 16, 11, 6, 7, 8, 13]
     },
     {
       "text": "SIGHS",
-      "path": [14, 19, 18, 23, 24]
+      "path": [35, 36, 37, 38, 39]
     },
     {
       "text": "FRAMED",
-      "path": [35, 36, 31, 30, 25, 20]
+      "path": [1, 2, 3, 4, 9, 14]
     }
   ],
   "story": {

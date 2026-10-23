@@ -2,6 +2,8 @@ const base = (paths: string) =>
   `<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${paths}</svg>`;
 
 export const ICONS = {
+  /** A wax seal with a star pressed into it: a chapter finished without a hint. */
+  seal: base('<path d="M12 2.8l1.9 1.5 2.4-.3 1 2.2 2.2 1-.3 2.4 1.5 1.9-1.5 1.9.3 2.4-2.2 1-1 2.2-2.4-.3L12 21.2l-1.9-1.5-2.4.3-1-2.2-2.2-1 .3-2.4L3.3 12l1.5-1.9-.3-2.4 2.2-1 1-2.2 2.4.3z"/><path d="m12 7.8 1.2 2.5 2.7.4-2 1.9.5 2.7L12 14l-2.4 1.3.5-2.7-2-1.9 2.7-.4z"/>'),
   /** A hint: a light bulb. */
   bulb: base('<path d="M9 17.5h6"/><path d="M10 20.5h4"/><path d="M8.6 14.6A6 6 0 1 1 15.4 14.6c-.6.5-.9 1.2-.9 1.9v1H9.5v-1c0-.7-.3-1.4-.9-1.9z"/>'),
   book: base('<path d="M4 5.5C4 4.7 4.7 4 5.5 4H11v16H5.5c-.8 0-1.5-.7-1.5-1.5z"/><path d="M20 5.5c0-.8-.7-1.5-1.5-1.5H13v16h5.5c.8 0 1.5-.7 1.5-1.5z"/>'),

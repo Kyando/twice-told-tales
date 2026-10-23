@@ -12,6 +12,10 @@ export interface DeskOptions {
   image: string;
   /** The next chapter's title; absent on the last one. */
   nextTitle?: string;
+  /** Finished without a hint: the drawing carries a wax seal. */
+  sealed?: boolean;
+  /** On the book's last chapter: The End, and the way into the player's edition of the book. */
+  onEdition?(): void;
   onNext(): void;
   onRestart(): void;
   onShare(): void;
@@ -75,15 +79,18 @@ export class Desk {
       'sheet--drawing',
       h('div', { class: 'plate' }, this.image),
       h('p', { class: 'plate-caption' }, story.caption, h('small', {}, story.credit)),
+      // Pieced together without a hint: pressed into the corner, a wax seal.
+      opts.sealed ? h('span', { class: 'seal', role: 'img', 'aria-label': t('seal.label'), title: t('seal.label') }, svg(ICONS.seal)) : '',
     );
 
     this.pile = h('div', { class: 'pile', role: 'button', tabindex: '0', 'aria-label': t('desk.turn') });
-    this.hint = h('p', { class: 'desk-hint' }, t('desk.hint'));
+    this.hint = h('p', { class: 'desk-hint' }, t(opts.sealed ? 'seal.hint' : 'desk.hint'));
+    const end = opts.onEdition;
     const next = h(
       'button',
-      { type: 'button', class: 'btn btn--primary desk-next', onclick: () => opts.onNext() },
-      h('span', {}, opts.nextTitle ? t('desk.next') : t('desk.chapters')),
-      svg(ICONS.arrow),
+      { type: 'button', class: `btn btn--primary desk-next${end ? ' desk-next--end' : ''}`, onclick: () => (end ?? opts.onNext)() },
+      h('span', {}, end ? t('desk.theEnd') : opts.nextTitle ? t('desk.next') : t('desk.chapters')),
+      svg(end ? ICONS.book : ICONS.arrow),
     );
     // The way on in the middle, a round button either side: play again, and share the picture.
     const round = (label: string, glyph: string, act: () => void) =>
@@ -201,7 +208,13 @@ export class Desk {
       }
     };
     if (pages.length > 1 && body.childNodes.length < LAST_PAGE_MIN) pullBack(LAST_PAGE_MIN - body.childNodes.length);
-    const sign = h('p', { class: 'page-sign' }, book.title, h('span', {}, t('desk.by', { author: book.author, year: book.year })));
+    const sign = h(
+      'p',
+      { class: 'page-sign' },
+      this.opts.onEdition ? h('b', { class: 'page-end' }, t('desk.finis')) : '',
+      book.title,
+      h('span', {}, t('desk.by', { author: book.author, year: book.year })),
+    );
     body.append(sign);
     if (overflows()) {
       sign.remove();

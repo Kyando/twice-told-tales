@@ -6,38 +6,38 @@
   "rows": 7,
   "cols": 5,
   "grid": [
-    "NOYPM",
-    "HINAO",
-    "SAFMC",
-    "SPKUS",
-    "AEACI",
-    "FCOAG",
-    "OSTTE"
+    "SPEAY",
+    "EOCKN",
+    "GTASA",
+    "ATFOP",
+    "FMCOM",
+    "AUSIC",
+    "SHION"
   ],
   "words": [
     {
       "text": "COTTAGE",
-      "path": [26, 27, 32, 33, 28, 29, 34]
+      "path": [7, 6, 11, 16, 15, 10, 5]
     },
     {
       "text": "COMPANY",
-      "path": [14, 9, 4, 3, 8, 7, 2]
+      "path": [22, 23, 24, 19, 14, 9, 4]
     },
     {
       "text": "SOFA",
-      "path": [31, 30, 25, 20]
+      "path": [13, 18, 17, 12]
     },
     {
       "text": "SPEAK",
-      "path": [15, 16, 21, 22, 17]
+      "path": [0, 1, 2, 3, 8]
     },
     {
       "text": "MUSIC",
-      "path": [13, 18, 19, 24, 23]
+      "path": [21, 26, 27, 28, 29]
     },
     {
       "text": "FASHION",
-      "path": [12, 11, 10, 5, 6, 1, 0]
+      "path": [20, 25, 30, 31, 32, 33, 34]
     }
   ],
   "story": {
