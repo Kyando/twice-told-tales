@@ -7,8 +7,15 @@ export type PassagePart = { text: string; word?: string };
 /** Letters only, upper case: how a passage word would be traced on the board. */
 const LETTERS = /[A-Za-z]+/g;
 
-/** Text ends a sentence here: the next word starts one. */
-const SENTENCE_END = /(^|[.!?][”"’)]*\s+)$/;
+/** Titles written with a full stop that doesn't end the sentence: Mr. Darcy, Mrs. Bennet. */
+const TITLE_STOP = /\b(?:Mr|Mrs|Ms|Messrs|Dr|St|Rev|Col|Capt|Gen|Lt)\.\s+$/;
+
+/**
+ * Whether text ends a sentence, so the next word starts one: at the very start, or after a stop
+ * (with any closing quote) and a space, unless the stop belongs to a title such as Mr.
+ */
+export const endsSentence = (text: string): boolean =>
+  text === '' || (/[.!?][”"’)]*\s+$/.test(text) && !TITLE_STOP.test(text));
 
 /** Words always written with a capital, whatever the book: months, days, feasts, countries (not MAY or MARCH, everyday words too). */
 const PROPER = new Set(
@@ -31,7 +38,7 @@ export function passageParts(text: string, names: readonly string[]): PassagePar
       before += part;
       return;
     }
-    const shown = caseWord(part, names, SENTENCE_END.test(before));
+    const shown = caseWord(part, names, endsSentence(before));
     parts.push({ text: shown, word: part });
     before += shown;
   });

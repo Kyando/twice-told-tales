@@ -3,7 +3,7 @@ import { BOOKS, unintroducedNames } from '../src/core/books.ts';
 import { generateLevel } from '../src/core/generate.ts';
 import { findPaths, isPath, turns } from '../src/core/grid.ts';
 import { existsSync } from 'node:fs';
-import { decoysOf, passageParts, passageTokens } from '../src/core/passage.ts';
+import { decoysOf, endsSentence, passageParts, passageTokens } from '../src/core/passage.ts';
 import { blanksOf, buildPuzzle, insideWord, matchTrace, validateLevel } from '../src/core/puzzle.ts';
 import type { LevelDef } from '../src/core/types.ts';
 import { Session } from '../src/game/session.ts';
@@ -296,5 +296,17 @@ describe('narration', () => {
       }
       expect(existsSync(new URL(`../public/${narration.audio}`, import.meta.url)), id).toBe(true);
     }
+  });
+});
+
+describe('sentences', () => {
+  it('end at a stop, but not at a title like Mr. or Mrs.', () => {
+    expect(endsSentence('')).toBe(true);
+    expect(endsSentence('She laughs. ')).toBe(true);
+    expect(endsSentence('“Tempt me.” ')).toBe(true);
+    expect(endsSentence('Then Mr. ')).toBe(false);
+    expect(endsSentence('and Mrs. ')).toBe(false);
+    expect(endsSentence('St. ')).toBe(false);
+    expect(endsSentence('Mr. Bennet laughs, ')).toBe(false);
   });
 });

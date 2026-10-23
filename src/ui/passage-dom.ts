@@ -1,4 +1,4 @@
-import { SPOKEN_WORD, type PassagePart } from '../core/passage.ts';
+import { endsSentence, SPOKEN_WORD, type PassagePart } from '../core/passage.ts';
 import { h } from './dom.ts';
 
 export interface PassageDom {
@@ -11,9 +11,6 @@ export interface PassageDom {
   /** The hidden words' elements, by their text (upper case, as on the board). */
   hidden: Map<string, HTMLElement>;
 }
-
-/** A sentence ends at its stop, with any closing quote, and the space after it. */
-const SENTENCE_END = /[.!?][”"’)]*\s+$/;
 
 /**
  * Lays a passage out as elements: one per spoken word (the hidden words get `passage-word`), grouped
@@ -50,7 +47,9 @@ export function buildPassage(parts: readonly PassagePart[], sentenceClass: strin
       const pieces = text.split(/(?<=[.!?][”"’)]*\s+)/);
       pieces.forEach((piece) => {
         sentence.append(piece);
-        if (SENTENCE_END.test(piece)) close();
+        // A sentence ends at its stop, with any closing quote, and the space after it: not at the
+        // stop of a title (Mr. Bingley), which the sentence's text so far tells apart.
+        if (endsSentence(sentence.textContent ?? '')) close();
       });
     };
     for (const m of part.text.matchAll(SPOKEN_WORD)) {
