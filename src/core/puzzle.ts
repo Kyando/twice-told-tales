@@ -1,5 +1,6 @@
 import { findPaths, isPath } from './grid.ts';
 import { BOOKS } from './books.ts';
+import { decoysOf } from './passage.ts';
 import type { LevelDef } from './types.ts';
 
 export interface Word {
@@ -7,6 +8,9 @@ export interface Word {
   text: string;
   path: number[];
 }
+
+/** Passage words this long that aren't hidden must not be traceable on the board (shorter ones get a gentle word in play). */
+export const DECOY_MIN = 4;
 
 /** An empty cell in the grid: not part of the board at all. */
 export const HOLE_LETTER = '.';
@@ -62,6 +66,16 @@ export function validateLevel(def: LevelDef): string[] {
   if ([...blanksOf(def.story.text)].sort().join() !== def.words.map((w) => w.text).sort().join()) {
     errors.push('story blanks do not match the level words');
   }
+  // The passage is the clue, so a word read in it and traced on the board must be one of the
+  // hidden ones: no other passage word (of DECOY_MIN letters or more) may be traceable, except as
+  // part of a hidden word (HOUSE in HOUSEKEEPER), which tracing on finds anyway.
+  const paths = def.words.map((w) => w.path);
+  for (const word of decoysOf(def.story.text, def.words.map((w) => w.text))) {
+    if (word.length < DECOY_MIN) continue;
+    const back = [...word].reverse().join('');
+    const loose = [...findPaths(letters, rows, cols, word), ...findPaths(letters, rows, cols, back)].some((p) => !insideWord(p, paths));
+    if (loose) errors.push(`${word}, from the passage but not hidden, can be traced on the board`);
+  }
   return errors;
 }
 
@@ -75,6 +89,13 @@ export function buildPuzzle(def: LevelDef): Puzzle {
     letters: def.grid.join(''),
     words: def.words.map((w, index) => ({ index, text: w.text, path: w.path })),
   };
+}
+
+/** Whether `trace` runs along part of one of `paths`, in either direction (HOUSE within HOUSEKEEPER). */
+export function insideWord(trace: number[], paths: number[][]): boolean {
+  const key = (cells: number[]) => `,${cells.join(',')},`;
+  const t = key(trace);
+  return paths.some((p) => key(p).includes(t) || key([...p].reverse()).includes(t));
 }
 
 /** The word whose path is exactly `trace`, read in either direction; -1 if none. */

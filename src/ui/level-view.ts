@@ -1,7 +1,9 @@
 import { BOOKS } from '../core/books.ts';
 import { adjacent, colOf, rowOf } from '../core/grid.ts';
-import { HOLE_LETTER, matchTrace, type Word } from '../core/puzzle.ts';
+import { decoysOf, passageParts } from '../core/passage.ts';
+import { HOLE_LETTER, insideWord, matchTrace, type Word } from '../core/puzzle.ts';
 import { steer } from '../core/steer.ts';
+import type { Clue } from '../game/save.ts';
 import type { Session } from '../game/session.ts';
 import { t, tn } from '../i18n/index.ts';
 import { buzz, sharePicture } from '../native.ts';
@@ -32,6 +34,8 @@ export interface LevelViewOptions {
   onChapters(): void;
   /** What the chapter's menu offers besides starting over (sound, how to play). */
   menuItems(): SheetItem[];
+  /** What the player reads to find the words: the unmarked passage (default), or the list of words. */
+  clue?: Clue;
 }
 
 const SVG_NS = 'http://www.w3.org/2000/svg';
@@ -52,6 +56,8 @@ const STAGGER_MS = INK_STAGGER_MS;
  */
 const CHIP_START = 560;
 const CHIP_STEP = 85;
+/** The passage's sentences are written in this far apart (ms). */
+const SENTENCE_STEP = 240;
 const DIAG_STEP = 110;
 const CARD_JITTER = 60;
 const CARD_FLIGHT = 600;
@@ -60,9 +66,11 @@ const FLIGHT_MS = 760;
 const reducedMotion = () => window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
 
 /**
- * One chapter: the words to find on top, the letters below, and the chapter's illustration under
- * the letters, cut into one piece per word. When a word is found its tiles fly off to the word
- * list, uncovering that piece (shown soft while playing). At the end the picture comes into focus,
+ * One chapter: the scene's passage on top (or, as first made, the list of words to find), the
+ * letters below, and the chapter's illustration under the letters, cut into one piece per word. The
+ * passage marks nothing: which of its words are hidden is for the player to work out. When a word is
+ * found its tiles fly off to its place in the passage (or its chip), which lights up, uncovering that
+ * piece (shown soft while playing). At the end the picture comes into focus,
  * seams and all, and the panel turns into the scene's passage, every found word in place.
  */
 export class LevelView {
@@ -83,9 +91,15 @@ export class LevelView {
   private desk: Desk | null = null;
   private destroyed = false;
   private readonly panel: HTMLElement;
-  private readonly wordList: HTMLElement;
-  /** Word chips by word index. */
+  private readonly clue: Clue;
+  /** Where each word lands when found, by word index: its place in the passage, or its chip in the list. */
   private readonly chips: HTMLElement[] = [];
+  /** What arrives one by one before the deal: the passage's sentences, or the list's chips. */
+  private readonly arrivals: HTMLElement[];
+  /** The passage's own scrolling box (a long passage on a small phone); null with the word list. */
+  private readonly scroller: HTMLElement | null;
+  /** The passage's words that aren't hidden: tracing one gets a gentle word, not a miss. */
+  private readonly decoys: Set<string>;
   private readonly resizeObserver: ResizeObserver;
   private trace: number[] = [];
   /** The drag in progress: the last finger position (in cells, see toCells) and the last step taken. */
@@ -123,20 +137,56 @@ export class LevelView {
       barButton(t('level.menu'), ICONS.more, () => this.openMenu(), 'bar-more'),
     ));
 
-    // While playing, a compact list of the words to find (alphabetical, so it doesn't spoil the
-    // story's order). The scene itself waits for the end, on the desk.
-    this.wordList = h(
-      'ul',
-      { class: 'word-list', 'aria-label': t('level.words') },
-      ...[...p.words]
-        .sort((a, b) => a.text.localeCompare(b.text))
-        .map((w) => {
-          const chip = h('li', { class: 'word-chip' }, w.text);
-          this.chips[w.index] = chip;
-          return chip;
-        }),
-    );
-    this.panel = h('section', { class: 'story-panel' }, this.wordList);
+    this.clue = opts.clue ?? 'passage';
+    if (this.clue === 'passage') {
+      // The scene's passage, with nothing marked: the hidden words are somewhere in it, and each one
+      // found lights up where it stands. Sentences are kept apart so they can arrive one by one.
+      const index = new Map(p.words.map((w) => [w.text, w.index]));
+      const sentences: HTMLElement[] = [];
+      let sentence = h('span', { class: 'passage-sentence' });
+      const close = () => {
+        if (sentence.textContent?.trim()) sentences.push(sentence);
+        sentence = h('span', { class: 'passage-sentence' });
+      };
+      for (const part of passageParts(story.text, BOOKS[def.book].names)) {
+        if (part.word) {
+          const mark = h('span', { class: 'passage-word' }, part.text);
+          this.chips[index.get(part.word)!] = mark;
+          sentence.append(mark);
+          continue;
+        }
+        // A sentence ends at its stop (and any closing quote) and the space after it.
+        for (const piece of part.text.split(/(?<=[.!?][”"’)]*\s+)/)) {
+          sentence.append(piece);
+          if (/[.!?][”"’)]*\s+$/.test(piece)) close();
+        }
+      }
+      close();
+      this.arrivals = sentences;
+      this.scroller = h('div', { class: 'passage-scroll' }, h('p', { class: 'passage', 'aria-label': t('level.passage') }, ...sentences));
+      const note = h('p', { class: 'passage-note' }, tn('level.hidden', p.words.length));
+      this.panel = h('section', { class: 'story-panel story-panel--passage' }, this.scroller, note);
+      this.decoys = new Set(decoysOf(story.text, p.words.map((w) => w.text)));
+      this.scroller.addEventListener('scroll', () => this.fade(), { passive: true });
+    } else {
+      // The word list, as first made: the words to find, alphabetical so it doesn't spoil the
+      // story's order. The scene itself waits for the end, on the desk.
+      const list = h(
+        'ul',
+        { class: 'word-list', 'aria-label': t('level.words') },
+        ...[...p.words]
+          .sort((a, b) => a.text.localeCompare(b.text))
+          .map((w) => {
+            const chip = h('li', { class: 'word-chip' }, w.text);
+            this.chips[w.index] = chip;
+            return chip;
+          }),
+      );
+      this.arrivals = [...list.children] as HTMLElement[];
+      this.scroller = null;
+      this.panel = h('section', { class: 'story-panel' }, list);
+      this.decoys = new Set();
+    }
     const panel = this.panel;
 
     // Board: the picture's pieces at the bottom, the letter tiles over them, then the trace line.
@@ -163,7 +213,7 @@ export class LevelView {
     // The bubble sits right above the board, where the eye already is while tracing (on phones it
     // floats over the chapter title instead, so the board can take the whole width).
     this.boardWrap = h('div', { class: 'board-wrap' }, this.traceEl, this.board);
-    this.el = h('main', { class: 'stage' }, heading, h('div', { class: 'play' }, panel, h('div', { class: 'board-area' }, this.boardWrap)));
+    this.el = h('main', { class: `stage stage--${this.clue}` }, heading, h('div', { class: 'play' }, panel, h('div', { class: 'board-area' }, this.boardWrap)));
 
     this.resizeObserver = new ResizeObserver(() => this.fit());
     this.resizeObserver.observe(this.boardWrap);
@@ -195,22 +245,31 @@ export class LevelView {
     // No sound before the player has touched the page (browsers would hold it back anyway).
     const audible = navigator.userActivation?.hasBeenActive ?? true;
 
-    const chips = [...this.wordList.children] as HTMLElement[];
+    const chips = this.arrivals;
     const anims: Animation[] = [];
+    const reading = this.clue === 'passage';
+    // The word chips pop up one by one; the passage's sentences ink in, one after another, like a
+    // page being written.
+    const step = reading ? SENTENCE_STEP : CHIP_STEP;
     chips.forEach((chip, i) =>
       anims.push(
-      chip.animate(
-        [
-          { transform: 'scale(0.3)', opacity: 0 },
-          { transform: 'scale(1.14)', opacity: 1, offset: 0.6 },
-          { transform: 'none', opacity: 1 },
-        ],
-        { duration: 380, delay: CHIP_START + i * CHIP_STEP, easing: 'cubic-bezier(0.3, 1.3, 0.5, 1)', fill: 'backwards' },
-      )),
+        chip.animate(
+          reading
+            ? [{ opacity: 0, filter: 'blur(3px)' }, { opacity: 1, filter: 'none' }]
+            : [
+                { transform: 'scale(0.3)', opacity: 0 },
+                { transform: 'scale(1.14)', opacity: 1, offset: 0.6 },
+                { transform: 'none', opacity: 1 },
+              ],
+          reading
+            ? { duration: 520, delay: CHIP_START + i * step, easing: 'ease-out', fill: 'backwards' }
+            : { duration: 380, delay: CHIP_START + i * step, easing: 'cubic-bezier(0.3, 1.3, 0.5, 1)', fill: 'backwards' },
+        ),
+      ),
     );
 
-    // The deal starts as the last word chip pops up, so their sounds don't pile up.
-    const start = CHIP_START + Math.max(2, chips.length) * CHIP_STEP;
+    // The deal starts as the last word chip pops up (or the last sentence is written), so their sounds don't pile up.
+    const start = CHIP_START + Math.max(2, chips.length) * step;
     const cols = this.s.puzzle.cols;
     const diagonal = (cell: number) => rowOf(cell, cols) + colOf(cell, cols);
     const cards = this.tiles
@@ -265,7 +324,7 @@ export class LevelView {
         const now = Number(document.timeline.currentTime ?? 0);
         const skew = (now - Number(first.startTime ?? now)) / 1000 + sfx.latency;
         const at = (ms: number) => ms / 1000 - skew;
-        sfx.pops(chips.length, at(CHIP_START + 25), CHIP_STEP / 1000);
+        if (!reading) sfx.pops(chips.length, at(CHIP_START + 25), CHIP_STEP / 1000);
         sfx.deal(at(start), lands.map((s) => s - skew));
         sfx.settle(at(hop));
       }).catch(() => undefined);
@@ -389,6 +448,13 @@ export class LevelView {
       return;
     }
     const letters = trace.map((c) => this.s.puzzle.letters[c]).join('');
+    if (this.isDecoy(trace, letters)) {
+      // A word read in the passage but not hidden (HER, THE): fair to try, so not a miss.
+      this.showTrace(letters, 'is-decoy');
+      toast(t('level.decoy'));
+      this.render();
+      return;
+    }
     const result = this.s.submit(trace);
     if (result.kind === 'miss') {
       this.opts.sfx.nope();
@@ -421,6 +487,7 @@ export class LevelView {
    */
   private flyTiles(word: Word): void {
     const chip = this.chips[word.index];
+    this.reveal(chip);
     const to = chip.getBoundingClientRect();
     const tx = to.left + to.width / 2;
     const ty = to.top + to.height / 2;
@@ -476,6 +543,38 @@ export class LevelView {
       this.render();
       replay(chip, 'pop');
     });
+  }
+
+  /**
+   * A trace that spells one of the passage's other words, read either way, and isn't the start of a
+   * hidden word (HOUSE, traced along HOUSEKEEPER, is just a miss: the player is on the right track).
+   */
+  private isDecoy(trace: number[], letters: string): boolean {
+    if (!this.decoys.size || matchTrace(this.s.puzzle, trace) >= 0) return false;
+    const back = [...letters].reverse().join('');
+    if (!this.decoys.has(letters) && !this.decoys.has(back)) return false;
+    return !insideWord(trace, this.s.puzzle.words.map((w) => w.path));
+  }
+
+  /** Scrolls the passage (if it scrolls) so a found word's place is in view before its tiles fly there. */
+  private reveal(mark: HTMLElement): void {
+    const box = this.scroller;
+    if (!box || box.scrollHeight <= box.clientHeight) return;
+    const top = mark.getBoundingClientRect().top - box.getBoundingClientRect().top + box.scrollTop;
+    const margin = mark.offsetHeight;
+    if (top < box.scrollTop + margin || top + mark.offsetHeight > box.scrollTop + box.clientHeight - margin) {
+      box.scrollTop = Math.max(0, top - (box.clientHeight - mark.offsetHeight) / 2);
+    }
+    this.fade();
+  }
+
+  /** A soft fade at whichever edge of the passage has more text beyond it. */
+  private fade(): void {
+    const box = this.scroller;
+    if (!box) return;
+    const more = box.scrollHeight - box.clientHeight;
+    box.classList.toggle('has-above', more > 1 && box.scrollTop > 1);
+    box.classList.toggle('has-below', more > 1 && box.scrollTop < more - 1);
   }
 
   /** The chapter's menu: starting over (once there's something to lose), then the App's items. */
@@ -693,6 +792,7 @@ export class LevelView {
       for (const word of p.words) if (this.s.isFound(word.index)) this.pieces.add(word.index, word.path);
       if (this.board.classList.contains('is-complete')) this.pieces.showWhole((cell) => this.s.ownerAt(cell), false);
     }
+    this.fade();
     this.drawTrace();
   }
 }

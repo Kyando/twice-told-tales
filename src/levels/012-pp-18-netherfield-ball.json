@@ -6,51 +6,51 @@
   "rows": 8,
   "cols": 7,
   "grid": [
-    "TRMAHKW",
-    "PADAYCI",
-    "ESTRCDA",
-    "LAENICN",
-    "LADGSND",
-    "SBARKEI",
-    "ILESAES",
-    "ECNEDLP"
+    "YPARSEN",
+    "CRATILC",
+    "GNDSNEE",
+    "EICNMKR",
+    "STDAADA",
+    "AECKHDI",
+    "BLIWAES",
+    "ALDESLP"
   ],
   "words": [
     {
       "text": "BALL",
-      "path": [36, 29, 28, 21]
+      "path": [42, 49, 50, 43]
     },
     {
       "text": "DARCY",
-      "path": [9, 10, 17, 18, 11]
+      "path": [16, 9, 8, 7, 0]
     },
     {
       "text": "DANCING",
-      "path": [19, 20, 27, 26, 25, 24, 31]
+      "path": [30, 31, 24, 23, 22, 15, 14]
     },
     {
       "text": "TEASE",
-      "path": [16, 23, 22, 15, 14]
+      "path": [29, 36, 35, 28, 21]
     },
     {
       "text": "WICKHAM",
-      "path": [6, 13, 12, 5, 4, 3, 2]
+      "path": [45, 44, 37, 38, 39, 32, 25]
     },
     {
       "text": "DARKENS",
-      "path": [30, 37, 38, 39, 40, 33, 32]
+      "path": [33, 34, 27, 26, 19, 18, 17]
     },
     {
       "text": "PART",
-      "path": [7, 8, 1, 0]
+      "path": [1, 2, 3, 10]
     },
     {
       "text": "SILENCE",
-      "path": [35, 42, 43, 44, 51, 50, 49]
+      "path": [4, 11, 12, 5, 6, 13, 20]
     },
     {
       "text": "DISPLEASED",
-      "path": [34, 41, 48, 55, 54, 47, 46, 45, 52, 53]
+      "path": [40, 41, 48, 55, 54, 47, 46, 53, 52, 51]
     }
   ],
   "story": {

@@ -6,37 +6,37 @@
   "rows": 6,
   "cols": 5,
   "grid": [
-    "FERET",
-    "ORPCA",
-    "OIOHW",
-    "RFTIH",
-    "YENMA",
-    "YLIPP"
+    "ROFWH",
+    "YOIAA",
+    "EFRTP",
+    "NTEEP",
+    "MOPRI",
+    "IHCYL"
   ],
   "words": [
     {
       "text": "ROOF",
-      "path": [15, 10, 5, 0]
+      "path": [0, 1, 6, 11]
     },
     {
       "text": "CHIMNEY",
-      "path": [8, 13, 18, 23, 22, 21, 20]
+      "path": [27, 26, 25, 20, 15, 10, 5]
     },
     {
       "text": "POT",
-      "path": [7, 12, 17]
+      "path": [22, 21, 16]
     },
     {
       "text": "WATER",
-      "path": [14, 9, 4, 3, 2]
+      "path": [3, 8, 13, 18, 23]
     },
     {
       "text": "FIRE",
-      "path": [16, 11, 6, 1]
+      "path": [2, 7, 12, 17]
     },
     {
       "text": "HAPPILY",
-      "path": [19, 24, 29, 28, 27, 26, 25]
+      "path": [4, 9, 14, 19, 24, 29, 28]
     }
   ],
   "story": {

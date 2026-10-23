@@ -17,8 +17,14 @@ export interface SaveData {
   levels: Record<string, { done: true }>;
   /** The paid shelves the player owns (see SHELVES in core/books.ts). */
   shelves: string[];
-  settings: { sound: boolean; seenHelp: boolean };
+  settings: { sound: boolean; seenHelp: boolean; clue: Clue };
 }
+
+/**
+ * What the player reads to find the words: the chapter's passage, unmarked (the hidden words are
+ * somewhere in it), or the old list of the words themselves. Kept as a choice while both are playtested.
+ */
+export type Clue = 'passage' | 'list';
 
 import { keepStored, restoreStored } from '../native.ts';
 
@@ -28,7 +34,7 @@ const defaults = (): SaveData => ({
   version: 1,
   levels: {},
   shelves: [],
-  settings: { sound: true, seenHelp: false },
+  settings: { sound: true, seenHelp: false, clue: 'passage' },
 });
 
 export const emptyProgress = (): LevelProgress => ({ found: [], done: false, misses: 0 });
@@ -42,9 +48,9 @@ export function loadSave(): SaveData {
     // Older saves also kept the words found in unfinished chapters: only the finished ones stay.
     const levels: SaveData['levels'] = {};
     for (const [id, p] of Object.entries(data.levels ?? {})) if (p?.done) levels[id] = { done: true };
-    const { sound, seenHelp } = { ...defaults().settings, ...data.settings };
+    const { sound, seenHelp, clue } = { ...defaults().settings, ...data.settings };
     const shelves = Array.isArray(data.shelves) ? data.shelves.filter((s): s is string => typeof s === 'string') : [];
-    return { version: 1, levels, shelves, settings: { sound, seenHelp } };
+    return { version: 1, levels, shelves, settings: { sound, seenHelp, clue: clue === 'list' ? 'list' : 'passage' } };
   } catch {
     return defaults();
   }

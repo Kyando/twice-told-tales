@@ -59,6 +59,12 @@ export class App {
       this.main.append(h('p', { class: 'empty' }, t('empty')));
       return;
     }
+    // A playtest link can pick the clue: ?clue=list or ?clue=passage (kept, like the menu's switch).
+    const asked = new URLSearchParams(location.search).get('clue');
+    if ((asked === 'list' || asked === 'passage') && asked !== this.save.settings.clue) {
+      this.save.settings.clue = asked;
+      this.persist();
+    }
     window.addEventListener('popstate', (e) => this.onBack(e.state as Partial<Entry> | null));
     // A reload keeps the screen the player was on; anything else starts on the shelf.
     const was = history.state as Partial<Entry> | null;
@@ -269,7 +275,8 @@ export class App {
       nextLocked: next !== undefined && !this.playable(next),
       nextTitle: next === undefined ? undefined : CATALOG[next].def.title,
       onChapters: () => this.up(),
-      menuItems: () => [this.soundItem(), this.helpItem()],
+      menuItems: () => [this.soundItem(), this.clueItem(), this.helpItem()],
+      clue: this.save.settings.clue,
       intro: true,
     });
   }
@@ -291,13 +298,27 @@ export class App {
     return { icon: ICONS.soundOn, label: t('settings.sound'), on: this.save.settings.sound, onSelect: () => this.toggleSound() };
   }
 
+  /** While both are playtested: the old list of words to find, instead of the unmarked passage. */
+  private clueItem(): SheetItem {
+    return {
+      icon: ICONS.list,
+      label: t('settings.clueList'),
+      on: this.save.settings.clue === 'list',
+      onSelect: () => {
+        this.save.settings.clue = this.save.settings.clue === 'list' ? 'passage' : 'list';
+        this.persist();
+        if (this.route.screen === 'level') this.refresh();
+      },
+    };
+  }
+
   private helpItem(): SheetItem {
     return { icon: ICONS.help, label: t('settings.help'), onSelect: () => this.openHelp() };
   }
 
   /** Settings, from the shelf or (with `book`) a book's chapters, where starting it again belongs. */
   private openSettings(book?: string): void {
-    const items: SheetItem[] = [this.soundItem(), this.helpItem(), { icon: ICONS.info, label: t('settings.credits'), onSelect: () => this.openCredits() }];
+    const items: SheetItem[] = [this.soundItem(), this.clueItem(), this.helpItem(), { icon: ICONS.info, label: t('settings.credits'), onSelect: () => this.openCredits() }];
     if (book && this.chaptersOf(book).some((i) => this.isDone(i))) {
       items.push({ icon: ICONS.restart, label: t('settings.eraseBook'), danger: true, onSelect: () => this.confirmErase(book) });
     } else if (!book && Object.keys(this.save.levels).length) {
@@ -336,6 +357,7 @@ export class App {
       h('i'),
       h('i'),
     );
+    const reading = this.save.settings.clue === 'passage';
     const step = (art: Node, title: MessageKey, body: MessageKey) =>
       h('li', { class: 'help-step' }, art, h('div', {}, h('h3', {}, t(title)), h('p', {}, t(body))));
     const modal = openModal({
@@ -344,13 +366,22 @@ export class App {
       body: h(
         'div',
         { class: 'help' },
-        h('p', { class: 'help-lead' }, t('help.lead')),
+        h('p', { class: 'help-lead' }, t(reading ? 'help.passageLead' : 'help.lead')),
         h(
           'ol',
           { class: 'help-steps' },
-          step(board, 'help.trace', 'help.traceBody'),
-          step(picture, 'help.reveal', 'help.revealBody'),
-          step(page, 'help.read', 'help.readBody'),
+          // With the passage, reading comes first: it's where the words are found.
+          ...(reading
+            ? [
+                step(page, 'help.passageRead', 'help.passageReadBody'),
+                step(board, 'help.trace', 'help.traceBody'),
+                step(picture, 'help.reveal', 'help.passageRevealBody'),
+              ]
+            : [
+                step(board, 'help.trace', 'help.traceBody'),
+                step(picture, 'help.reveal', 'help.revealBody'),
+                step(page, 'help.read', 'help.readBody'),
+              ]),
         ),
         h('p', { class: 'help-note' }, t('help.note')),
       ),

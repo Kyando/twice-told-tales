@@ -6,35 +6,35 @@
   "rows": 8,
   "cols": 5,
   "grid": [
-    "TUDES",
-    "WNLEO",
-    "ORAZP",
-    "GEHRO",
-    "DESPE",
-    "FHSAG",
-    "INEIR",
-    "RMCAR"
+    "DETUN",
+    "OSPEL",
+    "PORZS",
+    "HEEAS",
+    "GDGHE",
+    "EIAMN",
+    "RRRRI",
+    "OWACF"
   ],
   "words": [
     {
       "text": "HEDGEROW",
-      "path": [26, 21, 20, 15, 16, 11, 10, 5]
+      "path": [15, 16, 21, 20, 25, 30, 35, 36]
     },
     {
       "text": "FIRMNESS",
-      "path": [25, 30, 35, 36, 31, 32, 27, 22]
+      "path": [39, 34, 33, 28, 29, 24, 19, 14]
     },
     {
       "text": "HAZELNUT",
-      "path": [17, 12, 13, 8, 7, 6, 1, 0]
+      "path": [23, 18, 13, 8, 9, 4, 3, 2]
     },
     {
       "text": "PROPOSED",
-      "path": [23, 18, 19, 14, 9, 4, 3, 2]
+      "path": [7, 12, 11, 10, 5, 6, 1, 0]
     },
     {
       "text": "CARRIAGE",
-      "path": [37, 38, 39, 34, 33, 28, 29, 24]
+      "path": [38, 37, 32, 31, 26, 27, 22, 17]
     }
   ],
   "story": {

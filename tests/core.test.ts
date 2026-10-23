@@ -2,7 +2,8 @@ import { describe, expect, it } from 'vitest';
 import { BOOKS, unintroducedNames } from '../src/core/books.ts';
 import { generateLevel } from '../src/core/generate.ts';
 import { findPaths, isPath, turns } from '../src/core/grid.ts';
-import { blanksOf, buildPuzzle, matchTrace, validateLevel } from '../src/core/puzzle.ts';
+import { decoysOf, passageParts } from '../src/core/passage.ts';
+import { blanksOf, buildPuzzle, insideWord, matchTrace, validateLevel } from '../src/core/puzzle.ts';
 import type { LevelDef } from '../src/core/types.ts';
 import { Session } from '../src/game/session.ts';
 import { emptyProgress } from '../src/game/save.ts';
@@ -225,5 +226,52 @@ describe('pictures', () => {
       const [l, t, r, b] = crop;
       expect(0 <= l && l < r && r <= 1 && 0 <= t && t < b && b <= 1, def.id).toBe(true);
     }
+  });
+});
+
+describe('the passage as the clue', () => {
+  const names = ['DARCY', 'ELIZABETH'];
+
+  it('writes hidden words as the book would', () => {
+    const parts = passageParts('{DARCY} looks. “She is {TOLERABLE}.” {LAUGH} they do, at {ELIZABETH}.', names);
+    expect(parts.filter((p) => p.word).map((p) => p.text)).toEqual(['Darcy', 'tolerable', 'Laugh', 'Elizabeth']);
+    expect(parts.map((p) => p.text).join('')).toBe('Darcy looks. “She is tolerable.” Laugh they do, at Elizabeth.');
+  });
+
+  it('lists the passage words that are not hidden', () => {
+    expect(decoysOf('{DARCY} barely glances at her, Darcy’s eyes.', ['DARCY']).sort()).toEqual(['AT', 'BARELY', 'EYES', 'GLANCES', 'HER', 'S']);
+  });
+
+  it('knows a trace along part of a hidden word', () => {
+    expect(insideWord([3, 4, 5], [[1, 2, 3, 4, 5, 6]])).toBe(true);
+    expect(insideWord([5, 4, 3], [[1, 2, 3, 4, 5, 6]])).toBe(true);
+    expect(insideWord([3, 5], [[1, 2, 3, 4, 5, 6]])).toBe(false);
+    expect(insideWord([13, 4], [[1, 2, 3, 4, 5, 6]])).toBe(false);
+  });
+
+  it('never lets another passage word be traced on a board', () => {
+    for (const def of levels) {
+      const loose = validateLevel(def).filter((e) => e.includes('from the passage'));
+      expect(loose, def.id).toEqual([]);
+    }
+  });
+
+  it('rejects a board where a passage word can be traced by chance', () => {
+    // C A T S
+    // D O G S   GOAT runs G-O-A-T across both hidden words.
+    const def: LevelDef = {
+      ...levels[0],
+      rows: 2,
+      cols: 4,
+      grid: ['CATS', 'DOGS'],
+      words: [
+        { text: 'CATS', path: [0, 1, 2, 3] },
+        { text: 'DOGS', path: [4, 5, 6, 7] },
+      ],
+      story: { ...levels[0].story, text: 'The {CATS} and {DOGS} met a sheep.' },
+    };
+    expect(validateLevel(def)).toEqual([]);
+    const goat = { ...def, story: { ...def.story, text: 'The {CATS} and {DOGS} met a goat.' } };
+    expect(validateLevel(goat)).toEqual(['GOAT, from the passage but not hidden, can be traced on the board']);
   });
 });

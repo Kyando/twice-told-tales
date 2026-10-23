@@ -6,38 +6,38 @@
   "rows": 7,
   "cols": 6,
   "grid": [
-    "STSNFA",
-    "RSIIIM",
-    "EHTYLD",
-    "TCHOAN",
-    "EACUSG",
-    "NIOHAN",
-    "SSUSRI"
+    "CTSTIN",
+    "OEASIS",
+    "USCSHG",
+    "NIHEAN",
+    "SFDRRI",
+    "MANASU",
+    "ILYTHO"
   ],
   "words": [
     {
       "text": "TEACHER",
-      "path": [18, 24, 25, 19, 13, 12, 6]
+      "path": [1, 7, 8, 14, 20, 21, 27]
     },
     {
       "text": "THOUSAND",
-      "path": [14, 20, 21, 27, 28, 22, 23, 17]
+      "path": [39, 40, 41, 35, 34, 33, 32, 26]
     },
     {
       "text": "COUSINS",
-      "path": [26, 32, 38, 37, 31, 30, 36]
+      "path": [0, 6, 12, 13, 19, 18, 24]
     },
     {
       "text": "INSISTS",
-      "path": [9, 3, 2, 8, 7, 1, 0]
+      "path": [4, 5, 11, 10, 9, 3, 2]
     },
     {
       "text": "SHARING",
-      "path": [39, 33, 34, 40, 41, 35, 29]
+      "path": [15, 16, 22, 28, 29, 23, 17]
     },
     {
       "text": "FAMILY",
-      "path": [4, 5, 11, 10, 16, 15]
+      "path": [25, 31, 30, 36, 37, 38]
     }
   ],
   "story": {

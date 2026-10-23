@@ -6,39 +6,39 @@
   "rows": 8,
   "cols": 5,
   "grid": [
-    "HLEDA",
-    "EOVRR",
-    "RSWOE",
-    "CELFN",
-    "ONDEG",
-    "ESSGA",
-    "LOHRU",
-    "YREBB"
+    "SCONS",
+    "HRELO",
+    "DUBBE",
+    "EVWYR",
+    "LOORE",
+    "HEARN",
+    "SRDEG",
+    "ELFGA"
   ],
   "words": [
     {
       "text": "ENGAGED",
-      "path": [14, 19, 24, 29, 28, 23, 22]
+      "path": [24, 29, 34, 39, 38, 33, 32]
     },
     {
       "text": "ARROW",
-      "path": [4, 9, 8, 13, 12]
+      "path": [27, 28, 23, 22, 17]
     },
     {
       "text": "HERSELF",
-      "path": [0, 5, 10, 11, 16, 17, 18]
+      "path": [25, 26, 31, 30, 35, 36, 37]
     },
     {
       "text": "SHRUBBERY",
-      "path": [27, 32, 33, 34, 39, 38, 37, 36, 35]
+      "path": [0, 5, 6, 11, 12, 13, 14, 19, 18]
     },
     {
       "text": "CONSOLE",
-      "path": [15, 20, 21, 26, 31, 30, 25]
+      "path": [1, 2, 3, 4, 9, 8, 7]
     },
     {
       "text": "LOVED",
-      "path": [1, 6, 7, 2, 3]
+      "path": [20, 21, 16, 15, 10]
     }
   ],
   "story": {

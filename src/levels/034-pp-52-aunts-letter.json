@@ -6,43 +6,43 @@
   "rows": 8,
   "cols": 6,
   "grid": [
-    "RETHBL",
-    "EISUME",
-    "GSDEQD",
-    "ASTBUI",
-    "IRRNTE",
-    "LMAOMM",
-    "EQUIIO",
-    "RRASSC"
+    "COHSIS",
+    "MMUMBT",
+    "IIONLE",
+    "SSTDER",
+    "EIESTD",
+    "GUQLBE",
+    "AIREAU",
+    "MARRRQ"
   ],
   "words": [
     {
       "text": "DEBTS",
-      "path": [14, 15, 21, 20, 19]
+      "path": [29, 35, 34, 28, 27]
     },
     {
       "text": "COMMISSION",
-      "path": [47, 41, 35, 34, 40, 46, 45, 39, 33, 27]
+      "path": [0, 1, 7, 6, 12, 18, 19, 13, 14, 15]
     },
     {
       "text": "MARRIAGE",
-      "path": [31, 32, 26, 25, 24, 18, 12, 6]
+      "path": [42, 43, 44, 38, 37, 36, 30, 24]
     },
     {
       "text": "QUIET",
-      "path": [16, 22, 23, 29, 28]
+      "path": [32, 31, 25, 26, 20]
     },
     {
       "text": "HUMBLED",
-      "path": [3, 9, 10, 4, 5, 11, 17]
+      "path": [2, 8, 9, 10, 16, 22, 21]
     },
     {
       "text": "SISTER",
-      "path": [13, 7, 8, 2, 1, 0]
+      "path": [3, 4, 5, 11, 17, 23]
     },
     {
       "text": "QUARREL",
-      "path": [37, 38, 44, 43, 42, 36, 30]
+      "path": [47, 41, 40, 46, 45, 39, 33]
     }
   ],
   "story": {

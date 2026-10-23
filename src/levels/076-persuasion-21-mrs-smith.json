@@ -6,43 +6,43 @@
   "rows": 8,
   "cols": 5,
   "grid": [
-    "ELRET",
-    "ITRET",
-    "TOOLD",
-    "NPMBE",
-    "IUATG",
-    "DRRRN",
-    "EDNYI",
-    "NOABA"
+    "TTBRU",
+    "ITEDI",
+    "ELPON",
+    "ARROM",
+    "BEELA",
+    "ATTRR",
+    "NDEYG",
+    "DONIN"
   ],
   "words": [
     {
       "text": "POOR",
-      "path": [16, 11, 12, 7]
+      "path": [12, 13, 18, 17]
     },
     {
       "text": "DEBT",
-      "path": [14, 19, 18, 23]
+      "path": [8, 7, 2, 1]
     },
     {
       "text": "RUIN",
-      "path": [26, 21, 20, 15]
+      "path": [3, 4, 9, 14]
     },
     {
       "text": "ABANDONED",
-      "path": [39, 38, 37, 32, 31, 36, 35, 30, 25]
+      "path": [15, 20, 25, 30, 35, 36, 37, 32, 31]
     },
     {
       "text": "LETTER",
-      "path": [13, 8, 9, 4, 3, 2]
+      "path": [23, 22, 27, 26, 21, 16]
     },
     {
       "text": "MARRYING",
-      "path": [17, 22, 27, 28, 33, 34, 29, 24]
+      "path": [19, 24, 29, 28, 33, 38, 39, 34]
     },
     {
       "text": "TITLE",
-      "path": [10, 5, 6, 1, 0]
+      "path": [0, 5, 6, 11, 10]
     }
   ],
   "story": {

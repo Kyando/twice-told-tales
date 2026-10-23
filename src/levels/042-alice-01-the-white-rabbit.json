@@ -6,47 +6,47 @@
   "rows": 8,
   "cols": 6,
   "grid": [
-    "TECUOS",
-    "AKCRII",
-    "GNORET",
-    "AIPRTY",
-    "WCHASI",
-    "ATTBFS",
-    "LAIBOL",
-    "ETSWOL"
+    "TAFOLL",
+    "IGAIWO",
+    "BBYNST",
+    "RATPOE",
+    "ETISCK",
+    "HALORS",
+    "CTRIEI",
+    "WAUCTS"
   ],
   "words": [
     {
       "text": "SISTER",
-      "path": [35, 29, 28, 22, 16, 15]
+      "path": [35, 41, 47, 46, 40, 34]
     },
     {
       "text": "RABBIT",
-      "path": [21, 27, 33, 39, 38, 32]
+      "path": [18, 19, 13, 12, 6, 0]
     },
     {
       "text": "LATE",
-      "path": [36, 37, 43, 42]
+      "path": [32, 31, 25, 24]
     },
     {
       "text": "WATCH",
-      "path": [24, 30, 31, 25, 26]
+      "path": [42, 43, 37, 36, 30]
     },
     {
       "text": "POCKET",
-      "path": [20, 14, 8, 7, 1, 0]
+      "path": [21, 22, 28, 29, 23, 17]
     },
     {
       "text": "CURIOSITY",
-      "path": [2, 3, 9, 10, 4, 5, 11, 17, 23]
+      "path": [45, 44, 38, 39, 33, 27, 26, 20, 14]
     },
     {
       "text": "FOLLOWS",
-      "path": [34, 40, 41, 47, 46, 45, 44]
+      "path": [2, 3, 4, 5, 11, 10, 16]
     },
     {
       "text": "AGAIN",
-      "path": [6, 12, 18, 19, 13]
+      "path": [1, 7, 8, 9, 15]
     }
   ],
   "story": {

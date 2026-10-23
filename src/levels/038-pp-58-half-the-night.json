@@ -6,47 +6,47 @@
   "rows": 8,
   "cols": 6,
   "grid": [
-    "FSGAIL",
-    "EINPRY",
-    "ELADLL",
-    "EHRUAH",
-    "POGDEU",
-    "MIANGM",
-    "TSHCDB",
-    "AKENEL"
+    "HUNEHO",
+    "BMSKEP",
+    "LNGATM",
+    "EILISI",
+    "DLPRYL",
+    "EEAGRL",
+    "FDEGAA",
+    "CHANDU"
   ],
   "words": [
     {
       "text": "FEELINGS",
-      "path": [0, 6, 12, 13, 7, 8, 2, 1]
+      "path": [36, 30, 31, 25, 19, 13, 14, 8]
     },
     {
       "text": "APRIL",
-      "path": [3, 9, 10, 4, 5]
+      "path": [32, 26, 27, 21, 20]
     },
     {
       "text": "CHANGED",
-      "path": [39, 38, 32, 33, 34, 28, 27]
+      "path": [42, 43, 44, 45, 39, 38, 37]
     },
     {
       "text": "HOPE",
-      "path": [19, 25, 24, 18]
+      "path": [4, 5, 11, 10]
     },
     {
       "text": "MISTAKEN",
-      "path": [30, 31, 37, 36, 42, 43, 44, 45]
+      "path": [17, 23, 22, 16, 15, 9, 3, 2]
     },
     {
       "text": "HUMBLED",
-      "path": [23, 29, 35, 41, 47, 46, 40]
+      "path": [0, 1, 7, 6, 12, 18, 24]
     },
     {
       "text": "GRADUALLY",
-      "path": [26, 20, 14, 15, 21, 22, 16, 17, 11]
+      "path": [33, 34, 40, 46, 47, 41, 35, 29, 28]
     }
   ],
   "story": {
-    "text": "Walking out together, Elizabeth thanks Darcy for all he did for Lydia. He answers: “If your {FEELINGS} are still what they were last {APRIL}, tell me so at once.” Hers have {CHANGED}, and she accepts him. As they walk on, he tells his side: Lady Catherine’s visit “taught me to {HOPE},” and he has told Bingley he was {MISTAKEN} about Jane. “By you, I was properly {HUMBLED}.” That night Elizabeth tells Jane, who can hardly believe it. “How long have you loved him?” “It has been coming on so {GRADUALLY}, I hardly know when it began.”",
+    "text": "Walking out together, Elizabeth thanks Darcy for all he did for Lydia. He answers: “If your {FEELINGS} are still what they were last {APRIL}, tell me so at once.” Hers have {CHANGED}, and she accepts him. Lady Catherine’s visit “taught me to {HOPE},” he says, and he has told Bingley he was {MISTAKEN} about Jane. “By you, I was properly {HUMBLED}.” That night Jane asks how long she has loved him. “It has been coming on so {GRADUALLY}, I hardly know when it began.”",
     "image": "art/brock-1895/all-was-acknowledged-and-half-the-night-spent-in-conversation.jpg",
     "caption": "All was acknowledged, and half the night spent in conversation",
     "credit": "C. E. Brock, 1895",

@@ -464,7 +464,7 @@ const PRIDE: LevelSpec[] = [
     rows: 7,
     cols: 8,
     story: {
-      text: 'The very next day, Darcy brings {GEORGIANA} to the {INN} at Lambton. Elizabeth expected a proud girl, and finds her only {SHY}. Bingley comes too, and asks {WISTFULLY} after Jane. Darcy works {HARD} to be {AGREEABLE} to Mr. and Mrs. {GARDINER}, and that night Elizabeth lies awake, {TRYING} to understand her own {HEART}. At Pemberley the next day, Caroline sneers at how brown she has grown. Darcy answers that he has long thought her one of the handsomest women of his acquaintance.',
+      text: 'The very next day, Darcy brings {GEORGIANA} to the {INN} at Lambton. Elizabeth expected a proud girl, and finds her only {SHY}. Bingley comes too, and asks {WISTFULLY} after Jane. Darcy works {HARD} to be {AGREEABLE} to Mr. and Mrs. {GARDINER}, and that night Elizabeth lies awake, {TRYING} to understand her own {HEART}.',
       image: art('thomson-1894/ch44-i_350.jpg'),
       caption: 'To make herself agreeable to all',
       credit: THOMSON,
@@ -605,7 +605,7 @@ const PRIDE: LevelSpec[] = [
     rows: 8,
     cols: 6,
     story: {
-      text: 'Walking out together, Elizabeth thanks Darcy for all he did for Lydia. He answers: “If your {FEELINGS} are still what they were last {APRIL}, tell me so at once.” Hers have {CHANGED}, and she accepts him. As they walk on, he tells his side: Lady Catherine’s visit “taught me to {HOPE},” and he has told Bingley he was {MISTAKEN} about Jane. “By you, I was properly {HUMBLED}.” That night Elizabeth tells Jane, who can hardly believe it. “How long have you loved him?” “It has been coming on so {GRADUALLY}, I hardly know when it began.”',
+      text: 'Walking out together, Elizabeth thanks Darcy for all he did for Lydia. He answers: “If your {FEELINGS} are still what they were last {APRIL}, tell me so at once.” Hers have {CHANGED}, and she accepts him. Lady Catherine’s visit “taught me to {HOPE},” he says, and he has told Bingley he was {MISTAKEN} about Jane. “By you, I was properly {HUMBLED}.” That night Jane asks how long she has loved him. “It has been coming on so {GRADUALLY}, I hardly know when it began.”',
       image: art('brock-1895/all-was-acknowledged-and-half-the-night-spent-in-conversation.jpg'),
       caption: 'All was acknowledged, and half the night spent in conversation',
       credit: BROCK,

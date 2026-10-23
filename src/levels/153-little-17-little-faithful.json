@@ -6,37 +6,37 @@
   "rows": 6,
   "cols": 6,
   "grid": [
-    "HFEVSC",
-    "SIRERA",
-    "DAYKLE",
-    "GNWNAT",
-    "EIHBRC",
-    "RTEABY"
+    "REYTEL",
+    "NGKNAR",
+    "ADFACS",
+    "IRERCW",
+    "SEVBIH",
+    "HYBATE"
   ],
   "words": [
     {
       "text": "WHITE",
-      "path": [20, 26, 25, 31, 32]
+      "path": [23, 29, 28, 34, 35]
     },
     {
       "text": "BABY",
-      "path": [27, 33, 34, 35]
+      "path": [27, 33, 32, 31]
     },
     {
       "text": "SCARLET",
-      "path": [4, 5, 11, 10, 16, 17, 23]
+      "path": [17, 16, 10, 11, 5, 4, 3]
     },
     {
       "text": "FEVERISH",
-      "path": [1, 2, 3, 9, 8, 7, 6, 0]
+      "path": [14, 20, 26, 25, 19, 18, 24, 30]
     },
     {
       "text": "CRANKY",
-      "path": [29, 28, 22, 21, 15, 14]
+      "path": [22, 21, 15, 9, 8, 2]
     },
     {
       "text": "DANGER",
-      "path": [12, 13, 19, 18, 24, 30]
+      "path": [13, 12, 6, 7, 1, 0]
     }
   ],
   "story": {
