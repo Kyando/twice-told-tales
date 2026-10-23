@@ -1,0 +1,55 @@
+{
+  "id": "alice-12-the-jury-box",
+  "book": "alice-in-wonderland",
+  "chapter": 12,
+  "title": "Alice’s Evidence",
+  "rows": 6,
+  "cols": 5,
+  "grid": [
+    "DWELI",
+    "SORLM",
+    "KICLI",
+    "TRGHB",
+    "RONUR",
+    "GWIYR"
+  ],
+  "words": [
+    {
+      "text": "GROWING",
+      "path": [25, 20, 21, 26, 27, 22, 17]
+    },
+    {
+      "text": "HURRY",
+      "path": [18, 23, 24, 29, 28]
+    },
+    {
+      "text": "SKIRT",
+      "path": [5, 10, 11, 16, 15]
+    },
+    {
+      "text": "CROWD",
+      "path": [12, 7, 6, 1, 0]
+    },
+    {
+      "text": "BILL",
+      "path": [19, 14, 13, 8]
+    },
+    {
+      "text": "MILE",
+      "path": [9, 4, 3, 2]
+    }
+  ],
+  "story": {
+    "text": "“Alice!” calls the White Rabbit. She has been {GROWING} all through the trial, and jumps up in such a {HURRY} that she tips over the jury-box with the edge of her {SKIRT}, upsetting all the jurymen onto the {CROWD} below. She puts poor {BILL} back in head downwards. Then the King reads out Rule Forty-two: “All persons more than a {MILE} high to leave the court.”",
+    "image": "art/nursery-alice-1890/c06544-03.jpg",
+    "caption": "She tipped over the jury-box",
+    "credit": "John Tenniel, coloured for The Nursery “Alice”, 1890",
+    "crop": [
+      0.05,
+      0.07,
+      0.95,
+      0.87
+    ],
+    "colour": true
+  }
+}

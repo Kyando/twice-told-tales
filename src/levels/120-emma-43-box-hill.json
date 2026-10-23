@@ -1,0 +1,56 @@
+{
+  "id": "emma-43-box-hill",
+  "book": "emma",
+  "chapter": 43,
+  "title": "It Was Badly Done",
+  "rows": 7,
+  "cols": 5,
+  "grid": [
+    "LITED",
+    "IMBOD",
+    "BLYXE",
+    "ADWOD",
+    "WESUN",
+    "FEPIN",
+    "LIRTG"
+  ],
+  "words": [
+    {
+      "text": "BOX",
+      "path": [7, 8, 13]
+    },
+    {
+      "text": "FLIRTING",
+      "path": [25, 30, 31, 32, 33, 28, 29, 34]
+    },
+    {
+      "text": "LIMITED",
+      "path": [0, 5, 6, 1, 2, 3, 4]
+    },
+    {
+      "text": "WOUNDED",
+      "path": [17, 18, 23, 24, 19, 14, 9]
+    },
+    {
+      "text": "BADLY",
+      "path": [10, 15, 16, 11, 12]
+    },
+    {
+      "text": "WEEPS",
+      "path": [20, 21, 26, 27, 22]
+    }
+  ],
+  "story": {
+    "text": "On {BOX} Hill, Frank, {FLIRTING} wildly with Emma, asks everyone for one clever thing, or three very dull ones. “I shall be sure to say three dull things,” laughs Miss Bates. “Pardon me, but you will be {LIMITED} as to number: only three at once,” says Emma. Miss Bates is {WOUNDED}. “It was {BADLY} done, indeed!” says Mr. Knightley, and Emma {WEEPS} all the way home.",
+    "image": "art/emma-brock-1909/emma-ce-brock-1909-vol-iii-chapter-vii.jpg",
+    "caption": "“I shall be sure to say three dull things as soon as ever I open my mouth, shan’t I?”",
+    "credit": "C. E. Brock, 1909",
+    "crop": [
+      0.1,
+      0.1,
+      0.9,
+      0.8
+    ],
+    "colour": true
+  }
+}

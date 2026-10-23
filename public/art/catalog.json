@@ -7158,5 +7158,15 @@
   "kind": "scan",
   "source": "https://upload.wikimedia.org/wikipedia/commons/0/05/Emma_title_page_1909.jpg",
   "license": "Public domain"
+ },
+ {
+  "file": "jane-walker-1899/life-and-works-of-the-sisters-bronte-rochester-and-jane-eyre.jpg",
+  "artist": "Frederick Walker",
+  "edition": "The Life and Works of the Sisters Brontë, Smith, Elder, 1899",
+  "chapter": null,
+  "caption": "Rochester and Jane Eyre",
+  "kind": "scan",
+  "source": "https://upload.wikimedia.org/wikipedia/commons/b/b7/Life_and_Works_of_the_Sisters_Bronte_-_Rochester_and_Jane_Eyre.jpg",
+  "license": "Public domain"
  }
 ]

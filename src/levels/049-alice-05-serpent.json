@@ -1,0 +1,62 @@
+{
+  "id": "alice-05-serpent",
+  "book": "alice-in-wonderland",
+  "chapter": 5,
+  "title": "Serpent!",
+  "rows": 9,
+  "cols": 4,
+  "grid": [
+    "TGIT",
+    "RLRN",
+    "EEPE",
+    "PSRE",
+    "IONS",
+    "GEKH",
+    "EECE",
+    "GNGI",
+    "GSHT"
+  ],
+  "words": [
+    {
+      "text": "NECK",
+      "path": [29, 25, 26, 22]
+    },
+    {
+      "text": "TREES",
+      "path": [0, 4, 8, 9, 13]
+    },
+    {
+      "text": "PIGEON",
+      "path": [12, 16, 20, 21, 17, 18]
+    },
+    {
+      "text": "SERPENT",
+      "path": [19, 15, 14, 10, 11, 7, 3]
+    },
+    {
+      "text": "EGGS",
+      "path": [24, 28, 32, 33]
+    },
+    {
+      "text": "GIRL",
+      "path": [1, 2, 6, 5]
+    },
+    {
+      "text": "HEIGHT",
+      "path": [23, 27, 31, 30, 34, 35]
+    }
+  ],
+  "story": {
+    "text": "Alice nibbles the mushroom, and her {NECK} grows so long that her head rises high above the {TREES}. A {PIGEON} flies at her face. “{SERPENT}!” it screams. It is guarding its {EGGS}, and will not believe she is a little {GIRL}. Nibbling first one piece and then the other, she brings herself down to her usual {HEIGHT}.",
+    "image": "art/nursery-alice-1890/c03756-06.jpg",
+    "caption": "Alice, grown very tall",
+    "credit": "John Tenniel, coloured for The Nursery “Alice”, 1890",
+    "crop": [
+      0.26,
+      0,
+      0.92,
+      0.99
+    ],
+    "colour": true
+  }
+}

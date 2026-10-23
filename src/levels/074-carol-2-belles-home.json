@@ -1,0 +1,60 @@
+{
+  "id": "carol-2-belles-home",
+  "book": "a-christmas-carol",
+  "chapter": 2,
+  "title": "Quite Alone in the World",
+  "rows": 7,
+  "cols": 6,
+  "grid": [
+    "RECNER",
+    "MHHILD",
+    "OTALFA",
+    "WONORT",
+    "WDEUEH",
+    "INRPEL",
+    "RAOBEL"
+  ],
+  "words": [
+    {
+      "text": "BELLE",
+      "path": [39, 40, 41, 35, 34]
+    },
+    {
+      "text": "MOTHER",
+      "path": [6, 12, 13, 7, 1, 0]
+    },
+    {
+      "text": "CHILDREN",
+      "path": [2, 8, 9, 10, 11, 5, 4, 3]
+    },
+    {
+      "text": "UPROAR",
+      "path": [27, 33, 32, 38, 37, 36]
+    },
+    {
+      "text": "FATHER",
+      "path": [16, 17, 23, 29, 28, 22]
+    },
+    {
+      "text": "WINDOW",
+      "path": [24, 30, 31, 25, 19, 18]
+    },
+    {
+      "text": "ALONE",
+      "path": [14, 15, 21, 20, 26]
+    }
+  ],
+  "story": {
+    "text": "Next the Spirit shows him {BELLE}, years later, a happy {MOTHER} by her own fire, with her {CHILDREN} in a joyful {UPROAR}. Their {FATHER} comes home laden with Christmas toys, and the children storm him. He tells Belle he passed an old friend of hers tonight, Mr. Scrooge, sitting at his office {WINDOW}: “Quite {ALONE} in the world, I do believe.” “Spirit!” says Scrooge. “Remove me from this place.”",
+    "image": "art/rackham-1915/019-img07.jpg",
+    "caption": "Laden with Christmas toys and presents",
+    "credit": "Arthur Rackham, 1915",
+    "crop": [
+      0.02,
+      0,
+      1,
+      1
+    ],
+    "colour": true
+  }
+}

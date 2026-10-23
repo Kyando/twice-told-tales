@@ -6,47 +6,47 @@
   "rows": 8,
   "cols": 6,
   "grid": [
-    "RKAREV",
-    "ENADLO",
-    "PRRENT",
-    "FEADDL",
-    "ESSMEY",
-    "ELEILG",
-    "SIDREG",
-    "GNSTRU"
+    "DEADRK",
+    "GLIMAN",
+    "GERDES",
+    "USPRES",
+    "RTEYNE",
+    "EVRLTD",
+    "LOFEER",
+    "SGNILA"
   ],
   "words": [
     {
       "text": "STRUGGLED",
-      "path": [44, 45, 46, 47, 41, 35, 34, 28, 22]
+      "path": [19, 25, 24, 18, 12, 6, 7, 1, 0]
     },
     {
       "text": "FEELINGS",
-      "path": [18, 24, 30, 31, 37, 43, 42, 36]
+      "path": [38, 39, 40, 46, 45, 44, 43, 42]
     },
     {
       "text": "REPRESSED",
-      "path": [0, 6, 12, 13, 19, 25, 26, 32, 38]
+      "path": [32, 26, 20, 21, 22, 23, 17, 16, 15]
     },
     {
       "text": "ARDENTLY",
-      "path": [2, 3, 9, 15, 16, 17, 23, 29]
+      "path": [47, 41, 35, 29, 28, 34, 33, 27]
     },
     {
       "text": "ADMIRE",
-      "path": [20, 21, 27, 33, 39, 40]
+      "path": [2, 3, 9, 8, 14, 13]
     },
     {
       "text": "LOVE",
-      "path": [10, 11, 5, 4]
+      "path": [36, 37, 31, 30]
     },
     {
       "text": "RANK",
-      "path": [14, 8, 7, 1]
+      "path": [4, 10, 11, 5]
     }
   ],
   "story": {
-    "text": "Elizabeth stays in alone, rereading Jane’s sad letters, when Mr. Darcy walks in. “In vain I have {STRUGGLED}. It will not do. My {FEELINGS} will not be {REPRESSED}. You must allow me to tell you how {ARDENTLY} I {ADMIRE} and {LOVE} you.” Yet he speaks just as much of her family’s low {RANK}.",
+    "text": "Elizabeth stays in alone, rereading Jane’s sad letters, when Mr. Darcy walks in. “In vain have I {STRUGGLED}. It will not do. My {FEELINGS} will not be {REPRESSED}. You must allow me to tell you how {ARDENTLY} I {ADMIRE} and {LOVE} you.” Yet he speaks just as much of her family’s low {RANK}.",
     "image": "art/brock-1895/you-must-allow-me-to-tell-you-how-ardently-i-admire-and-love-you.jpg",
     "caption": "You must allow me to tell you how ardently I admire and love you",
     "credit": "C. E. Brock, 1895",

@@ -1,0 +1,51 @@
+{
+  "id": "little-02-procession",
+  "book": "little-women",
+  "chapter": 2,
+  "title": "The Procession Set Out",
+  "rows": 5,
+  "cols": 8,
+  "grid": [
+    "DFOSTAEB",
+    "AFODKWHA",
+    "EIRECBYB",
+    "RBWBUREA",
+    "SNOTSAFK"
+  ],
+  "words": [
+    {
+      "text": "BABY",
+      "path": [7, 15, 23, 22]
+    },
+    {
+      "text": "FIRE",
+      "path": [9, 17, 18, 19]
+    },
+    {
+      "text": "FOOD",
+      "path": [1, 2, 10, 11]
+    },
+    {
+      "text": "BREAKFAST",
+      "path": [21, 29, 30, 31, 39, 38, 37, 36, 35]
+    },
+    {
+      "text": "SNOW",
+      "path": [32, 33, 34, 26]
+    },
+    {
+      "text": "BUCKWHEATS",
+      "path": [27, 28, 20, 12, 13, 14, 6, 5, 4, 3]
+    },
+    {
+      "text": "BREAD",
+      "path": [25, 24, 16, 8, 0]
+    }
+  ],
+  "story": {
+    "text": "On Christmas morning Marmee asks a favour: a poor woman, Mrs. Hummel, has a new {BABY} and six children huddled in one bed, with no {FIRE} and no {FOOD}. The girls give up their own {BREAKFAST}, and the procession sets out through the {SNOW} with the {BUCKWHEATS}, the {BREAD} and the cream.",
+    "image": "art/merrill-1880/016-the-procession-set-out.jpg",
+    "caption": "The procession set out",
+    "credit": "Frank T. Merrill, 1880"
+  }
+}

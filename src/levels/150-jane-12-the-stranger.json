@@ -1,0 +1,59 @@
+{
+  "id": "jane-12-the-stranger",
+  "book": "jane-eyre",
+  "chapter": 12,
+  "title": "The Stranger in the Lane",
+  "rows": 7,
+  "cols": 6,
+  "grid": [
+    "SADEDH",
+    "ELDMOO",
+    "STNAGR",
+    "RRGOES",
+    "EAEVSS",
+    "GNRNEG",
+    "EVENIN"
+  ],
+  "words": [
+    {
+      "text": "GOVERNESS",
+      "path": [20, 21, 27, 26, 32, 33, 34, 28, 29]
+    },
+    {
+      "text": "EVENING",
+      "path": [36, 37, 38, 39, 40, 41, 35]
+    },
+    {
+      "text": "DOG",
+      "path": [4, 10, 16]
+    },
+    {
+      "text": "HORSE",
+      "path": [5, 11, 17, 23, 22]
+    },
+    {
+      "text": "STRANGER",
+      "path": [12, 13, 19, 25, 31, 30, 24, 18]
+    },
+    {
+      "text": "SADDLE",
+      "path": [0, 1, 2, 8, 7, 6]
+    },
+    {
+      "text": "NAME",
+      "path": [14, 15, 9, 3]
+    }
+  ],
+  "story": {
+    "text": "After eight hard years at Lowood school, Jane becomes {GOVERNESS} to little Adèle at Thornfield Hall. One icy {EVENING} in the lane, a great {DOG} runs past her, then a {HORSE} slips and falls with its rider. Jane helps the stern, dark {STRANGER} back into the {SADDLE}. Only at the hall does she learn his {NAME}.",
+    "image": "art/townsend-1897/002-i-was-mortally-afraid-of-its-trampling-forefeet.jpg",
+    "caption": "I was mortally afraid of its trampling forefeet",
+    "credit": "F. H. Townsend, 1897",
+    "crop": [
+      0,
+      0,
+      1,
+      0.88
+    ]
+  }
+}

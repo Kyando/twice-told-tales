@@ -1,0 +1,60 @@
+{
+  "id": "carol-2-little-fan",
+  "book": "a-christmas-carol",
+  "chapter": 2,
+  "title": "Little Fan",
+  "rows": 6,
+  "cols": 8,
+  "grid": [
+    "LFEEHEEK",
+    "ONYBLADA",
+    "CELHETEC",
+    "HEMOWIJR",
+    "ILDOLNEE",
+    "SCHOMAST"
+  ],
+  "words": [
+    {
+      "text": "CHILD",
+      "path": [16, 24, 32, 33, 34]
+    },
+    {
+      "text": "JET",
+      "path": [30, 22, 21]
+    },
+    {
+      "text": "HEAD",
+      "path": [4, 5, 13, 14]
+    },
+    {
+      "text": "LONELY",
+      "path": [0, 8, 9, 17, 18, 10]
+    },
+    {
+      "text": "FEEBLE",
+      "path": [1, 2, 3, 11, 12, 20]
+    },
+    {
+      "text": "HOME",
+      "path": [19, 27, 26, 25]
+    },
+    {
+      "text": "SCHOOLMASTER",
+      "path": [40, 41, 42, 43, 35, 36, 44, 45, 46, 47, 39, 31]
+    },
+    {
+      "text": "WINE",
+      "path": [28, 29, 37, 38]
+    },
+    {
+      "text": "CAKE",
+      "path": [23, 15, 7, 6]
+    }
+  ],
+  "story": {
+    "text": "At one o’clock the first spirit comes: the Ghost of Christmas Past, like a {CHILD} and an old man at once, with a bright clear {JET} of light springing from its {HEAD}. It takes Scrooge to his old school, where a {LONELY} boy sits reading by a {FEEBLE} fire. Then in runs his little sister, Fan: “I have come to bring you {HOME}, dear brother!” The {SCHOOLMASTER} brings out curiously light {WINE} and curiously heavy {CAKE}.",
+    "image": "art/rackham-1915/015-he-produced-a-decanter-of-curiously-light-wine-and.jpg",
+    "caption": "He produced a decanter of curiously light wine, and a block of curiously heavy cake",
+    "credit": "Arthur Rackham, 1915"
+  }
+}

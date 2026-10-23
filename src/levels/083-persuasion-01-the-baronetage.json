@@ -1,0 +1,53 @@
+{
+  "id": "persuasion-01-the-baronetage",
+  "book": "persuasion",
+  "chapter": 1,
+  "title": "The Baronetage",
+  "rows": 8,
+  "cols": 5,
+  "grid": [
+    "KINDE",
+    "IOMHS",
+    "NCECT",
+    "EGANU",
+    "ROTEN",
+    "ANERW",
+    "BRETE",
+    "EMOCL"
+  ],
+  "words": [
+    {
+      "text": "BARONETAGE",
+      "path": [30, 25, 20, 21, 26, 27, 22, 17, 16, 15]
+    },
+    {
+      "text": "INCOME",
+      "path": [5, 10, 11, 6, 7, 12]
+    },
+    {
+      "text": "UNWELCOME",
+      "path": [19, 24, 29, 34, 39, 38, 37, 36, 35]
+    },
+    {
+      "text": "RETRENCH",
+      "path": [31, 32, 33, 28, 23, 18, 13, 8]
+    },
+    {
+      "text": "KINDEST",
+      "path": [0, 1, 2, 3, 4, 9, 14]
+    }
+  ],
+  "story": {
+    "text": "Sir Walter Elliot of Kellynch Hall never takes up any book but the {BARONETAGE}, where he reads of himself. Vain of his looks and his rank, he has lived far beyond his {INCOME}. His agent, Mr. Shepherd, drops {UNWELCOME} hints: they must {RETRENCH}, or let Kellynch. And Anne, the {KINDEST} of his daughters, is nobody to him.",
+    "image": "art/persuasion-brock-1898/2pers-01.jpg",
+    "caption": "The unwelcome hints of Mr. Shepherd, his agent",
+    "credit": "C. E. Brock, 1898",
+    "crop": [
+      0.1,
+      0.06,
+      0.92,
+      0.86
+    ],
+    "colour": true
+  }
+}

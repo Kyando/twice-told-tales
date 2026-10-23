@@ -1,0 +1,62 @@
+{
+  "id": "alice-06-the-cheshire-cat",
+  "book": "alice-in-wonderland",
+  "chapter": 6,
+  "title": "We’re All Mad Here",
+  "rows": 5,
+  "cols": 8,
+  "grid": [
+    "VACHHARN",
+    "INCESTEI",
+    "STAHHAGR",
+    "HESAIILM",
+    "RETTREDA"
+  ],
+  "words": [
+    {
+      "text": "CHESHIRE",
+      "path": [2, 3, 11, 12, 20, 28, 36, 37]
+    },
+    {
+      "text": "CAT",
+      "path": [10, 18, 17]
+    },
+    {
+      "text": "HATTER",
+      "path": [19, 27, 35, 34, 33, 32]
+    },
+    {
+      "text": "HARE",
+      "path": [4, 5, 6, 14]
+    },
+    {
+      "text": "MAD",
+      "path": [31, 39, 38]
+    },
+    {
+      "text": "VANISHES",
+      "path": [0, 1, 9, 8, 16, 24, 25, 26]
+    },
+    {
+      "text": "TAIL",
+      "path": [13, 21, 29, 30]
+    },
+    {
+      "text": "GRIN",
+      "path": [22, 23, 15, 7]
+    }
+  ],
+  "story": {
+    "text": "The {CHESHIRE} {CAT} is sitting on a bough of a tree. “Would you tell me, please, which way I ought to go from here?” asks Alice. That depends on where she wants to get to. The {HATTER} lives one way, the March {HARE} the other: “they’re both {MAD}. We’re all mad here.” Then it {VANISHES} quite slowly, beginning with the end of the {TAIL}, and ending with the {GRIN}, which remains some time after the rest of it has gone.",
+    "image": "art/nursery-alice-1890/a80108-46.jpg",
+    "caption": "A grin without a cat",
+    "credit": "John Tenniel, coloured for The Nursery “Alice”, 1890",
+    "crop": [
+      0.03,
+      0.03,
+      0.97,
+      0.97
+    ],
+    "colour": true
+  }
+}

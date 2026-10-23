@@ -162,6 +162,22 @@ async function commons(category: string, folder: string, artist: string, edition
   }
 }
 
+/** Single pictures from Wikimedia Commons, by file name, for a book with no full set of its own. */
+async function commonsFiles(files: { title: string; caption: string }[], folder: string, artist: string, edition: string): Promise<void> {
+  for (const { title, caption } of files) {
+    const q = new URLSearchParams({ action: 'query', titles: `File:${title}`, prop: 'imageinfo', iiprop: 'url|extmetadata', iiurlwidth: String(MAX), format: 'json' });
+    const j = await (await fetch(`https://commons.wikimedia.org/w/api.php?${q}`, { headers: UA })).json();
+    const ii = (Object.values(j.query.pages)[0] as { imageinfo?: { url: string; thumburl?: string; extmetadata?: Record<string, { value: string }> }[] }).imageinfo?.[0];
+    if (!ii) throw new Error(`${title}: not on Commons`);
+    const license = strip(ii.extmetadata?.LicenseShortName);
+    if (license !== 'Public domain') throw new Error(`${title}: ${license}, not public domain`);
+    const file = `${folder}/${slug(title.replace(/\.[a-z]+$/i, ''))}.jpg`;
+    await save(await download(ii.thumburl ?? ii.url), file);
+    catalog.push({ file, artist, edition, chapter: null, caption, kind: 'scan', source: ii.url.replace(/\?.*$/, ''), license });
+    await pause(1000);
+  }
+}
+
 // ── Tenniel, 1865 (Wikimedia Commons) ──────────────────────────────────────────
 
 /**
@@ -366,6 +382,16 @@ const SOURCES: Record<string, { folders: string[]; fetch: () => Promise<void> }>
   },
   sense: { folders: ['sense-thomson-1896'], fetch: () => gutenbergEdition(21839, 'sense-thomson-1896', 'Hugh Thomson', 'Sense and Sensibility, Macmillan, 1896 (1902 printing)') },
   townsend: { folders: ['townsend-1897'], fetch: () => gutenbergEdition(1260, 'townsend-1897', 'F. H. Townsend', 'Jane Eyre, Service & Paton, 1897') },
+  walker: {
+    folders: ['jane-walker-1899'],
+    fetch: () =>
+      commonsFiles(
+        [{ title: 'Life and Works of the Sisters Bronte - Rochester and Jane Eyre.jpg', caption: 'Rochester and Jane Eyre' }],
+        'jane-walker-1899',
+        'Frederick Walker',
+        'The Life and Works of the Sisters Brontë, Smith, Elder, 1899',
+      ),
+  },
   merrill: { folders: ['merrill-1880'], fetch: () => gutenbergEdition(37106, 'merrill-1880', 'Frank T. Merrill', 'Little Women, Roberts Brothers, 1880') },
 };
 

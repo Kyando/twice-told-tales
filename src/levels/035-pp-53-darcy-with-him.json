@@ -6,50 +6,50 @@
   "rows": 7,
   "cols": 7,
   "grid": [
-    "DYADEGN",
-    "ICRRNAI",
-    "NRDUNLW",
-    "NEETESE",
-    "GUBHERF",
-    "NRTNEDI",
-    "INSILLE"
+    "DNEYCED",
+    "INRGRRU",
+    "NLDNADS",
+    "EEWITLI",
+    "TIESNEG",
+    "HFELNIN",
+    "ERNARUB"
   ],
   "words": [
     {
       "text": "NETHERFIELD",
-      "path": [18, 25, 24, 31, 32, 33, 34, 41, 48, 47, 40]
+      "path": [14, 21, 28, 35, 42, 43, 36, 29, 22, 15, 16]
     },
     {
       "text": "DINNER",
-      "path": [0, 7, 14, 21, 22, 15]
+      "path": [0, 7, 8, 1, 2, 9]
     },
     {
       "text": "LANE",
-      "path": [19, 12, 11, 4]
+      "path": [38, 45, 44, 37]
     },
     {
       "text": "DARCY",
-      "path": [3, 2, 9, 8, 1]
+      "path": [19, 18, 11, 4, 3]
     },
     {
       "text": "SILENT",
-      "path": [44, 45, 46, 39, 38, 37]
+      "path": [20, 27, 26, 33, 32, 25]
     },
     {
       "text": "SEWING",
-      "path": [26, 27, 20, 13, 6, 5]
+      "path": [31, 30, 23, 24, 17, 10]
     },
     {
       "text": "BURNING",
-      "path": [30, 29, 36, 43, 42, 35, 28]
+      "path": [48, 47, 46, 39, 40, 41, 34]
     },
     {
       "text": "RUDE",
-      "path": [10, 17, 16, 23]
+      "path": [12, 13, 6, 5]
     }
   ],
   "story": {
-    "text": "{NETHERFIELD} is opened again: Bingley is coming back! Mrs. Bennet plans the finest {DINNER}, and Jane swears she feels nothing. When Bingley rides up the {LANE}, Kitty cries out that someone is with him: “Mr. {DARCY}, I vow!” Elizabeth sits {SILENT} over her {SEWING}, cheeks {BURNING}, while her mother is {RUDE} to the man who saved Lydia.",
+    "text": "{NETHERFIELD} is opened again: Bingley is coming back! Mrs. Bennet plans the finest {DINNER}, and Jane swears she feels nothing. When Bingley rides up the {LANE}, Kitty spies a tall, proud man with him, and her mother cries: “Good gracious! Mr. {DARCY}!” Elizabeth sits {SILENT} over her {SEWING}, cheeks {BURNING}, while her mother is {RUDE} to the man who saved Lydia.",
     "image": "art/thomson-1894/ch53-i_433_a.jpg",
     "caption": "Mr. Darcy with him",
     "credit": "Hugh Thomson, 1894",

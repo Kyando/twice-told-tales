@@ -1,0 +1,47 @@
+{
+  "id": "carol-4-the-phantom",
+  "book": "a-christmas-carol",
+  "chapter": 4,
+  "title": "The Last of the Spirits",
+  "rows": 5,
+  "cols": 8,
+  "grid": [
+    "FRSDEPPH",
+    "EASDIAEA",
+    "CHEMECHN",
+    "APPCRMOT",
+    "ORAHANTS"
+  ],
+  "words": [
+    {
+      "text": "PHANTOM",
+      "path": [6, 7, 15, 23, 31, 30, 29]
+    },
+    {
+      "text": "APPROACHES",
+      "path": [34, 26, 25, 33, 32, 24, 16, 17, 18, 10]
+    },
+    {
+      "text": "FEARS",
+      "path": [0, 8, 9, 1, 2]
+    },
+    {
+      "text": "MERCHANTS",
+      "path": [19, 20, 28, 27, 35, 36, 37, 38, 39]
+    },
+    {
+      "text": "DIED",
+      "path": [11, 12, 4, 3]
+    },
+    {
+      "text": "CHEAP",
+      "path": [21, 22, 14, 13, 5]
+    }
+  ],
+  "story": {
+    "text": "The {PHANTOM} slowly, gravely, silently {APPROACHES}. It is shrouded in a deep black garment, and never speaks; it only points. Scrooge {FEARS} it more than any spirit he has seen. In the City, it shows him {MERCHANTS} talking of a man who has {DIED}. “It’s likely to be a very {CHEAP} funeral.” Who can the dead man be?",
+    "image": "art/rackham-1915/027-the-last-of-the-spirits.jpg",
+    "caption": "The Last of the Spirits",
+    "credit": "Arthur Rackham, 1915"
+  }
+}

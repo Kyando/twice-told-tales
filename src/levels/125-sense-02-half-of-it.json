@@ -1,0 +1,58 @@
+{
+  "id": "sense-02-half-of-it",
+  "book": "sense-and-sensibility",
+  "chapter": 2,
+  "title": "How They Will Spend Half of It",
+  "rows": 8,
+  "cols": 6,
+  "grid": [
+    "YPOUSF",
+    "TNNNDI",
+    "IUARHS",
+    "HRTEHT",
+    "EAHBRO",
+    "POSIES",
+    "MVERLH",
+    "IGENTY"
+  ],
+  "words": [
+    {
+      "text": "POUNDS",
+      "path": [1, 2, 3, 9, 10, 4]
+    },
+    {
+      "text": "IMPOVERISH",
+      "path": [42, 36, 30, 31, 37, 38, 39, 33, 32, 26]
+    },
+    {
+      "text": "ANNUITY",
+      "path": [14, 8, 7, 13, 12, 6, 0]
+    },
+    {
+      "text": "FISH",
+      "path": [5, 11, 17, 16]
+    },
+    {
+      "text": "BROTHER",
+      "path": [27, 28, 29, 23, 22, 21, 15]
+    },
+    {
+      "text": "SHY",
+      "path": [35, 41, 47]
+    },
+    {
+      "text": "GENTLE",
+      "path": [43, 44, 45, 46, 40, 34]
+    },
+    {
+      "text": "HEART",
+      "path": [18, 24, 25, 19, 20]
+    }
+  ],
+  "story": {
+    "text": "John thinks three thousand {POUNDS} would be generous. His wife Fanny fears it would {IMPOVERISH} their boy. Fifteen hundred, then? An {ANNUITY}? “I cannot imagine how they will spend half of it,” says Fanny. In the end, presents of {FISH} and game will do. But Fanny’s {BROTHER} Edward, {SHY} and {GENTLE}, quietly wins Elinor’s {HEART}.",
+    "image": "art/sense-thomson-1896/003-image_035.jpg",
+    "caption": "“I cannot imagine how they will spend half of it”",
+    "credit": "Hugh Thomson, 1896"
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "id": "alice-05-the-caterpillar",
+  "book": "alice-in-wonderland",
+  "chapter": 5,
+  "title": "Who Are You?",
+  "rows": 8,
+  "cols": 6,
+  "grid": [
+    "OLRROH",
+    "TDETCS",
+    "ALARAT",
+    "ELLPRE",
+    "RDLIMH",
+    "GEROOA",
+    "NAHSOK",
+    "CHMUOH"
+  ],
+  "words": [
+    {
+      "text": "MUSHROOM",
+      "path": [44, 45, 39, 38, 32, 33, 34, 28]
+    },
+    {
+      "text": "CATERPILLAR",
+      "path": [10, 16, 17, 23, 22, 21, 27, 26, 20, 14, 15]
+    },
+    {
+      "text": "HOOKAH",
+      "path": [47, 46, 40, 41, 35, 29]
+    },
+    {
+      "text": "CHANGED",
+      "path": [42, 43, 37, 36, 30, 31, 25]
+    },
+    {
+      "text": "OLD",
+      "path": [0, 1, 7]
+    },
+    {
+      "text": "TALLER",
+      "path": [6, 12, 13, 19, 18, 24]
+    },
+    {
+      "text": "SHORTER",
+      "path": [11, 5, 4, 3, 9, 8, 2]
+    }
+  ],
+  "story": {
+    "text": "On top of a large {MUSHROOM} sits a blue {CATERPILLAR}, quietly smoking a long {HOOKAH}. “Who are you?” it asks. Alice hardly knows, she has {CHANGED} so many times since this morning. She tries to recite “You are {OLD}, Father William”, but it comes out all wrong. Before it crawls away, the Caterpillar tells her: one side of the mushroom will make her grow {TALLER}, the other side {SHORTER}.",
+    "image": "art/nursery-alice-1890/c06543-03.jpg",
+    "caption": "“Who are you?” said the Caterpillar",
+    "credit": "John Tenniel, coloured for The Nursery “Alice”, 1890",
+    "crop": [
+      0.02,
+      0.03,
+      0.98,
+      0.97
+    ],
+    "colour": true
+  }
+}

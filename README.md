@@ -17,10 +17,10 @@ It is also a phone app, the same game wrapped with Capacitor: see [docs/app.md](
 The shelf holds:
 
 - **Pride and Prejudice** (Jane Austen, 1813): 41 chapters covering the whole story, with Hugh Thomson's 1894 illustrations and, where he left a scene undrawn, C. E. Brock's from 1895. The passages retell each scene in plain modern English and keep Austen's best-known lines.
-- **Alice's Adventures in Wonderland** (Lewis Carroll, 1865): a first taste, five scenes from chapters I–IV, with John Tenniel's drawings as he coloured them for *The Nursery "Alice"* (1890), Carroll's own telling for small children.
-- **A Christmas Carol** (Charles Dickens, 1843), free: the whole story in ten scenes, with Arthur Rackham’s 1915 colour plates and drawings.
+- **Alice's Adventures in Wonderland** (Lewis Carroll, 1865): the whole story in 20 scenes, with John Tenniel's drawings as he coloured them for *The Nursery "Alice"* (1890), Carroll's own telling for small children, and one of his black-and-white originals.
+- **A Christmas Carol** (Charles Dickens, 1843), free: the whole story in 16 scenes, with Arthur Rackham’s 1915 colour plates and drawings.
 - **Austen’s Shelf** (paid; each book’s first four scenes free): **Persuasion**, the whole story in 17 scenes, with C. E. Brock’s coloured plates and Hugh Thomson’s drawings; **Emma** in 24 scenes, with Thomson’s 1896 drawings and Brock’s colour plates; **Sense and Sensibility** in 25 scenes, with Thomson’s 1896 drawings.
-- **The Heroines** (paid; each book’s first four scenes free): **Jane Eyre** in 14 scenes, one for each of F. H. Townsend’s 1897 drawings; **Little Women** in 30 scenes, both parts (with *Good Wives*), with Frank T. Merrill’s 1880 drawings.
+- **The Heroines** (paid; each book’s first four scenes free): **Jane Eyre** in 15 scenes, with F. H. Townsend’s 1897 drawings and a watercolour by Frederick Walker; **Little Women** in 30 scenes, both parts (with *Good Wives*), with Frank T. Merrill’s 1880 drawings.
 - **The Three Little Pigs** (L. Leslie Brooke, 1904), for young readers (6+): the whole tale in five short scenes to read aloud, with Brooke's colour plates. Its boards are small (4 × 5 and 5 × 6), and its words run straight or bend only once, reading forwards wherever they can. The telling is a kind one: the wolf eats nobody, and runs off for good.
 
 ## Playing

@@ -1,0 +1,61 @@
+{
+  "id": "carol-1-the-knocker",
+  "book": "a-christmas-carol",
+  "chapter": 1,
+  "title": "Marley’s Face",
+  "rows": 5,
+  "cols": 8,
+  "grid": [
+    "BGLIYREC",
+    "ANHGEKTE",
+    "FETREBSL",
+    "ACRCKOLL",
+    "DOOONKRA"
+  ],
+  "words": [
+    {
+      "text": "KEY",
+      "path": [13, 12, 4]
+    },
+    {
+      "text": "KNOCKER",
+      "path": [37, 36, 35, 27, 28, 20, 19]
+    },
+    {
+      "text": "FACE",
+      "path": [16, 24, 25, 17]
+    },
+    {
+      "text": "LIGHT",
+      "path": [2, 3, 11, 10, 18]
+    },
+    {
+      "text": "LOBSTER",
+      "path": [30, 29, 21, 22, 14, 6, 5]
+    },
+    {
+      "text": "CELLAR",
+      "path": [7, 15, 23, 31, 39, 38]
+    },
+    {
+      "text": "DOOR",
+      "path": [32, 33, 34, 26]
+    },
+    {
+      "text": "BANG",
+      "path": [0, 8, 9, 1]
+    }
+  ],
+  "story": {
+    "text": "Scrooge goes home through the fog to the gloomy rooms that were once his partner’s. As he puts his {KEY} in the lock, he sees in the {KNOCKER} not a knocker, but Marley’s {FACE}, with a dismal {LIGHT} about it, like a bad {LOBSTER} in a dark {CELLAR}. As he stares, it is a knocker again. “Pooh, pooh!” he says, and closes the {DOOR} with a {BANG}.",
+    "image": "art/rackham-1915/006-marley-s-ghost.jpg",
+    "caption": "Marley’s face",
+    "credit": "Arthur Rackham, 1915",
+    "crop": [
+      0.02,
+      0.04,
+      0.98,
+      0.98
+    ]
+  }
+}

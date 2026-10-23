@@ -1,0 +1,61 @@
+{
+  "id": "alice-11-who-stole-the-tarts",
+  "book": "alice-in-wonderland",
+  "chapter": 11,
+  "title": "Who Stole the Tarts?",
+  "rows": 8,
+  "cols": 5,
+  "grid": [
+    "ESSTI",
+    "NOENW",
+    "SRHSN",
+    "ETTAI",
+    "JALHT",
+    "URSCA",
+    "TYSTR",
+    "EACUP"
+  ],
+  "words": [
+    {
+      "text": "THRONE",
+      "path": [17, 12, 11, 6, 5, 0]
+    },
+    {
+      "text": "TARTS",
+      "path": [24, 29, 34, 33, 32]
+    },
+    {
+      "text": "CHAINS",
+      "path": [28, 23, 18, 19, 14, 13]
+    },
+    {
+      "text": "JURY",
+      "path": [20, 25, 26, 31]
+    },
+    {
+      "text": "SLATES",
+      "path": [27, 22, 21, 16, 15, 10]
+    },
+    {
+      "text": "WITNESS",
+      "path": [9, 4, 3, 8, 7, 2, 1]
+    },
+    {
+      "text": "TEACUP",
+      "path": [30, 35, 36, 37, 38, 39]
+    }
+  ],
+  "story": {
+    "text": "The King and Queen of Hearts sit on their {THRONE}, and in the middle of the court is a dish of {TARTS}. The Knave stands before them in {CHAINS}. Twelve creatures sit in the {JURY}-box, writing very busily on {SLATES}. The first {WITNESS} is the Hatter, with a {TEACUP} in one hand and bread-and-butter in the other.",
+    "image": "art/nursery-alice-1890/c06544-02.jpg",
+    "caption": "Who stole the tarts?",
+    "credit": "John Tenniel, coloured for The Nursery “Alice”, 1890",
+    "crop": [
+      0,
+      0.01,
+      1,
+      0.99
+    ],
+    "colour": true
+  }
+}

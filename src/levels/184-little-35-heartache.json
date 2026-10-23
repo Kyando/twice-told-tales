@@ -1,0 +1,52 @@
+{
+  "id": "little-35-heartache",
+  "book": "little-women",
+  "chapter": 35,
+  "title": "Oh, Jo, Can’t You?",
+  "rows": 6,
+  "cols": 8,
+  "grid": [
+    "LERRBRPT",
+    "DEUATOOS",
+    "ORQDHERN",
+    "DACAOAKE",
+    "NUOHRBOR",
+    "TRYEARTB"
+  ],
+  "words": [
+    {
+      "text": "COUNTRY",
+      "path": [26, 34, 33, 32, 40, 41, 42]
+    },
+    {
+      "text": "ADORED",
+      "path": [25, 24, 16, 17, 9, 8]
+    },
+    {
+      "text": "QUARREL",
+      "path": [18, 10, 11, 3, 2, 1, 0]
+    },
+    {
+      "text": "BROTHER",
+      "path": [4, 5, 13, 12, 20, 21, 22]
+    },
+    {
+      "text": "POST",
+      "path": [6, 14, 15, 7]
+    },
+    {
+      "text": "HEARTBROKEN",
+      "path": [35, 43, 44, 45, 46, 47, 39, 38, 30, 31, 23]
+    },
+    {
+      "text": "ABROAD",
+      "path": [29, 37, 36, 28, 27, 19]
+    }
+  ],
+  "story": {
+    "text": "Jo comes home, and Laurie can wait no longer. On a {COUNTRY} walk he tells her he has {ADORED} her ever since he knew her. “Oh, Jo, can’t you?” Jo cannot: they would {QUARREL}, and she loves him only as a {BROTHER}. Laurie lays his head on the mossy {POST}, {HEARTBROKEN}, and goes {ABROAD}.",
+    "image": "art/merrill-1880/162-he-laid-his-head-down-on-the-mossy-post.jpg",
+    "caption": "He laid his head down on the mossy post",
+    "credit": "Frank T. Merrill, 1880"
+  }
+}

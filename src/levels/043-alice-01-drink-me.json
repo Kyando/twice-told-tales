@@ -6,47 +6,47 @@
   "rows": 8,
   "cols": 6,
   "grid": [
-    "SECTAI",
-    "NVURDN",
-    "EAEGRI",
-    "DEARRN",
-    "RLLOOK",
-    "AGBDTE",
-    "TTOOCL",
-    "LEEPSE"
+    "CURTAI",
+    "DRGLEN",
+    "DIARAV",
+    "ONKDEE",
+    "OREGNS",
+    "EELRAB",
+    "PSETLO",
+    "OCELTT"
   ],
   "words": [
     {
       "text": "LEAVES",
-      "path": [25, 19, 13, 7, 1, 0]
+      "path": [9, 10, 16, 17, 23, 29]
     },
     {
       "text": "CURTAIN",
-      "path": [2, 8, 9, 3, 4, 5, 11]
+      "path": [0, 1, 2, 3, 4, 5, 11]
     },
     {
       "text": "DOOR",
-      "path": [33, 27, 28, 22]
+      "path": [12, 18, 24, 25]
     },
     {
       "text": "GARDEN",
-      "path": [31, 30, 24, 18, 12, 6]
+      "path": [8, 14, 15, 21, 22, 28]
     },
     {
       "text": "LARGE",
-      "path": [26, 20, 21, 15, 14]
+      "path": [40, 34, 33, 27, 26]
     },
     {
       "text": "BOTTLE",
-      "path": [32, 38, 37, 36, 42, 43]
+      "path": [35, 41, 47, 46, 45, 44]
     },
     {
       "text": "DRINK",
-      "path": [10, 16, 17, 23, 29]
+      "path": [6, 7, 13, 19, 20]
     },
     {
       "text": "TELESCOPE",
-      "path": [34, 35, 41, 47, 46, 40, 39, 45, 44]
+      "path": [39, 38, 32, 31, 37, 43, 42, 36, 30]
     }
   ],
   "story": {

@@ -1,0 +1,60 @@
+{
+  "id": "alice-10-the-lobster-quadrille",
+  "book": "alice-in-wonderland",
+  "chapter": 10,
+  "title": "The Lobster Quadrille",
+  "rows": 7,
+  "cols": 5,
+  "grid": [
+    "ESEPU",
+    "CDOTO",
+    "NAYSS",
+    "LCRIS",
+    "AIENG",
+    "TRLLI",
+    "QUADR"
+  ],
+  "words": [
+    {
+      "text": "DANCE",
+      "path": [6, 11, 10, 5, 0]
+    },
+    {
+      "text": "QUADRILLE",
+      "path": [30, 31, 32, 33, 34, 29, 28, 27, 22]
+    },
+    {
+      "text": "TOES",
+      "path": [8, 7, 2, 1]
+    },
+    {
+      "text": "SINGS",
+      "path": [13, 18, 23, 24, 19]
+    },
+    {
+      "text": "SOUP",
+      "path": [14, 9, 4, 3]
+    },
+    {
+      "text": "CRY",
+      "path": [16, 17, 12]
+    },
+    {
+      "text": "TRIAL",
+      "path": [25, 26, 21, 20, 15]
+    }
+  ],
+  "story": {
+    "text": "The Mock Turtle and the Gryphon {DANCE} the Lobster {QUADRILLE} for Alice, solemnly round and round her, treading on her {TOES}. “Will you, won’t you, will you, won’t you, will you join the dance?” Then, in a voice choked with sobs, the Mock Turtle {SINGS} of Beautiful {SOUP}, until a {CRY} is heard in the distance: “The {TRIAL}’s beginning!”",
+    "image": "art/nursery-alice-1890/c06543-06.jpg",
+    "caption": "The Mock Turtle and the Gryphon",
+    "credit": "John Tenniel, coloured for The Nursery “Alice”, 1890",
+    "crop": [
+      0,
+      0.06,
+      1,
+      0.91
+    ],
+    "colour": true
+  }
+}

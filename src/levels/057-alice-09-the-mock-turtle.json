@@ -1,0 +1,70 @@
+{
+  "id": "alice-09-the-mock-turtle",
+  "book": "alice-in-wonderland",
+  "chapter": 9,
+  "title": "Everything’s Got a Moral",
+  "rows": 9,
+  "cols": 6,
+  "grid": [
+    "SSEHCU",
+    "HGNRED",
+    "EAILET",
+    "GRTERU",
+    "NNILTM",
+    "IHHCRO",
+    "ITSLAG",
+    "RWHPYR",
+    "SIGHON"
+  ],
+  "words": [
+    {
+      "text": "DUCHESS",
+      "path": [11, 5, 4, 3, 2, 1, 0]
+    },
+    {
+      "text": "CHIN",
+      "path": [33, 32, 26, 25]
+    },
+    {
+      "text": "MORAL",
+      "path": [29, 35, 34, 40, 39]
+    },
+    {
+      "text": "GRYPHON",
+      "path": [41, 47, 46, 45, 51, 52, 53]
+    },
+    {
+      "text": "TURTLE",
+      "path": [17, 23, 22, 28, 27, 21]
+    },
+    {
+      "text": "SIGHS",
+      "path": [48, 49, 50, 44, 38]
+    },
+    {
+      "text": "HEART",
+      "path": [6, 12, 13, 19, 20]
+    },
+    {
+      "text": "REELING",
+      "path": [9, 10, 16, 15, 14, 8, 7]
+    },
+    {
+      "text": "WRITHING",
+      "path": [43, 42, 36, 37, 31, 30, 24, 18]
+    }
+  ],
+  "story": {
+    "text": "Back at the croquet-ground, the {DUCHESS} is suddenly friendly, and rests her sharp {CHIN} on Alice’s shoulder. “Everything’s got a {MORAL}, if only you can find it.” Then the {GRYPHON} takes Alice to the Mock {TURTLE}, who {SIGHS} as if his {HEART} would break. When he was at school in the sea, he says, they learned {REELING} and {WRITHING} to begin with.",
+    "image": "art/nursery-alice-1890/c06544-04.jpg",
+    "caption": "The Duchess, and Alice with her flamingo",
+    "credit": "John Tenniel, coloured for The Nursery “Alice”, 1890",
+    "crop": [
+      0.07,
+      0.06,
+      0.95,
+      0.94
+    ],
+    "colour": true
+  }
+}

@@ -347,7 +347,7 @@ const PRIDE: LevelSpec[] = [
     rows: 8,
     cols: 6,
     story: {
-      text: 'Elizabeth stays in alone, rereading Jane’s sad letters, when Mr. Darcy walks in. “In vain I have {STRUGGLED}. It will not do. My {FEELINGS} will not be {REPRESSED}. You must allow me to tell you how {ARDENTLY} I {ADMIRE} and {LOVE} you.” Yet he speaks just as much of her family’s low {RANK}.',
+      text: 'Elizabeth stays in alone, rereading Jane’s sad letters, when Mr. Darcy walks in. “In vain have I {STRUGGLED}. It will not do. My {FEELINGS} will not be {REPRESSED}. You must allow me to tell you how {ARDENTLY} I {ADMIRE} and {LOVE} you.” Yet he speaks just as much of her family’s low {RANK}.',
       image: art('brock-1895/you-must-allow-me-to-tell-you-how-ardently-i-admire-and-love-you.jpg'),
       caption: 'You must allow me to tell you how ardently I admire and love you',
       credit: BROCK,
@@ -543,7 +543,7 @@ const PRIDE: LevelSpec[] = [
     rows: 8,
     cols: 6,
     story: {
-      text: 'Mrs. Gardiner’s reply is astonishing. Darcy found the couple, paid Wickham’s {DEBTS}, bought his {COMMISSION} and arranged the {MARRIAGE}, then begged them to keep it {QUIET}. Elizabeth is {HUMBLED}. When Wickham tries his old charm on her, she simply holds out her hand: “Come, we are brother and {SISTER} now. Do not let us {QUARREL} about the past.”',
+      text: 'Mrs. Gardiner’s reply is astonishing. Darcy found the couple, paid Wickham’s {DEBTS}, bought his {COMMISSION} and arranged the {MARRIAGE}, then begged them to keep it {QUIET}. Elizabeth is {HUMBLED}. When Wickham tries his old charm on her, she simply holds out her hand: “Come, Mr. Wickham, we are brother and {SISTER}, you know. Do not let us {QUARREL} about the past.”',
       image: art('brock-1895/she-held-out-her-hand.jpg'),
       caption: 'She held out her hand',
       credit: BROCK,
@@ -558,7 +558,7 @@ const PRIDE: LevelSpec[] = [
     rows: 7,
     cols: 7,
     story: {
-      text: '{NETHERFIELD} is opened again: Bingley is coming back! Mrs. Bennet plans the finest {DINNER}, and Jane swears she feels nothing. When Bingley rides up the {LANE}, Kitty cries out that someone is with him: “Mr. {DARCY}, I vow!” Elizabeth sits {SILENT} over her {SEWING}, cheeks {BURNING}, while her mother is {RUDE} to the man who saved Lydia.',
+      text: '{NETHERFIELD} is opened again: Bingley is coming back! Mrs. Bennet plans the finest {DINNER}, and Jane swears she feels nothing. When Bingley rides up the {LANE}, Kitty spies a tall, proud man with him, and her mother cries: “Good gracious! Mr. {DARCY}!” Elizabeth sits {SILENT} over her {SEWING}, cheeks {BURNING}, while her mother is {RUDE} to the man who saved Lydia.',
       image: art('thomson-1894/ch53-i_433_a.jpg'),
       caption: 'Mr. Darcy with him',
       credit: THOMSON,
@@ -590,7 +590,7 @@ const PRIDE: LevelSpec[] = [
     rows: 8,
     cols: 7,
     story: {
-      text: 'One morning Lady {CATHERINE} sweeps into Longbourn and orders Elizabeth into the {GARDEN}. She has heard a shocking {RUMOUR}: that Elizabeth means to marry her {NEPHEW}. Will she {PROMISE} never to accept him? Elizabeth will not: “I am only {RESOLVED} to act in that manner which will constitute my {HAPPINESS}.” Her Ladyship leaves very {ANGRY} indeed.',
+      text: 'One morning Lady {CATHERINE} sweeps into Longbourn and orders Elizabeth into the {GARDEN}. She has heard a shocking {RUMOUR}: that Elizabeth means to marry her {NEPHEW}. Will she {PROMISE} never to accept him? Elizabeth will not: “I am only {RESOLVED} to act in that manner, which will, in my own opinion, constitute my {HAPPINESS}.” Her Ladyship leaves very {ANGRY} indeed.',
       // Black and white, as first made: art('thomson-1894/ch56-i_460_a.jpg'), credit THOMSON.
       image: art('brock-1895/ladycatherine-elisabeth.jpg'),
       caption: 'Miss Bennet, I insist on being satisfied',
@@ -622,7 +622,7 @@ const PRIDE: LevelSpec[] = [
     rows: 7,
     cols: 7,
     story: {
-      text: 'Mr. Bennet is alarmed: “{LIZZY}, I know you could be neither happy nor respectable unless you truly {ESTEEMED} your husband.” She tells him all that Darcy has done, and he is won over. Mrs. Bennet, hearing the news, sits quite {STILL}, unable to utter a {SYLLABLE}. Then: “How {RICH} you will be! What pin-money, what {JEWELS}! Ten {THOUSAND} a year! A {HOUSE} in town!”',
+      text: 'Mr. Bennet is alarmed: “I know your disposition, {LIZZY}. I know that you could be neither happy nor respectable, unless you truly {ESTEEMED} your husband.” She tells him all that Darcy has done, and he is won over. Mrs. Bennet, hearing the news, sits quite {STILL}, unable to utter a {SYLLABLE}. Then: “How {RICH} and how great you will be! What pin-money, what {JEWELS}! A {HOUSE} in town! Ten {THOUSAND} a year!”',
       image: art('thomson-1894/ch59-i_486_a.jpg'),
       caption: 'Unable to utter a syllable',
       credit: THOMSON,
@@ -661,7 +661,7 @@ const PRIDE: LevelSpec[] = [
 ];
 
 /**
- * Alice: the first chapters, to try the book on the shelf. Carroll's own lines kept where they are
+ * Alice: the whole story, from the rabbit-hole to the shower of cards. Carroll's own lines kept where they are
  * the ones people remember. The pictures are Tenniel's drawings as he coloured them for The Nursery
  * "Alice" (1890), Carroll's own telling for small children: whole-page scans, so `crop` trims the
  * plate number and the printed text around a drawing (to the grid's shape), and `colour` keeps them
@@ -670,6 +670,8 @@ const PRIDE: LevelSpec[] = [
 const ALICE_BOOK = 'alice-in-wonderland';
 const TENNIEL = 'John Tenniel, coloured for The Nursery “Alice”, 1890';
 const nursery = (plate: string) => art(`nursery-alice-1890/${plate}.jpg`);
+/** Tenniel's own black-and-white drawings, as first printed. */
+const TENNIEL_1865 = 'John Tenniel, 1865';
 
 const ALICE: LevelSpec[] = [
   {
@@ -679,8 +681,9 @@ const ALICE: LevelSpec[] = [
     title: 'The White Rabbit',
     rows: 8,
     cols: 6,
+    easy: 3,
     story: {
-      text: 'Alice is sitting on the bank beside her {SISTER}, with nothing to do, when a White {RABBIT} with pink eyes runs close by her. “Oh dear! I shall be too {LATE}!” it says, and takes a {WATCH} out of its waistcoat {POCKET}. Burning with {CURIOSITY}, Alice {FOLLOWS} it down a large rabbit-hole, never once considering how in the world she is to get out {AGAIN}.',
+      text: 'Alice is sitting on the bank beside her {SISTER}, with nothing to do, when a White {RABBIT} with pink eyes runs close by her. “Oh dear! Oh dear! I shall be {LATE}!” it says, and takes a {WATCH} out of its waistcoat {POCKET}. Burning with {CURIOSITY}, Alice {FOLLOWS} it down a large rabbit-hole, never once considering how in the world she is to get out {AGAIN}.',
       image: nursery('white-rabbit'),
       caption: 'Oh dear! I shall be too late!',
       credit: TENNIEL,
@@ -695,6 +698,7 @@ const ALICE: LevelSpec[] = [
     title: 'Drink Me',
     rows: 8,
     cols: 6,
+    easy: 2,
     story: {
       text: 'Down, down, down she falls, and lands on a heap of sticks and dry {LEAVES}. In a long hall she finds a tiny golden key, and behind a {CURTAIN} a little {DOOR} into the loveliest {GARDEN} you ever saw. But she is far too {LARGE} to get through. On a glass table stands a {BOTTLE}, labelled “{DRINK} ME”. Alice takes a sip, and shuts up like a {TELESCOPE}.',
       image: nursery('066110'),
@@ -752,6 +756,245 @@ const ALICE: LevelSpec[] = [
       colour: true,
     },
   },
+  {
+    id: 'alice-04-the-puppy',
+    book: ALICE_BOOK,
+    chapter: 4,
+    title: 'An Enormous Puppy',
+    rows: 7,
+    cols: 6,
+    story: {
+      text: 'The pebbles thrown in at the window turn into little {CAKES}. Alice eats one, and is soon {SMALL} enough to run out of the door, into a thick {WOOD}. There an enormous {PUPPY} is looking down at her with large round {EYES}. She holds out a {STICK}, and it rushes at it, {BARKING} with delight, while she dodges behind a great {THISTLE}.',
+      image: nursery('c06544-01'),
+      caption: 'An enormous puppy was looking down at her',
+      credit: TENNIEL,
+      crop: [0.01, 0.01, 0.99, 0.97],
+      colour: true,
+    },
+  },
+  {
+    id: 'alice-05-the-caterpillar',
+    book: ALICE_BOOK,
+    chapter: 5,
+    title: 'Who Are You?',
+    rows: 8,
+    cols: 6,
+    story: {
+      text: 'On top of a large {MUSHROOM} sits a blue {CATERPILLAR}, quietly smoking a long {HOOKAH}. “Who are you?” it asks. Alice hardly knows, she has {CHANGED} so many times since this morning. She tries to recite “You are {OLD}, Father William”, but it comes out all wrong. Before it crawls away, the Caterpillar tells her: one side of the mushroom will make her grow {TALLER}, the other side {SHORTER}.',
+      image: nursery('c06543-03'),
+      caption: '“Who are you?” said the Caterpillar',
+      credit: TENNIEL,
+      crop: [0.02, 0.03, 0.98, 0.97],
+      colour: true,
+    },
+  },
+  {
+    id: 'alice-05-serpent',
+    book: ALICE_BOOK,
+    chapter: 5,
+    title: 'Serpent!',
+    rows: 9,
+    cols: 4,
+    story: {
+      text: 'Alice nibbles the mushroom, and her {NECK} grows so long that her head rises high above the {TREES}. A {PIGEON} flies at her face. “{SERPENT}!” it screams. It is guarding its {EGGS}, and will not believe she is a little {GIRL}. Nibbling first one piece and then the other, she brings herself down to her usual {HEIGHT}.',
+      image: nursery('c03756-06'),
+      caption: 'Alice, grown very tall',
+      credit: TENNIEL,
+      crop: [0.26, 0, 0.92, 0.99],
+      colour: true,
+    },
+  },
+  {
+    id: 'alice-06-pig-and-pepper',
+    book: ALICE_BOOK,
+    chapter: 6,
+    title: 'Pig and Pepper',
+    rows: 6,
+    cols: 7,
+    story: {
+      text: 'A Fish-Footman brings the Duchess an {INVITATION} from the Queen to play {CROQUET}. Inside, the kitchen is full of smoke and {PEPPER}. The Duchess nurses a howling baby, the {COOK} flings saucepans and plates, and everyone {SNEEZES} except the cook and a large cat, {GRINNING} from ear to ear.',
+      image: nursery('c06543-08'),
+      caption: 'The Duchess, the cook and the baby',
+      credit: TENNIEL,
+      crop: [0, 0, 1, 0.99],
+      colour: true,
+    },
+  },
+  {
+    id: 'alice-06-the-pig-baby',
+    book: ALICE_BOOK,
+    chapter: 6,
+    title: 'A Handsome Pig',
+    rows: 7,
+    cols: 5,
+    story: {
+      text: 'The Duchess {FLINGS} the baby to Alice and hurries off to play croquet. Alice carries it out into the open {AIR}, but it {GRUNTS}, and its nose turns up like a {SNOUT}. There is no mistake about it: it is a {PIG}! She sets it down, and it trots quietly {AWAY}. If it had grown up, she thinks, it would have made a dreadfully ugly child: “but it makes rather a {HANDSOME} pig.”',
+      image: nursery('c06543-04'),
+      caption: 'It was neither more nor less than a pig',
+      credit: TENNIEL,
+      crop: [0.08, 0.14, 0.98, 0.98],
+      colour: true,
+    },
+  },
+  {
+    id: 'alice-06-the-cheshire-cat',
+    book: ALICE_BOOK,
+    chapter: 6,
+    title: 'We’re All Mad Here',
+    rows: 5,
+    cols: 8,
+    story: {
+      text: 'The {CHESHIRE} {CAT} is sitting on a bough of a tree. “Would you tell me, please, which way I ought to go from here?” asks Alice. That depends on where she wants to get to. The {HATTER} lives one way, the March {HARE} the other: “they’re both {MAD}. We’re all mad here.” Then it {VANISHES} quite slowly, beginning with the end of the {TAIL}, and ending with the {GRIN}, which remains some time after the rest of it has gone.',
+      image: nursery('a80108-46'),
+      caption: 'A grin without a cat',
+      credit: TENNIEL,
+      crop: [0.03, 0.03, 0.97, 0.97],
+      colour: true,
+    },
+  },
+  {
+    id: 'alice-07-a-mad-tea-party',
+    book: ALICE_BOOK,
+    chapter: 7,
+    title: 'A Mad Tea-Party',
+    rows: 5,
+    cols: 7,
+    story: {
+      text: 'Under a tree the March {HARE} and the Hatter are having {TEA}, with a {DORMOUSE} fast asleep between them. “No room! No room!” they cry, though there is plenty. “Why is a {RAVEN} like a writing-{DESK}?” asks the Hatter, who has no idea himself. He has put the best {BUTTER} in his {WATCH}, and now it is always six o’clock: always tea-time.',
+      image: nursery('c03757-07'),
+      caption: 'A Mad Tea-Party',
+      credit: TENNIEL,
+      crop: [0.04, 0, 0.99, 0.99],
+      colour: true,
+    },
+  },
+  {
+    id: 'alice-08-painting-the-roses',
+    book: ALICE_BOOK,
+    chapter: 8,
+    title: 'Painting the Roses Red',
+    rows: 8,
+    cols: 5,
+    story: {
+      text: 'At the entrance of the garden, three {GARDENERS}, flat and oblong like playing {CARDS}, are busily painting the {WHITE} {ROSES} red. They planted a white rose-tree by {MISTAKE}, and if the Queen finds out, they will all have their {HEADS} cut off. Then one cries, “The Queen!”, and they throw themselves {FLAT} upon their faces.',
+      image: nursery('c06543-07'),
+      caption: 'Painting the roses red',
+      credit: TENNIEL,
+      crop: [0.05, 0.04, 0.97, 0.93],
+      colour: true,
+    },
+  },
+  {
+    id: 'alice-08-off-with-her-head',
+    book: ALICE_BOOK,
+    chapter: 8,
+    title: 'Off with Her Head!',
+    rows: 7,
+    cols: 6,
+    story: {
+      text: 'Then comes the {PROCESSION}: soldiers, courtiers, the royal {CHILDREN}, the White Rabbit, and last of all the {KING} and Queen of {HEARTS}. When Alice answers boldly, the Queen turns crimson with {FURY} and screams, “Off with her {HEAD}!” “Nonsense!” says Alice, very loudly, and the Queen is {SILENT}.',
+      image: nursery('c06543-05'),
+      caption: 'The Queen has come!',
+      credit: TENNIEL,
+      crop: [0, 0.03, 1, 0.94],
+      colour: true,
+    },
+  },
+  {
+    id: 'alice-08-the-croquet-game',
+    book: ALICE_BOOK,
+    chapter: 8,
+    title: 'The Croquet Game',
+    rows: 7,
+    cols: 6,
+    story: {
+      text: 'Croquet with the Queen is a curious game: the {BALLS} are live {HEDGEHOGS}, the mallets live {FLAMINGOS}, and the soldiers double themselves up to make the {ARCHES}. The Queen shouts “Off with his head!” about once in a minute. Then the Cheshire Cat’s {HEAD} appears in the air, and the executioner, the King and the Queen all {ARGUE}: can you cut off a head with no {BODY}?',
+      image: art('tenniel-1865/alice-31.jpg'),
+      caption: 'The Cheshire Cat’s head, over the croquet-ground',
+      credit: TENNIEL_1865,
+      crop: [0.04, 0.02, 0.97, 0.98],
+    },
+  },
+  {
+    id: 'alice-09-the-mock-turtle',
+    book: ALICE_BOOK,
+    chapter: 9,
+    title: 'Everything’s Got a Moral',
+    rows: 9,
+    cols: 6,
+    story: {
+      text: 'Back at the croquet-ground, the {DUCHESS} is suddenly friendly, and rests her sharp {CHIN} on Alice’s shoulder. “Everything’s got a {MORAL}, if only you can find it.” Then the {GRYPHON} takes Alice to the Mock {TURTLE}, who {SIGHS} as if his {HEART} would break. When he was at school in the sea, he says, they learned {REELING} and {WRITHING} to begin with.',
+      image: nursery('c06544-04'),
+      caption: 'The Duchess, and Alice with her flamingo',
+      credit: TENNIEL,
+      crop: [0.07, 0.06, 0.95, 0.94],
+      colour: true,
+    },
+  },
+  {
+    id: 'alice-10-the-lobster-quadrille',
+    book: ALICE_BOOK,
+    chapter: 10,
+    title: 'The Lobster Quadrille',
+    rows: 7,
+    cols: 5,
+    story: {
+      text: 'The Mock Turtle and the Gryphon {DANCE} the Lobster {QUADRILLE} for Alice, solemnly round and round her, treading on her {TOES}. “Will you, won’t you, will you, won’t you, will you join the dance?” Then, in a voice choked with sobs, the Mock Turtle {SINGS} of Beautiful {SOUP}, until a {CRY} is heard in the distance: “The {TRIAL}’s beginning!”',
+      image: nursery('c06543-06'),
+      caption: 'The Mock Turtle and the Gryphon',
+      credit: TENNIEL,
+      crop: [0, 0.06, 1, 0.91],
+      colour: true,
+    },
+  },
+  {
+    id: 'alice-11-who-stole-the-tarts',
+    book: ALICE_BOOK,
+    chapter: 11,
+    title: 'Who Stole the Tarts?',
+    rows: 8,
+    cols: 5,
+    story: {
+      text: 'The King and Queen of Hearts sit on their {THRONE}, and in the middle of the court is a dish of {TARTS}. The Knave stands before them in {CHAINS}. Twelve creatures sit in the {JURY}-box, writing very busily on {SLATES}. The first {WITNESS} is the Hatter, with a {TEACUP} in one hand and bread-and-butter in the other.',
+      image: nursery('c06544-02'),
+      caption: 'Who stole the tarts?',
+      credit: TENNIEL,
+      crop: [0, 0.01, 1, 0.99],
+      colour: true,
+    },
+  },
+  {
+    id: 'alice-12-the-jury-box',
+    book: ALICE_BOOK,
+    chapter: 12,
+    title: 'Alice’s Evidence',
+    rows: 6,
+    cols: 5,
+    story: {
+      text: '“Alice!” calls the White Rabbit. She has been {GROWING} all through the trial, and jumps up in such a {HURRY} that she tips over the jury-box with the edge of her {SKIRT}, upsetting all the jurymen onto the {CROWD} below. She puts poor {BILL} back in head downwards. Then the King reads out Rule Forty-two: “All persons more than a {MILE} high to leave the court.”',
+      image: nursery('c06544-03'),
+      caption: 'She tipped over the jury-box',
+      credit: TENNIEL,
+      crop: [0.05, 0.07, 0.95, 0.87],
+      colour: true,
+    },
+  },
+  {
+    id: 'alice-12-a-pack-of-cards',
+    book: ALICE_BOOK,
+    chapter: 12,
+    title: 'A Pack of Cards',
+    rows: 8,
+    cols: 5,
+    story: {
+      text: '“Sentence first, {VERDICT} afterwards,” says the Queen. “Stuff and {NONSENSE}!” says Alice, who has grown to her full {SIZE}. “Who cares for you? You’re nothing but a pack of {CARDS}!” The whole pack rises up into the {AIR} and comes flying down upon her, and she {WAKES} on the bank, with her head in her sister’s {LAP}. What a curious {DREAM} it has been!',
+      image: nursery('c06544-05'),
+      caption: 'The shower of cards',
+      credit: TENNIEL,
+      crop: [0.05, 0.07, 0.96, 0.97],
+      colour: true,
+    },
+  },
 ];
 
 /**
@@ -785,7 +1028,7 @@ const PIGS: LevelSpec[] = [
     rows: 5,
     cols: 4,
     story: {
-      text: 'Along came a {WOLF}. “Little pig, little pig, let me come in!” “No, no, not by the hair of my chinny chin {CHIN}!” “Then I’ll {HUFF}, and I’ll {PUFF}, and I’ll {BLOW} your house in!” And he did. The little pig ran to his brother’s house of sticks, but the wolf blew that down too.',
+      text: 'Along came a {WOLF}. “Little pig, little pig, let me come in!” “No, no, by the hair of my chinny chin {CHIN}!” “Then I’ll {HUFF}, and I’ll {PUFF}, and I’ll {BLOW} your house in!” And he did. The little pig ran to his brother’s house of sticks, but the wolf blew that down too.',
       image: art('brooke-1904/pigs-plate-2.jpg'),
       caption: 'Then I’ll huff and I’ll puff',
       credit: BROOKE,
@@ -799,7 +1042,7 @@ const PIGS: LevelSpec[] = [
     rows: 6,
     cols: 5,
     story: {
-      text: 'The two little pigs ran to their brother, who had built his house with {BRICKS}. The wolf huffed and puffed, but he could not blow it {DOWN}. So he tried a {TRICK}: “Meet me at six, and we’ll dig {TURNIPS}!” But the little pig got up at {FIVE}, and was home {SAFE} before the wolf came.',
+      text: 'The two little pigs ran to their brother, who had built his house with {BRICKS}. The wolf huffed and puffed, but he could not blow it {DOWN}. So he tried a {TRICK}: “Little Pig, I know where there is a nice field of {TURNIPS}.” They would go at six o’clock. But the little pig got up at {FIVE}, and was home {SAFE} before the wolf came.',
       image: art('brooke-1904/pigs-plate-3.jpg'),
       caption: 'He built his house with bricks',
       credit: BROOKE,
@@ -852,11 +1095,28 @@ const CAROL: LevelSpec[] = [
     title: 'Bah! Humbug!',
     rows: 6,
     cols: 7,
+    easy: 3,
     story: {
       text: 'Marley was dead, to begin with. His old partner, Ebenezer Scrooge, is a {SQUEEZING}, grasping, {COVETOUS} old sinner. When his nephew Fred wishes him a merry {CHRISTMAS}, Scrooge answers: “Bah! {HUMBUG}!” And when two portly gentlemen ask him to give something to the poor, he only asks: are there no prisons? Are there no {WORKHOUSES}?',
       image: rackham('007-they-were-portly-gentlemen-pleasant-to-behold'),
       caption: 'They were portly gentlemen, pleasant to behold',
       credit: RACKHAM,
+    },
+  },
+  {
+    id: 'carol-1-the-knocker',
+    book: CAROL_BOOK,
+    chapter: 1,
+    title: 'Marley’s Face',
+    rows: 5,
+    cols: 8,
+    easy: 2,
+    story: {
+      text: 'Scrooge goes home through the fog to the gloomy rooms that were once his partner’s. As he puts his {KEY} in the lock, he sees in the {KNOCKER} not a knocker, but Marley’s {FACE}, with a dismal {LIGHT} about it, like a bad {LOBSTER} in a dark {CELLAR}. As he stares, it is a knocker again. “Pooh, pooh!” he says, and closes the {DOOR} with a {BANG}.',
+      image: rackham('006-marley-s-ghost'),
+      caption: 'Marley’s face',
+      credit: RACKHAM,
+      crop: [0.02, 0.04, 0.98, 0.98],
     },
   },
   {
@@ -890,6 +1150,20 @@ const CAROL: LevelSpec[] = [
     },
   },
   {
+    id: 'carol-2-little-fan',
+    book: CAROL_BOOK,
+    chapter: 2,
+    title: 'Little Fan',
+    rows: 6,
+    cols: 8,
+    story: {
+      text: 'At one o’clock the first spirit comes: the Ghost of Christmas Past, like a {CHILD} and an old man at once, with a bright clear {JET} of light springing from its {HEAD}. It takes Scrooge to his old school, where a {LONELY} boy sits reading by a {FEEBLE} fire. Then in runs his little sister, Fan: “I have come to bring you {HOME}, dear brother!” The {SCHOOLMASTER} brings out curiously light {WINE} and curiously heavy {CAKE}.',
+      image: rackham('015-he-produced-a-decanter-of-curiously-light-wine-and'),
+      caption: 'He produced a decanter of curiously light wine, and a block of curiously heavy cake',
+      credit: RACKHAM,
+    },
+  },
+  {
     id: 'carol-2-fezziwig',
     book: CAROL_BOOK,
     chapter: 2,
@@ -897,7 +1171,7 @@ const CAROL: LevelSpec[] = [
     rows: 7,
     cols: 6,
     story: {
-      text: 'At one o’clock the first of the three spirits, the Ghost of Christmas {PAST}, takes Scrooge back to his youth: to the {WAREHOUSE} of old Fezziwig, where he was an {APPRENTICE}. It is Christmas Eve, and the place is swept clean for a {BALL}. In comes a {FIDDLER}, and all the young people, and then old Fezziwig stands out to dance with Mrs. {FEZZIWIG}.',
+      text: 'Then the Ghost of Christmas {PAST} takes Scrooge to the {WAREHOUSE} of old Fezziwig, where he was an {APPRENTICE}. It is Christmas Eve, and the place is swept clean for a {BALL}. In comes a {FIDDLER}, and all the young people, and then old Fezziwig stands out to dance with Mrs. {FEZZIWIG}.',
       image: rackham('016-img05'),
       caption: 'Then old Fezziwig stood out to dance with Mrs. Fezziwig',
       credit: RACKHAM,
@@ -919,6 +1193,51 @@ const CAROL: LevelSpec[] = [
     },
   },
   {
+    id: 'carol-2-belles-home',
+    book: CAROL_BOOK,
+    chapter: 2,
+    title: 'Quite Alone in the World',
+    rows: 7,
+    cols: 6,
+    story: {
+      text: 'Next the Spirit shows him {BELLE}, years later, a happy {MOTHER} by her own fire, with her {CHILDREN} in a joyful {UPROAR}. Their {FATHER} comes home laden with Christmas toys, and the children storm him. He tells Belle he passed an old friend of hers tonight, Mr. Scrooge, sitting at his office {WINDOW}: “Quite {ALONE} in the world, I do believe.” “Spirit!” says Scrooge. “Remove me from this place.”',
+      image: rackham('019-img07'),
+      caption: 'Laden with Christmas toys and presents',
+      credit: RACKHAM,
+      crop: [0.02, 0, 1, 1],
+      colour: true,
+    },
+  },
+  {
+    id: 'carol-3-the-second-spirit',
+    book: CAROL_BOOK,
+    chapter: 3,
+    title: 'The Second of the Three Spirits',
+    rows: 4,
+    cols: 8,
+    story: {
+      text: 'Again the bell strikes one. Scrooge finds his own room hung with {HOLLY} and ivy, and a mighty blaze roaring up the {CHIMNEY}. Heaped up on the floor, to form a kind of {THRONE}, are turkeys, {GEESE}, game, sausages, {PIES} and plum-puddings, and upon it sits a jolly {GIANT}: the Ghost of Christmas Present.',
+      image: rackham('021-the-second-of-the-three-spirits'),
+      caption: 'The Second of the Three Spirits',
+      credit: RACKHAM,
+    },
+  },
+  {
+    id: 'carol-3-christmas-morning',
+    book: CAROL_BOOK,
+    chapter: 3,
+    title: 'Christmas Morning',
+    rows: 8,
+    cols: 6,
+    story: {
+      text: 'They stand in the city streets on Christmas morning. People are scraping the snow from the pavements and the {ROOFTOPS}, and now and then throwing a {SNOWBALL}. The {POULTERERS} are still half open, and the fruiterers radiant in their glory. Then the bells ring, and as the {POOR} carry their dinners to the {BAKERS}, the Spirit sprinkles {INCENSE} on them from his {TORCH}.',
+      image: rackham('022-there-was-nothing-very-cheerful-in-the-climate'),
+      caption: 'There was nothing very cheerful in the climate',
+      credit: RACKHAM,
+      crop: [0.01, 0.01, 0.99, 0.99],
+    },
+  },
+  {
     id: 'carol-3-the-cratchits',
     book: CAROL_BOOK,
     chapter: 3,
@@ -926,7 +1245,7 @@ const CAROL: LevelSpec[] = [
     rows: 8,
     cols: 6,
     story: {
-      text: 'The second spirit, the Ghost of Christmas {PRESENT}, takes Scrooge to the little house of his clerk, Bob Cratchit. Bob comes home from church with Tiny Tim on his {SHOULDER}, a little {CRUTCH} in the boy’s hand. There is a {GOOSE}, and then Mrs. Cratchit brings in the {PUDDING}, blazing with {BRANDY}. Tim says, “God {BLESS} us, every one!” Scrooge asks if the child will {LIVE}.',
+      text: 'The Ghost of Christmas {PRESENT} takes Scrooge to the little house of his clerk, Bob Cratchit. Bob comes home from church with Tiny Tim on his {SHOULDER}, a little {CRUTCH} in the boy’s hand. There is a {GOOSE}, and then Mrs. Cratchit brings in the {PUDDING}, blazing with {BRANDY}. Tim says, “God {BLESS} us, every one!” Scrooge asks if the child will {LIVE}.',
       image: rackham('025-with-the-pudding'),
       caption: 'With the pudding',
       credit: RACKHAM,
@@ -948,6 +1267,20 @@ const CAROL: LevelSpec[] = [
     },
   },
   {
+    id: 'carol-4-the-phantom',
+    book: CAROL_BOOK,
+    chapter: 4,
+    title: 'The Last of the Spirits',
+    rows: 5,
+    cols: 8,
+    story: {
+      text: 'The {PHANTOM} slowly, gravely, silently {APPROACHES}. It is shrouded in a deep black garment, and never speaks; it only points. Scrooge {FEARS} it more than any spirit he has seen. In the City, it shows him {MERCHANTS} talking of a man who has {DIED}. “It’s likely to be a very {CHEAP} funeral.” Who can the dead man be?',
+      image: rackham('027-the-last-of-the-spirits'),
+      caption: 'The Last of the Spirits',
+      credit: RACKHAM,
+    },
+  },
+  {
     id: 'carol-4-old-joe',
     book: CAROL_BOOK,
     chapter: 4,
@@ -955,7 +1288,7 @@ const CAROL: LevelSpec[] = [
     rows: 8,
     cols: 6,
     story: {
-      text: 'The last spirit, the Ghost of Christmas Yet to Come, never speaks; it only {POINTS}. In a filthy shop, old Joe buys a dead man’s things from those who {ROBBED} him: his {SHIRT}, his {BLANKETS}, even his bed-{CURTAINS}, rings and all. Nobody {MOURNS} the man. In a churchyard, the spirit points to a {GRAVE}, and Scrooge reads his own {NAME}.',
+      text: 'The Phantom leads Scrooge on, and {POINTS}. In a filthy shop, old Joe buys a dead man’s things from those who {ROBBED} him: his {SHIRT}, his {BLANKETS}, even his bed-{CURTAINS}, rings and all. Nobody {MOURNS} the man. At the Cratchits’, Bob weeps for Tiny Tim: “My little, little child!” In a churchyard, the spirit points to a {GRAVE}, and Scrooge reads his own {NAME}.',
       image: rackham('029-img010'),
       caption: '“Bed-curtains!” “Ah!” returned the woman, laughing',
       credit: RACKHAM,
@@ -1013,6 +1346,7 @@ const PERSUASION: LevelSpec[] = [
     title: 'The Baronetage',
     rows: 8,
     cols: 5,
+    easy: 3,
     story: {
       text: 'Sir Walter Elliot of Kellynch Hall never takes up any book but the {BARONETAGE}, where he reads of himself. Vain of his looks and his rank, he has lived far beyond his {INCOME}. His agent, Mr. Shepherd, drops {UNWELCOME} hints: they must {RETRENCH}, or let Kellynch. And Anne, the {KINDEST} of his daughters, is nobody to him.',
       image: art('persuasion-brock-1898/2pers-01.jpg'),
@@ -1029,6 +1363,7 @@ const PERSUASION: LevelSpec[] = [
     title: 'Eight Years Ago',
     rows: 8,
     cols: 6,
+    easy: 2,
     story: {
       text: 'Admiral Croft will take Kellynch, though Sir Walter scorns {SAILORS} and their weathered faces. But the {ADMIRAL}’s wife has a brother, Frederick Wentworth. Eight years ago, Anne was {ENGAGED} to him, a young officer with no {FORTUNE}. Lady Russell, her mother’s old {FRIEND}, persuaded her to give him up. Anne has {REGRETTED} it ever since, and has lost her {BLOOM}.',
       image: art('persuasion-thomson-1897/persuasion-illustration-chapter-1.jpg'),
@@ -1077,7 +1412,7 @@ const PERSUASION: LevelSpec[] = [
     rows: 8,
     cols: 6,
     story: {
-      text: 'Captain {WENTWORTH} comes at last, rich in prize money from the war. To Anne he is cold and {CEREMONIOUS}; she hears that he found her “so {ALTERED} he should not have known her again.” One evening they sit on the same sofa, divided only by Mrs. {MUSGROVE}, {SIGHING} for the {SAILOR} son she lost.',
+      text: 'Captain {WENTWORTH} comes at last, rich in prize money from the war. To Anne he is cold and {CEREMONIOUS}; she hears what he said of her: “You were so {ALTERED} he should not have known you again.” One evening they sit on the same sofa, divided only by Mrs. {MUSGROVE}, {SIGHING} for the {SAILOR} son she lost.',
       image: art('persuasion-brock-1898/pers-brock-09.jpg'),
       caption: 'They were divided only by Mrs. Musgrove',
       credit: 'C. E. Brock, 1909',
@@ -1183,11 +1518,11 @@ const PERSUASION: LevelSpec[] = [
     id: 'persuasion-18-the-print',
     book: PERSUASION_BOOK,
     chapter: 18,
-    title: 'Such a Boat!',
+    title: 'Over a Horsepond',
     rows: 8,
     cols: 5,
     story: {
-      text: 'In Milsom Street Anne finds Admiral Croft staring at a {PRINT} in a shop window: “Such a boat! I would not go to sea in it.” Walking her home, he brings {ASTONISHING} news. Louisa is to marry not Wentworth but Captain Benwick! They fell in love while she {RECOVERED}, reading {POETRY} together. Wentworth is {FREE}, and Anne’s heart {LEAPS}.',
+      text: 'In Milsom Street Anne finds Admiral Croft staring at a {PRINT} in a shop window: “I wonder where that boat was built! I would not venture over a horsepond in it.” Walking her home, he brings {ASTONISHING} news. Louisa is to marry not Wentworth but Captain Benwick! They fell in love while she {RECOVERED}, reading {POETRY} together. Wentworth is {FREE}, and Anne’s heart {LEAPS}.',
       image: art('persuasion-brock-1898/pers-brock-17.jpg'),
       caption: 'In earnest contemplation of some print',
       credit: BROCK_1909,
@@ -1286,6 +1621,7 @@ const EMMA: LevelSpec[] = [
     title: 'I Planned the Match',
     rows: 8,
     cols: 6,
+    easy: 3,
     story: {
       text: 'Emma Woodhouse, handsome, {CLEVER} and rich, has lived nearly twenty-one years with very little to {DISTRESS} or vex her. Now her {GOVERNESS}, Miss Taylor, has married Mr. Weston, and Emma is sure she {PLANNED} the match herself. Her father sighs for “poor Miss Taylor”. Mr. Knightley, an old {FRIEND}, tells her it was a lucky {GUESS}, not {SUCCESS}.',
       image: art('emma-brock-1909/emma-ce-brock-1909-vol-i-chapter-i.jpg'),
@@ -1302,6 +1638,7 @@ const EMMA: LevelSpec[] = [
     title: 'A Slice of Wedding-Cake',
     rows: 8,
     cols: 5,
+    easy: 2,
     story: {
       text: 'Mr. Weston, a cheerful {WIDOWER}, has a grown son he hardly knows: Frank Churchill, brought up by a rich {AUNT} whose name he took. All Highbury longs to meet him. He writes Mrs. Weston a {HANDSOME} letter, but never comes. Mr. Woodhouse thinks wedding {CAKE} terribly {INDIGESTIBLE}, yet every child in the village is seen with a {SLICE}.',
       image: art('emma-thomson-1896/emma-ch02-i-2.jpg'),
@@ -1439,7 +1776,7 @@ const EMMA: LevelSpec[] = [
     rows: 8,
     cols: 5,
     story: {
-      text: 'Harriet takes the news of Mr. Elton {BRAVELY}. Then, sheltering from the rain in Ford’s {SHOP}, she sees Elizabeth Martin, and Robert Martin with her! They are {AWKWARD}, but so {KIND}: he even shows her the {BEST} way round to avoid the {PUDDLES}. Harriet is all in a {FLUTTER}.',
+      text: 'Harriet takes the news of Mr. Elton {BRAVELY}. Then, sheltering from the rain in Ford’s {SHOP}, she sees Elizabeth Martin, and Robert Martin with her! They are {AWKWARD}, but so {KIND}: he even tells her the {BEST} way round to avoid the {PUDDLES}. Harriet is all in a {FLUTTER}.',
       image: art('emma-thomson-1896/emma-ch21b-ii-3.jpg'),
       caption: '“Who should come in but Elizabeth and her brother!”',
       credit: THOMSON_1896,
@@ -1587,11 +1924,11 @@ const EMMA: LevelSpec[] = [
     id: 'emma-43-box-hill',
     book: EMMA_BOOK,
     chapter: 43,
-    title: 'Badly Done, Emma',
+    title: 'It Was Badly Done',
     rows: 7,
     cols: 5,
     story: {
-      text: 'On {BOX} Hill, Frank, {FLIRTING} wildly with Emma, asks everyone for one clever thing, or three very dull ones. “I shall be sure to say three dull things,” laughs Miss Bates. “But you will be {LIMITED} to three,” says Emma. Miss Bates is {WOUNDED}. “{BADLY} done, Emma!” says Mr. Knightley, and Emma {WEEPS} all the way home.',
+      text: 'On {BOX} Hill, Frank, {FLIRTING} wildly with Emma, asks everyone for one clever thing, or three very dull ones. “I shall be sure to say three dull things,” laughs Miss Bates. “Pardon me, but you will be {LIMITED} as to number: only three at once,” says Emma. Miss Bates is {WOUNDED}. “It was {BADLY} done, indeed!” says Mr. Knightley, and Emma {WEEPS} all the way home.',
       image: art('emma-brock-1909/emma-ce-brock-1909-vol-iii-chapter-vii.jpg'),
       caption: '“I shall be sure to say three dull things as soon as ever I open my mouth, shan’t I?”',
       credit: BROCK_1909,
@@ -1657,6 +1994,7 @@ const SENSE: LevelSpec[] = [
     title: 'Norland Park',
     rows: 8,
     cols: 5,
+    easy: 3,
     story: {
       text: 'At Norland Park, old Mr. Dashwood leaves his {ESTATE} to his nephew Henry for life, and after him to Henry’s son John and John’s little {BOY}, whose {PRATTLE} had charmed the old man. A year later Henry dies, and his wife and three {DAUGHTERS}, Elinor, Marianne and Margaret, are left with very little money. Dying, he begs John to {PROVIDE} for them, and John {PROMISES}.',
       image: sense('002-his-son-s-son-a-child-of-four-years-old'),
@@ -1671,6 +2009,7 @@ const SENSE: LevelSpec[] = [
     title: 'How They Will Spend Half of It',
     rows: 8,
     cols: 6,
+    easy: 2,
     story: {
       text: 'John thinks three thousand {POUNDS} would be generous. His wife Fanny fears it would {IMPOVERISH} their boy. Fifteen hundred, then? An {ANNUITY}? “I cannot imagine how they will spend half of it,” says Fanny. In the end, presents of {FISH} and game will do. But Fanny’s {BROTHER} Edward, {SHY} and {GENTLE}, quietly wins Elinor’s {HEART}.',
       image: sense('003-image_035'),
@@ -1981,7 +2320,7 @@ const SENSE: LevelSpec[] = [
     rows: 7,
     cols: 5,
     story: {
-      text: 'A man rides up to the {GATE}. It was Edward! He is not married: Lucy has {JILTED} him for his brother Robert, who has the {FORTUNE}. Edward is {FREE}, and has come to speak for {HIMSELF}. Elinor runs out of the room, {WEEPING} for joy.',
+      text: 'A man rides up to the {GATE}. It is Edward! He is not married: Lucy has {JILTED} him for his brother Robert, who has the {FORTUNE}. Edward is {FREE}, and has come to speak for {HIMSELF}. Elinor runs out of the room, {WEEPING} for joy.',
       image: sense('038-it-was-edward'),
       caption: 'It was Edward',
       credit: THOMSON_1896,
@@ -2006,6 +2345,8 @@ const SENSE: LevelSpec[] = [
 const JANE_BOOK = 'jane-eyre';
 const TOWNSEND = 'F. H. Townsend, 1897';
 const townsend = (file: string) => art(`townsend-1897/${file}.jpg`);
+/** A watercolour by Frederick Walker (d. 1875), printed in The Life and Works of the Sisters Brontë, 1899. */
+const WALKER = 'Frederick Walker, printed 1899';
 
 const JANE: LevelSpec[] = [
   {
@@ -2015,6 +2356,7 @@ const JANE: LevelSpec[] = [
     title: 'How Dare I?',
     rows: 8,
     cols: 6,
+    easy: 3,
     story: {
       text: '{ORPHANED} Jane Eyre grows up at Gateshead, unloved by her aunt, Mrs. Reed, and beaten by her {COUSIN} John. Locked in the red-room, she {FAINTS} with terror. Now she is to be sent to {SCHOOL}, called a {LIAR} before its stern master. At last Jane {SPEAKS} up: “How dare I, Mrs. Reed? Because it is the {TRUTH}!” She has never felt such {FREEDOM}.',
       image: townsend('001-how-dare-i-mrs-reed-how-dare-i-because-it-is-the-t'),
@@ -2030,6 +2372,7 @@ const JANE: LevelSpec[] = [
     title: 'The Stranger in the Lane',
     rows: 7,
     cols: 6,
+    easy: 2,
     story: {
       text: 'After eight hard years at Lowood school, Jane becomes {GOVERNESS} to little Adèle at Thornfield Hall. One icy {EVENING} in the lane, a great {DOG} runs past her, then a {HORSE} slips and falls with its rider. Jane helps the stern, dark {STRANGER} back into the {SADDLE}. Only at the hall does she learn his {NAME}.',
       image: townsend('002-i-was-mortally-afraid-of-its-trampling-forefeet'),
@@ -2084,6 +2427,21 @@ const JANE: LevelSpec[] = [
     },
   },
   {
+    id: 'jane-23-the-proposal',
+    book: JANE_BOOK,
+    chapter: 23,
+    title: 'I Am No Bird',
+    rows: 7,
+    cols: 8,
+    story: {
+      text: 'On a midsummer evening in the {ORCHARD}, Mr. Rochester tells Jane he will soon marry, and has found her a post in {IRELAND}. Jane bursts out: “Do you think, because I am poor, obscure, plain, and little, I am {SOULLESS} and heartless?” She is no {BIRD}, but a free human being. Then he asks her to {MARRY} him, and she {CONSENTS}. That night {LIGHTNING} splits the great {CHESTNUT} tree in two.',
+      image: art('jane-walker-1899/life-and-works-of-the-sisters-bronte-rochester-and-jane-eyre.jpg'),
+      caption: 'Rochester and Jane Eyre',
+      credit: WALKER,
+      crop: [0, 0, 1, 0.97],
+    },
+  },
+  {
     id: 'jane-25-the-veil',
     book: JANE_BOOK,
     chapter: 25,
@@ -2091,7 +2449,7 @@ const JANE: LevelSpec[] = [
     rows: 8,
     cols: 6,
     story: {
-      text: 'Under the chestnut tree in the {ORCHARD}, Jane tells Mr. Rochester she is no bird, but a free human being. Then he asks her to marry him, and she {ACCEPTS}. That night {LIGHTNING} splits the tree in two. Two nights before the {WEDDING}, Jane wakes to see a {GHASTLY} woman put on her {VEIL}, tear it in two, and {TRAMPLE} it.',
+      text: 'Mr. Rochester longs to load his bride with {JEWELS}. At a silk warehouse he picks an amethyst silk and a {PINK} satin, and Jane begs him down to sober black satin and pearl-grey. She would be “a jay in borrowed {PLUMES}.” Two nights before the {WEDDING}, she wakes to see a {GHASTLY} woman put on her {VEIL}, tear it in two, and {TRAMPLE} it. In the {MORNING}, the torn veil lies on the floor.',
       image: townsend('006-it-removed-my-veil-from-its-gaunt-head-rent-it-in-'),
       caption: 'It removed my veil from its gaunt head, rent it in two parts, and trampled on them',
       credit: TOWNSEND,
@@ -2232,6 +2590,7 @@ const LITTLE: LevelSpec[] = [
     title: 'Without Any Presents',
     rows: 6,
     cols: 7,
+    easy: 3,
     story: {
       text: '“Christmas won’t be Christmas without any {PRESENTS},” {GRUMBLES} Jo, lying on the rug. The four March sisters, Meg, Jo, Beth and Amy, are poor this year, with Father away at the war. Each has a {DOLLAR} to spend on herself, but they decide to buy gifts for their {MOTHER} instead. That night a cheerful {LETTER} comes from Father, and each girl {RESOLVES} to be better.',
       image: merrill('007-christmas-won-t-be-christmas-without-any-presents'),
@@ -2246,6 +2605,7 @@ const LITTLE: LevelSpec[] = [
     title: 'The Procession Set Out',
     rows: 5,
     cols: 8,
+    easy: 2,
     story: {
       text: 'On Christmas morning Marmee asks a favour: a poor woman, Mrs. Hummel, has a new {BABY} and six children huddled in one bed, with no {FIRE} and no {FOOD}. The girls give up their own {BREAKFAST}, and the procession sets out through the {SNOW} with the {BUCKWHEATS}, the {BREAD} and the cream.',
       image: merrill('016-the-procession-set-out'),
@@ -2261,7 +2621,7 @@ const LITTLE: LevelSpec[] = [
     rows: 6,
     cols: 7,
     story: {
-      text: 'Meg and Jo go to a New Year’s {DANCE}, Meg in {BORROWED} gloves and Jo hiding the {SCORCH} on her dress. Jo slips into a curtained {RECESS}, and comes face to face with the Laurence boy from next door. Laurie is {SHY} too, and they talk and {LAUGH} like old friends, and even {POLKA} in the {HALL}.',
+      text: 'Meg and Jo go to a New Year’s {DANCE}, Meg wearing a {BORROWED} pearl pin and Jo hiding the {SCORCH} on her dress. Jo slips into a curtained {RECESS}, and comes face to face with the Laurence boy from next door. Laurie is {SHY} too, and they talk and {LAUGH} like old friends, and even {POLKA} in the {HALL}.',
       image: merrill('025-face-to-face-with-the-laurence-boy'),
       caption: 'Face to face with the Laurence boy',
       credit: MERRILL,
@@ -2313,11 +2673,11 @@ const LITTLE: LevelSpec[] = [
     id: 'little-08-i-burnt-it-up',
     book: LITTLE_BOOK,
     chapter: 8,
-    title: 'I Burnt It Up',
+    title: 'I Burned It Up',
     rows: 6,
     cols: 7,
     story: {
-      text: 'Left behind when Jo and Meg go to the {THEATRE}, Amy takes her {REVENGE}: she {BURNS} the little book Jo has worked on for years. “I burnt it up,” she says, and Jo will not {FORGIVE} her. Next day Amy follows her to the river, and the {ICE} gives way. Laurie and Jo pull her out, and Jo, {SOBBING}, vows to master her {TEMPER}.',
+      text: 'Left behind when Jo and Meg go to the {THEATRE}, Amy takes her {REVENGE}: she {BURNS} the little book Jo has worked on for years. “I burned it up,” she says, and Jo will not {FORGIVE} her. Next day Amy follows her to the river, and the {ICE} gives way. Laurie and Jo pull her out, and Jo, {SOBBING}, vows to master her {TEMPER}.',
       image: merrill('047-i-burnt-it-up'),
       caption: 'I burnt it up',
       credit: MERRILL,
@@ -2401,7 +2761,7 @@ const LITTLE: LevelSpec[] = [
     rows: 6,
     cols: 7,
     story: {
-      text: 'Beth gets worse, and does not know Jo. Hannah says it is time to send for Marmee. Jo {TELEGRAPHS}, but Laurie has already {WRITTEN}. Through the long night the sisters {WATCH}; at midnight the {FEVER} turns, and Beth {SLEEPS}. Marmee arrives through the {SNOW}, and will not {LEAVE} Beth’s side.',
+      text: 'Beth gets worse, and does not know Jo. Hannah says it is time to send for Marmee. Jo {TELEGRAPHS}, but Laurie, {DEFYING} Hannah, wired the day before. Through the long night the sisters {WATCH}; at midnight the {FEVER} turns, and Beth {SLEEPS}. Marmee arrives through the {SNOW}, and will not {LEAVE} Beth’s side.',
       image: merrill('106-mrs-march-would-not-leave-beth-s-side'),
       caption: 'Mrs. March would not leave Beth’s side',
       credit: MERRILL,
@@ -2509,11 +2869,11 @@ const LITTLE: LevelSpec[] = [
     id: 'little-35-heartache',
     book: LITTLE_BOOK,
     chapter: 35,
-    title: 'O Jo, Can’t You?',
+    title: 'Oh, Jo, Can’t You?',
     rows: 6,
     cols: 8,
     story: {
-      text: 'Jo comes home, and Laurie can wait no longer. On a {COUNTRY} walk he tells her he has {ADORED} her ever since he knew her. “O Jo, can’t you?” Jo cannot: they would {QUARREL}, and she loves him only as a {BROTHER}. Laurie lays his head on the mossy {POST}, {HEARTBROKEN}, and goes {ABROAD}.',
+      text: 'Jo comes home, and Laurie can wait no longer. On a {COUNTRY} walk he tells her he has {ADORED} her ever since he knew her. “Oh, Jo, can’t you?” Jo cannot: they would {QUARREL}, and she loves him only as a {BROTHER}. Laurie lays his head on the mossy {POST}, {HEARTBROKEN}, and goes {ABROAD}.',
       image: merrill('162-he-laid-his-head-down-on-the-mossy-post'),
       caption: 'He laid his head down on the mossy post',
       credit: MERRILL,
@@ -2611,7 +2971,7 @@ const LITTLE: LevelSpec[] = [
     rows: 7,
     cols: 5,
     story: {
-      text: 'One evening a lifelike {GHOST} leans over Jo’s chair: Laurie, home from {EUROPE}, with Amy his {BRIDE}! Then comes a {KNOCK}, and there stands Professor Bhaer. “O Mr. Bhaer, I am so {GLAD} to see you!” Father and he talk {PHILOSOPHY} all evening, and he fits in as if he had always been there.',
+      text: 'One evening a lifelike {GHOST} leans over Jo’s chair: Laurie, home from {EUROPE}, with Amy his {BRIDE}! Then comes a {KNOCK}, and there stands Professor Bhaer. “Oh, Mr. Bhaer, I am so {GLAD} to see you!” Father and he talk {PHILOSOPHY} all evening, and he fits in as if he had always been there.',
       image: merrill('187-o-mr-bhaer-i-am-so-glad-to-see-you'),
       caption: '“O Mr. Bhaer, I am so glad to see you!”',
       credit: MERRILL,
@@ -2639,7 +2999,7 @@ const LITTLE: LevelSpec[] = [
     rows: 5,
     cols: 8,
     story: {
-      text: 'Aunt March leaves Jo her old house, Plumfield, and Jo and her Professor make it a {SCHOOL} for boys, rich ones and {POOR}. Five years on, the whole family gathers for the apple {HARVEST}: Meg’s {TWINS}, Amy and Laurie’s little Beth, and Jo’s own two {BOYS}. Marmee looks round, {PROUD} and grateful: “I can never wish you a greater {HAPPINESS} than this!”',
+      text: 'Aunt March leaves Jo her old house, Plumfield, and Jo and her Professor make it a {SCHOOL} for boys, rich ones and {POOR}. Five years on, the whole family gathers for the apple {HARVEST}: Meg’s {TWINS}, Amy and Laurie’s little Beth, and Jo’s own two {BOYS}. Marmee looks round, {PROUD} and grateful: “I never can wish you a greater {HAPPINESS} than this!”',
       image: merrill('201-harvest-time'),
       caption: 'Harvest time',
       credit: MERRILL,

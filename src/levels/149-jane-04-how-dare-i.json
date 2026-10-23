@@ -1,0 +1,64 @@
+{
+  "id": "jane-04-how-dare-i",
+  "book": "jane-eyre",
+  "chapter": 4,
+  "title": "How Dare I?",
+  "rows": 8,
+  "cols": 6,
+  "grid": [
+    "FEDFAI",
+    "REOMCN",
+    "SSSUOT",
+    "PKINOS",
+    "EAHPRS",
+    "TLANEC",
+    "RIARDH",
+    "UTHLOO"
+  ],
+  "words": [
+    {
+      "text": "ORPHANED",
+      "path": [22, 28, 27, 26, 32, 33, 34, 40]
+    },
+    {
+      "text": "COUSIN",
+      "path": [10, 16, 15, 14, 20, 21]
+    },
+    {
+      "text": "FAINTS",
+      "path": [3, 4, 5, 11, 17, 23]
+    },
+    {
+      "text": "SCHOOL",
+      "path": [29, 35, 41, 47, 46, 45]
+    },
+    {
+      "text": "LIAR",
+      "path": [31, 37, 38, 39]
+    },
+    {
+      "text": "SPEAKS",
+      "path": [12, 18, 24, 25, 19, 13]
+    },
+    {
+      "text": "TRUTH",
+      "path": [30, 36, 42, 43, 44]
+    },
+    {
+      "text": "FREEDOM",
+      "path": [0, 6, 7, 1, 2, 8, 9]
+    }
+  ],
+  "story": {
+    "text": "{ORPHANED} Jane Eyre grows up at Gateshead, unloved by her aunt, Mrs. Reed, and beaten by her {COUSIN} John. Locked in the red-room, she {FAINTS} with terror. Now she is to be sent to {SCHOOL}, called a {LIAR} before its stern master. At last Jane {SPEAKS} up: “How dare I, Mrs. Reed? Because it is the {TRUTH}!” She has never felt such {FREEDOM}.",
+    "image": "art/townsend-1897/001-how-dare-i-mrs-reed-how-dare-i-because-it-is-the-t.jpg",
+    "caption": "“How dare I, Mrs. Reed? How dare I? Because it is the truth”",
+    "credit": "F. H. Townsend, 1897",
+    "crop": [
+      0,
+      0,
+      1,
+      0.88
+    ]
+  }
+}

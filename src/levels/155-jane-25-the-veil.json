@@ -1,0 +1,64 @@
+{
+  "id": "jane-25-the-veil",
+  "book": "jane-eyre",
+  "chapter": 25,
+  "title": "The Torn Veil",
+  "rows": 8,
+  "cols": 6,
+  "grid": [
+    "GNVLPK",
+    "EIEIIN",
+    "LDDEWJ",
+    "PMGEWE",
+    "RANLSP",
+    "TYIOML",
+    "TLNRSU",
+    "SAHGEM"
+  ],
+  "words": [
+    {
+      "text": "JEWELS",
+      "path": [17, 23, 22, 21, 27, 28]
+    },
+    {
+      "text": "PINK",
+      "path": [4, 10, 11, 5]
+    },
+    {
+      "text": "PLUMES",
+      "path": [29, 35, 41, 47, 46, 40]
+    },
+    {
+      "text": "WEDDING",
+      "path": [16, 15, 14, 13, 7, 1, 0]
+    },
+    {
+      "text": "GHASTLY",
+      "path": [45, 44, 43, 42, 36, 37, 31]
+    },
+    {
+      "text": "VEIL",
+      "path": [2, 8, 9, 3]
+    },
+    {
+      "text": "TRAMPLE",
+      "path": [30, 24, 25, 19, 18, 12, 6]
+    },
+    {
+      "text": "MORNING",
+      "path": [34, 33, 39, 38, 32, 26, 20]
+    }
+  ],
+  "story": {
+    "text": "Mr. Rochester longs to load his bride with {JEWELS}. At a silk warehouse he picks an amethyst silk and a {PINK} satin, and Jane begs him down to sober black satin and pearl-grey. She would be “a jay in borrowed {PLUMES}.” Two nights before the {WEDDING}, she wakes to see a {GHASTLY} woman put on her {VEIL}, tear it in two, and {TRAMPLE} it. In the {MORNING}, the torn veil lies on the floor.",
+    "image": "art/townsend-1897/006-it-removed-my-veil-from-its-gaunt-head-rent-it-in-.jpg",
+    "caption": "It removed my veil from its gaunt head, rent it in two parts, and trampled on them",
+    "credit": "F. H. Townsend, 1897",
+    "crop": [
+      0,
+      0,
+      1,
+      0.88
+    ]
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "id": "carol-3-christmas-morning",
+  "book": "a-christmas-carol",
+  "chapter": 3,
+  "title": "Christmas Morning",
+  "rows": 8,
+  "cols": 6,
+  "grid": [
+    "SSSPOR",
+    "RNOWTO",
+    "EREBFO",
+    "POTALL",
+    "IULSER",
+    "NCENOO",
+    "SKATPH",
+    "REBORC"
+  ],
+  "words": [
+    {
+      "text": "ROOFTOPS",
+      "path": [5, 11, 17, 16, 10, 4, 3, 2]
+    },
+    {
+      "text": "SNOWBALL",
+      "path": [1, 7, 8, 9, 15, 21, 22, 23]
+    },
+    {
+      "text": "POULTERERS",
+      "path": [18, 19, 25, 26, 20, 14, 13, 12, 6, 0]
+    },
+    {
+      "text": "POOR",
+      "path": [40, 34, 35, 29]
+    },
+    {
+      "text": "BAKERS",
+      "path": [44, 38, 37, 43, 42, 36]
+    },
+    {
+      "text": "INCENSE",
+      "path": [24, 30, 31, 32, 33, 27, 28]
+    },
+    {
+      "text": "TORCH",
+      "path": [39, 45, 46, 47, 41]
+    }
+  ],
+  "story": {
+    "text": "They stand in the city streets on Christmas morning. People are scraping the snow from the pavements and the {ROOFTOPS}, and now and then throwing a {SNOWBALL}. The {POULTERERS} are still half open, and the fruiterers radiant in their glory. Then the bells ring, and as the {POOR} carry their dinners to the {BAKERS}, the Spirit sprinkles {INCENSE} on them from his {TORCH}.",
+    "image": "art/rackham-1915/022-there-was-nothing-very-cheerful-in-the-climate.jpg",
+    "caption": "There was nothing very cheerful in the climate",
+    "credit": "Arthur Rackham, 1915",
+    "crop": [
+      0.01,
+      0.01,
+      0.99,
+      0.99
+    ]
+  }
+}

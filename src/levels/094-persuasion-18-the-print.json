@@ -1,0 +1,57 @@
+{
+  "id": "persuasion-18-the-print",
+  "book": "persuasion",
+  "chapter": 18,
+  "title": "Over a Horsepond",
+  "rows": 8,
+  "cols": 5,
+  "grid": [
+    "PTRPR",
+    "OEYNI",
+    "SDETA",
+    "PARGS",
+    "LEENT",
+    "ROVIO",
+    "ECEHN",
+    "FRESI"
+  ],
+  "words": [
+    {
+      "text": "PRINT",
+      "path": [3, 4, 9, 8, 13]
+    },
+    {
+      "text": "ASTONISHING",
+      "path": [14, 19, 24, 29, 34, 39, 38, 33, 28, 23, 18]
+    },
+    {
+      "text": "RECOVERED",
+      "path": [25, 30, 31, 26, 27, 22, 17, 12, 11]
+    },
+    {
+      "text": "POETRY",
+      "path": [0, 5, 6, 1, 2, 7]
+    },
+    {
+      "text": "FREE",
+      "path": [35, 36, 37, 32]
+    },
+    {
+      "text": "LEAPS",
+      "path": [20, 21, 16, 15, 10]
+    }
+  ],
+  "story": {
+    "text": "In Milsom Street Anne finds Admiral Croft staring at a {PRINT} in a shop window: “I wonder where that boat was built! I would not venture over a horsepond in it.” Walking her home, he brings {ASTONISHING} news. Louisa is to marry not Wentworth but Captain Benwick! They fell in love while she {RECOVERED}, reading {POETRY} together. Wentworth is {FREE}, and Anne’s heart {LEAPS}.",
+    "image": "art/persuasion-brock-1898/pers-brock-17.jpg",
+    "caption": "In earnest contemplation of some print",
+    "credit": "C. E. Brock, 1909",
+    "crop": [
+      0.1,
+      0.08,
+      0.92,
+      0.84
+    ],
+    "colour": true
+  }
+}

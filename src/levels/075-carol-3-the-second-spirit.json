@@ -1,0 +1,46 @@
+{
+  "id": "carol-3-the-second-spirit",
+  "book": "a-christmas-carol",
+  "chapter": 3,
+  "title": "The Second of the Three Spirits",
+  "rows": 4,
+  "cols": 8,
+  "grid": [
+    "GEYECHEN",
+    "TESNMIRO",
+    "NAEHOTHS",
+    "GIYLLPIE"
+  ],
+  "words": [
+    {
+      "text": "HOLLY",
+      "path": [19, 20, 28, 27, 26]
+    },
+    {
+      "text": "CHIMNEY",
+      "path": [4, 5, 13, 12, 11, 3, 2]
+    },
+    {
+      "text": "THRONE",
+      "path": [21, 22, 14, 15, 7, 6]
+    },
+    {
+      "text": "GEESE",
+      "path": [0, 1, 9, 10, 18]
+    },
+    {
+      "text": "PIES",
+      "path": [29, 30, 31, 23]
+    },
+    {
+      "text": "GIANT",
+      "path": [24, 25, 17, 16, 8]
+    }
+  ],
+  "story": {
+    "text": "Again the bell strikes one. Scrooge finds his own room hung with {HOLLY} and ivy, and a mighty blaze roaring up the {CHIMNEY}. Heaped up on the floor, to form a kind of {THRONE}, are turkeys, {GEESE}, game, sausages, {PIES} and plum-puddings, and upon it sits a jolly {GIANT}: the Ghost of Christmas Present.",
+    "image": "art/rackham-1915/021-the-second-of-the-three-spirits.jpg",
+    "caption": "The Second of the Three Spirits",
+    "credit": "Arthur Rackham, 1915"
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "id": "persuasion-08-divided",
+  "book": "persuasion",
+  "chapter": 8,
+  "title": "Divided by Mrs. Musgrove",
+  "rows": 8,
+  "cols": 6,
+  "grid": [
+    "ALTROL",
+    "HMERAI",
+    "TUSESS",
+    "RRGDGI",
+    "OOVEHI",
+    "WTWCGN",
+    "SNEERE",
+    "UOINOM"
+  ],
+  "words": [
+    {
+      "text": "WENTWORTH",
+      "path": [32, 38, 37, 31, 30, 24, 18, 12, 6]
+    },
+    {
+      "text": "CEREMONIOUS",
+      "path": [33, 39, 40, 41, 47, 46, 45, 44, 43, 42, 36]
+    },
+    {
+      "text": "ALTERED",
+      "path": [0, 1, 2, 8, 9, 15, 21]
+    },
+    {
+      "text": "MUSGROVE",
+      "path": [7, 13, 14, 20, 19, 25, 26, 27]
+    },
+    {
+      "text": "SIGHING",
+      "path": [17, 23, 22, 28, 29, 35, 34]
+    },
+    {
+      "text": "SAILOR",
+      "path": [16, 10, 11, 5, 4, 3]
+    }
+  ],
+  "story": {
+    "text": "Captain {WENTWORTH} comes at last, rich in prize money from the war. To Anne he is cold and {CEREMONIOUS}; she hears what he said of her: “You were so {ALTERED} he should not have known you again.” One evening they sit on the same sofa, divided only by Mrs. {MUSGROVE}, {SIGHING} for the {SAILOR} son she lost.",
+    "image": "art/persuasion-brock-1898/pers-brock-09.jpg",
+    "caption": "They were divided only by Mrs. Musgrove",
+    "credit": "C. E. Brock, 1909",
+    "crop": [
+      0.1,
+      0.15,
+      0.92,
+      0.82
+    ],
+    "colour": true
+  }
+}

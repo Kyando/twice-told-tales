@@ -1,0 +1,50 @@
+{
+  "id": "sense-01-norland",
+  "book": "sense-and-sensibility",
+  "chapter": 1,
+  "title": "Norland Park",
+  "rows": 8,
+  "cols": 5,
+  "grid": [
+    "DPROM",
+    "AUGHI",
+    "BOYTS",
+    "ELREE",
+    "TTSES",
+    "ARPTP",
+    "ESTAR",
+    "EDIVO"
+  ],
+  "words": [
+    {
+      "text": "ESTATE",
+      "path": [30, 31, 32, 33, 28, 23]
+    },
+    {
+      "text": "BOY",
+      "path": [10, 11, 12]
+    },
+    {
+      "text": "PRATTLE",
+      "path": [27, 26, 25, 20, 21, 16, 15]
+    },
+    {
+      "text": "DAUGHTERS",
+      "path": [0, 5, 6, 7, 8, 13, 18, 17, 22]
+    },
+    {
+      "text": "PROVIDE",
+      "path": [29, 34, 39, 38, 37, 36, 35]
+    },
+    {
+      "text": "PROMISES",
+      "path": [1, 2, 3, 4, 9, 14, 19, 24]
+    }
+  ],
+  "story": {
+    "text": "At Norland Park, old Mr. Dashwood leaves his {ESTATE} to his nephew Henry for life, and after him to Henry’s son John and John’s little {BOY}, whose {PRATTLE} had charmed the old man. A year later Henry dies, and his wife and three {DAUGHTERS}, Elinor, Marianne and Margaret, are left with very little money. Dying, he begs John to {PROVIDE} for them, and John {PROMISES}.",
+    "image": "art/sense-thomson-1896/002-his-son-s-son-a-child-of-four-years-old.jpg",
+    "caption": "His son’s son, a child of four years old",
+    "credit": "Hugh Thomson, 1896"
+  }
+}

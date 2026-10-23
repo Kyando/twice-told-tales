@@ -1,0 +1,55 @@
+{
+  "id": "alice-06-pig-and-pepper",
+  "book": "alice-in-wonderland",
+  "chapter": 6,
+  "title": "Pig and Pepper",
+  "rows": 6,
+  "cols": 7,
+  "grid": [
+    "SNEKOTE",
+    "GNEZOCU",
+    "NIRESCQ",
+    "NPENORO",
+    "IPEIITA",
+    "RGPNVIT"
+  ],
+  "words": [
+    {
+      "text": "INVITATION",
+      "path": [31, 38, 39, 40, 41, 34, 33, 32, 25, 24]
+    },
+    {
+      "text": "CROQUET",
+      "path": [19, 26, 27, 20, 13, 6, 5]
+    },
+    {
+      "text": "PEPPER",
+      "path": [37, 30, 29, 22, 23, 16]
+    },
+    {
+      "text": "COOK",
+      "path": [12, 11, 4, 3]
+    },
+    {
+      "text": "SNEEZES",
+      "path": [0, 1, 2, 9, 10, 17, 18]
+    },
+    {
+      "text": "GRINNING",
+      "path": [36, 35, 28, 21, 14, 15, 8, 7]
+    }
+  ],
+  "story": {
+    "text": "A Fish-Footman brings the Duchess an {INVITATION} from the Queen to play {CROQUET}. Inside, the kitchen is full of smoke and {PEPPER}. The Duchess nurses a howling baby, the {COOK} flings saucepans and plates, and everyone {SNEEZES} except the cook and a large cat, {GRINNING} from ear to ear.",
+    "image": "art/nursery-alice-1890/c06543-08.jpg",
+    "caption": "The Duchess, the cook and the baby",
+    "credit": "John Tenniel, coloured for The Nursery “Alice”, 1890",
+    "crop": [
+      0,
+      0,
+      1,
+      0.99
+    ],
+    "colour": true
+  }
+}

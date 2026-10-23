@@ -1,0 +1,61 @@
+{
+  "id": "alice-08-painting-the-roses",
+  "book": "alice-in-wonderland",
+  "chapter": 8,
+  "title": "Painting the Roses Red",
+  "rows": 8,
+  "cols": 5,
+  "grid": [
+    "EKROS",
+    "TASDE",
+    "SIMAS",
+    "EHWEH",
+    "TISDC",
+    "SFTRA",
+    "RLARA",
+    "ENEDG"
+  ],
+  "words": [
+    {
+      "text": "GARDENERS",
+      "path": [39, 34, 33, 38, 37, 36, 35, 30, 25]
+    },
+    {
+      "text": "CARDS",
+      "path": [24, 29, 28, 23, 22]
+    },
+    {
+      "text": "WHITE",
+      "path": [17, 16, 21, 20, 15]
+    },
+    {
+      "text": "ROSES",
+      "path": [2, 3, 4, 9, 14]
+    },
+    {
+      "text": "MISTAKE",
+      "path": [12, 11, 10, 5, 6, 1, 0]
+    },
+    {
+      "text": "HEADS",
+      "path": [19, 18, 13, 8, 7]
+    },
+    {
+      "text": "FLAT",
+      "path": [26, 31, 32, 27]
+    }
+  ],
+  "story": {
+    "text": "At the entrance of the garden, three {GARDENERS}, flat and oblong like playing {CARDS}, are busily painting the {WHITE} {ROSES} red. They planted a white rose-tree by {MISTAKE}, and if the Queen finds out, they will all have their {HEADS} cut off. Then one cries, “The Queen!”, and they throw themselves {FLAT} upon their faces.",
+    "image": "art/nursery-alice-1890/c06543-07.jpg",
+    "caption": "Painting the roses red",
+    "credit": "John Tenniel, coloured for The Nursery “Alice”, 1890",
+    "crop": [
+      0.05,
+      0.04,
+      0.97,
+      0.93
+    ],
+    "colour": true
+  }
+}
