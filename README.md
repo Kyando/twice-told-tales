@@ -37,6 +37,16 @@ npm run dev
 
 The build ships only the pictures the game shows (`scripts/prune-art.ts`).
 
+A link can set the game up, e.g. for playtests. The choice is kept as if made in the menu:
+
+| Link | Sets |
+|---|---|
+| `?mode=story` | the story passage is the clue (the default) |
+| `?mode=words` | the word list is the clue |
+| `?voice=american` / `?voice=british` | the narrator |
+
+They combine: `https://kyando.github.io/twice-told-tales/?mode=words&voice=british`.
+
 ## Paper edition
 
 Two printable prototypes, built from the same chapters:

@@ -1,5 +1,5 @@
 import { BOOKS, FREE_CHAPTERS, SHELVES, type ShelfId } from '../core/books.ts';
-import { emptyProgress, loadSave, writeSave, type LevelProgress } from '../game/save.ts';
+import { emptyProgress, loadSave, writeSave, type Clue, type LevelProgress } from '../game/save.ts';
 import { Session } from '../game/session.ts';
 import { detectLocale, setLocale, t, type MessageKey } from '../i18n/index.ts';
 import { CATALOG } from '../levels/catalog.ts';
@@ -28,6 +28,9 @@ interface Entry {
 }
 
 const depthOf = (route: Route): number => ({ shelf: 0, library: 1, level: 2 })[route.screen];
+
+/** The game modes a link can ask for (?mode=…), by name; the old playtest names (?clue=…) still work. */
+const LINK_MODES: Record<string, Clue | undefined> = { story: 'passage', passage: 'passage', words: 'list', list: 'list' };
 
 /**
  * The game, screen by screen, as an app: shelf → a book's chapters → a chapter. Each screen has its
@@ -59,12 +62,7 @@ export class App {
       this.main.append(h('p', { class: 'empty' }, t('empty')));
       return;
     }
-    // A playtest link can pick the clue: ?clue=list or ?clue=passage (kept, like the menu's switch).
-    const asked = new URLSearchParams(location.search).get('clue');
-    if ((asked === 'list' || asked === 'passage') && asked !== this.save.settings.clue) {
-      this.save.settings.clue = asked;
-      this.persist();
-    }
+    this.applyLinkSettings();
     window.addEventListener('popstate', (e) => this.onBack(e.state as Partial<Entry> | null));
     // A reload keeps the screen the player was on; anything else starts on the shelf.
     const was = history.state as Partial<Entry> | null;
@@ -82,6 +80,26 @@ export class App {
 
   private persist(): void {
     writeSave(this.save);
+  }
+
+  /**
+   * A shared link can set the game up: ?mode=story (the passage is the clue) or ?mode=words (the word
+   * list), and ?voice=american or ?voice=british. They're kept, as if picked in the menu, and taken out
+   * of the address, so reloading later doesn't undo a change made in the menu since.
+   */
+  private applyLinkSettings(): void {
+    const url = new URL(location.href);
+    const { settings } = this.save;
+    const mode = url.searchParams.get('mode') ?? url.searchParams.get('clue');
+    const clue = LINK_MODES[mode?.toLowerCase() ?? ''];
+    const voice = url.searchParams.get('voice')?.toLowerCase();
+    const accent = voice === 'british' || voice === 'american' ? voice : undefined;
+    if (clue) settings.clue = clue;
+    if (accent) settings.accent = accent;
+    if (clue || accent) this.persist();
+    const before = url.search;
+    ['mode', 'clue', 'voice'].forEach((name) => url.searchParams.delete(name));
+    if (url.search !== before) history.replaceState(history.state, '', url);
   }
 
   // ── navigation ──────────────────────────────────────────────────────────
