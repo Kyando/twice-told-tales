@@ -2324,32 +2324,73 @@ button {
   outline-offset: 4px;
 }
 
+/* A panel over the game, which stays in view behind it, dimmed: a tap there closes the reader.
+   On phones it rises from the bottom like a sheet, leaving the top of the game showing; on wide
+   screens it's a card in the middle. */
 .reader {
-  position: fixed;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+  width: min(760px, calc(100vw - 48px));
+  height: min(880px, calc(100dvh - 64px));
   max-width: none;
   max-height: none;
-  margin: 0;
+  margin: auto;
   padding: 0;
-  border: 0;
+  border: 3px solid var(--stroke);
+  border-radius: 24px;
   background: var(--paper);
+  box-shadow: 0 6px 0 var(--stroke), 0 24px 60px rgb(40 26 14 / 0.35);
   color: var(--ink);
+  overflow: hidden;
 }
 
 .reader[open] {
   display: flex;
   flex-direction: column;
-  animation: reader-in 0.28s ease-out;
+  animation: reader-in 0.3s cubic-bezier(0.2, 0.8, 0.3, 1);
 }
 
 .reader::backdrop {
-  background: var(--paper);
+  background: var(--backdrop);
+  animation: backdrop-in 0.3s ease-out;
 }
 
 @keyframes reader-in {
-  from { opacity: 0; transform: translateY(14px); }
+  from { opacity: 0; transform: translateY(28px) scale(0.98); }
+}
+
+@keyframes backdrop-in {
+  from { opacity: 0; }
+}
+
+@media (max-width: 859px), (max-aspect-ratio: 5/4) {
+  .reader {
+    width: 100%;
+    height: calc(100dvh - 76px - var(--inset-top, 0px));
+    margin: auto 0 0;
+    border-width: 3px 0 0;
+    border-radius: 24px 24px 0 0;
+    box-shadow: 0 -10px 40px rgb(40 26 14 / 0.3);
+  }
+
+  .reader[open] {
+    animation-name: sheet-up;
+  }
+
+  /* A handle at the top, as sheets have. */
+  .reader-head::before {
+    content: '';
+    position: absolute;
+    top: 7px;
+    left: 50%;
+    width: 42px;
+    height: 5px;
+    margin-left: -21px;
+    border-radius: 3px;
+    background: var(--faint);
+  }
+}
+
+@keyframes sheet-up {
+  from { transform: translateY(100%); }
 }
 
 .reader-head {
@@ -2358,7 +2399,8 @@ button {
   grid-template-columns: 44px 1fr 44px;
   align-items: center;
   gap: 8px;
-  padding: calc(8px + var(--inset-top, 0px)) max(12px, var(--inset-right, 0px)) 6px max(12px, var(--inset-left, 0px));
+  position: relative;
+  padding: 14px max(12px, var(--inset-right, 0px)) 6px max(12px, var(--inset-left, 0px));
 }
 
 .reader-title {
@@ -2374,6 +2416,10 @@ button {
   font-size: clamp(17px, 4.6vw, 22px);
   line-height: 1.15;
   text-wrap: balance;
+}
+
+.reader-head {
+  cursor: grab;
 }
 
 .reader-close {
@@ -2398,10 +2444,10 @@ button {
 .reader-text {
   max-width: 30ch;
   margin-inline: auto;
-  padding: 6vh max(22px, var(--inset-right, 0px)) 42vh max(22px, var(--inset-left, 0px));
+  padding: 4vh max(22px, var(--inset-right, 0px)) 38vh max(22px, var(--inset-left, 0px));
   font-family: 'EB Garamond', Georgia, serif;
   font-weight: 500;
-  font-size: clamp(24px, 6.6vw, 36px);
+  font-size: clamp(23px, 6.2vw, 34px);
   line-height: 1.38;
   text-wrap: pretty;
 }
@@ -2562,4 +2608,66 @@ button {
   .reader-line span {
     transition: none;
   }
+}
+
+/* The speeds, listed above the speed button when it's tapped. */
+.reader-speed-box {
+  position: relative;
+  justify-self: start;
+}
+
+.reader-rates {
+  position: absolute;
+  left: 0;
+  bottom: calc(100% + 10px);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  min-width: 150px;
+  padding: 6px;
+  border: 2.5px solid var(--stroke);
+  border-radius: 16px;
+  background: var(--panel);
+  box-shadow: 0 4px 0 var(--stroke), 0 12px 28px rgb(40 26 14 / 0.25);
+  animation: rates-in 0.16s ease-out;
+}
+
+.reader-rates[hidden] {
+  display: none;
+}
+
+@keyframes rates-in {
+  from { opacity: 0; transform: translateY(6px); }
+}
+
+.reader-rate {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--ink);
+  font: 800 15px var(--font-body);
+  font-variant-numeric: tabular-nums;
+  text-align: left;
+  cursor: pointer;
+}
+
+.reader-rate svg {
+  width: 18px;
+  height: 18px;
+  visibility: hidden;
+  color: var(--accent);
+}
+
+.reader-rate[aria-checked='true'] svg {
+  visibility: visible;
+}
+
+.reader-rate:hover,
+.reader-rate:focus-visible {
+  background: var(--hover);
+  outline: none;
 }

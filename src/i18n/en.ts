@@ -23,6 +23,7 @@ export const en = {
   'reader.back': 'Back a sentence',
   'reader.ahead': 'Next sentence',
   'reader.speed': 'Reading speed',
+  'reader.normal': 'Normal',
   'reader.position': 'Where the reading is',
   'level.decoy': 'In the story, but not hidden here',
   'level.board': 'Letters',

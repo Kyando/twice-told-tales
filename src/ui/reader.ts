@@ -16,19 +16,58 @@ export interface ReaderOptions {
   narrator: Narrator | null;
 }
 
-/** Reading speeds to step through, for learners: normal, then slower. */
-const RATES = [1, 0.85, 0.7];
+/** Reading speeds to pick from: YouTube's, slower ones for learners and faster ones for a reread. */
+const RATES = [0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2];
 /** After the reader scrolls by hand, the page stops following the voice for this long (ms). */
 const HANDS_OFF_MS = 3000;
+
+/** Dragged down this far (px) by its top, the sheet closes; less, and it springs back. */
+const DRAG_CLOSE_PX = 90;
+
+/**
+ * On phones the reader is a sheet: dragging its top bar down pulls it with the finger, and letting
+ * go far enough down closes it, as sheets do. (On wide screens it's a card; the drag works the same.)
+ */
+function dragToClose(dialog: HTMLDialogElement, handle: HTMLElement): void {
+  let start: { id: number; y: number } | null = null;
+  let dy = 0;
+  handle.style.touchAction = 'none';
+  handle.addEventListener('pointerdown', (e) => {
+    if ((e.target as Element).closest('button')) return;
+    start = { id: e.pointerId, y: e.clientY };
+    dy = 0;
+    handle.setPointerCapture(e.pointerId);
+    dialog.style.transition = 'none';
+  });
+  handle.addEventListener('pointermove', (e) => {
+    if (!start || e.pointerId !== start.id) return;
+    dy = Math.max(0, e.clientY - start.y);
+    dialog.style.transform = `translateY(${dy}px)`;
+  });
+  const end = (e: PointerEvent) => {
+    if (!start || e.pointerId !== start.id) return;
+    start = null;
+    dialog.style.transition = 'transform 0.22s ease-out';
+    if (dy > DRAG_CLOSE_PX) {
+      dialog.style.transform = 'translateY(100%)';
+      window.setTimeout(() => dialog.close(), 200);
+    } else {
+      dialog.style.transform = '';
+    }
+  };
+  handle.addEventListener('pointerup', end);
+  handle.addEventListener('pointercancel', end);
+}
 
 const clock = (s: number) => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, '0')}`;
 
 /**
- * The scene, full screen, to read on its own: one sentence per line, large. With narration it reads
+ * The scene in a panel over the game (dimmed behind it; tapping outside closes it), to read on its
+ * own: one sentence per line, large. With narration it reads
  * along like sung lyrics: the line being read stands out, the others fade back, and within it each
  * word darkens as it's spoken, the one being said in the accent colour. The page keeps the line being
  * read in view. Tapping any word goes back (or ahead) to it; the controls pause, step a sentence
- * back or forward, and slow the voice down.
+ * back or forward, and pick the voice's speed.
  */
 export function openReader(o: ReaderOptions): void {
   const dom = buildPassage(o.parts, 'reader-line');
@@ -43,6 +82,7 @@ export function openReader(o: ReaderOptions): void {
     h('button', { type: 'button', class: 'icon-btn reader-close', 'aria-label': t('modal.close'), title: t('modal.close'), onclick: () => dialog.close() }, svg(ICONS.close)),
   );
   dialog.append(head, scroller);
+  dragToClose(dialog, head);
 
   const n = o.narrator;
   let unfollow = () => {};
@@ -66,11 +106,55 @@ export function openReader(o: ReaderOptions): void {
     const bar = h('input', { type: 'range', class: 'reader-bar', min: '0', step: '0.01', value: '0', 'aria-label': t('reader.position') }) as HTMLInputElement;
     bar.max = String(n.duration);
     bar.addEventListener('input', () => n.seek(Number(bar.value)));
-    const speed = h('button', { type: 'button', class: 'reader-speed', 'aria-label': t('reader.speed'), title: t('reader.speed') }, `${n.rate}×`);
-    speed.addEventListener('click', () => {
-      n.rate = RATES[(RATES.indexOf(n.rate) + 1) % RATES.length] ?? 1;
-      speed.textContent = `${n.rate}×`;
+    // The speed: a button showing it, which opens the list of speeds to pick from (as on YouTube).
+    const rateLabel = (rate: number) => (rate === 1 ? t('reader.normal') : `${rate}×`);
+    const speed = h('button', { type: 'button', class: 'reader-speed', 'aria-haspopup': 'menu', 'aria-expanded': 'false', title: t('reader.speed') }, `${n.rate}×`);
+    const rates = h('div', { class: 'reader-rates', role: 'menu', 'aria-label': t('reader.speed') });
+    rates.hidden = true;
+    const showRates = (open: boolean) => {
+      rates.hidden = !open;
+      speed.setAttribute('aria-expanded', String(open));
+      if (open) (rates.querySelector('[aria-checked="true"]') as HTMLElement | null)?.focus();
+    };
+    const fillRates = () =>
+      rates.replaceChildren(
+        ...RATES.map((rate) =>
+          h(
+            'button',
+            {
+              type: 'button',
+              role: 'menuitemradio',
+              'aria-checked': String(rate === n.rate),
+              class: 'reader-rate',
+              onclick: () => {
+                n.rate = rate;
+                speed.textContent = `${rate}×`;
+                fillRates();
+                showRates(false);
+                speed.focus();
+              },
+            },
+            svg(ICONS.check),
+            rateLabel(rate),
+          ),
+        ),
+      );
+    fillRates();
+    speed.addEventListener('click', (e) => {
+      e.stopPropagation();
+      showRates(!!rates.hidden);
     });
+    // Anywhere else closes the list; so does Escape, before it would close the reader.
+    dialog.addEventListener('click', (e) => {
+      if (!rates.hidden && !rates.contains(e.target as Node)) showRates(false);
+    });
+    dialog.addEventListener('cancel', (e) => {
+      if (rates.hidden) return;
+      e.preventDefault();
+      showRates(false);
+      speed.focus();
+    });
+    const speedBox = h('div', { class: 'reader-speed-box' }, speed, rates);
     const play = h('button', { type: 'button', class: 'reader-play' }, svg(ICONS.play));
     play.addEventListener('click', () => n.toggle());
     // A sentence back: to the start of this one, or, right at its start, to the one before.
@@ -97,7 +181,7 @@ export function openReader(o: ReaderOptions): void {
         'footer',
         { class: 'reader-controls' },
         h('div', { class: 'reader-track' }, now, bar, total),
-        h('div', { class: 'reader-buttons' }, speed, back, play, ahead, h('span', { class: 'reader-spacer' })),
+        h('div', { class: 'reader-buttons' }, speedBox, back, play, ahead, h('span', { class: 'reader-spacer' })),
       ),
     );
 
