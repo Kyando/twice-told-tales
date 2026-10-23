@@ -1,6 +1,6 @@
 import { BOOKS } from '../core/books.ts';
 import { adjacent, colOf, rowOf } from '../core/grid.ts';
-import { decoysOf, passageParts } from '../core/passage.ts';
+import { decoysOf, passageParts, SPOKEN_WORD } from '../core/passage.ts';
 import { HOLE_LETTER, insideWord, matchTrace, type Word } from '../core/puzzle.ts';
 import { steer } from '../core/steer.ts';
 import type { Clue } from '../game/save.ts';
@@ -17,6 +17,8 @@ import { confirmAction, openSheet, toast, type SheetItem } from './overlay.ts';
 import { INK_STAGGER_MS, inkDuration, PieceLayer } from './pieces.ts';
 import { pieceOutline } from './shape.ts';
 import type { Sfx } from './sfx.ts';
+import { NARRATION } from '../narration/index.ts';
+import { Narrator } from './narrator.ts';
 
 export interface LevelViewOptions {
   session: Session;
@@ -104,6 +106,8 @@ export class LevelView {
   private readonly passageBox: HTMLElement | null;
   /** The passage's words that aren't hidden: tracing one gets a gentle word, not a miss. */
   private readonly decoys: Set<string>;
+  /** The chapter's recorded reading, where it has one. */
+  private narrator: Narrator | null = null;
   private readonly resizeObserver: ResizeObserver;
   private trace: number[] = [];
   /** The drag in progress: the last finger position (in cells, see toCells) and the last step taken. */
@@ -147,16 +151,49 @@ export class LevelView {
     if (reading) {
       // The scene's passage, with nothing marked: the hidden words are somewhere in it, and each one
       // found is marked where it stands, a highlighter swept across it. A dot per hidden word below it.
+      // Every word is its own element (in passageTokens' order), so the narration can follow along.
       const index = new Map(p.words.map((w) => [w.text, w.index]));
-      const text = passageParts(story.text, BOOKS[def.book].names).map((part) => {
-        if (!part.word) return part.text;
-        const mark = h('span', { class: 'passage-word' }, part.text);
-        this.chips[index.get(part.word)!] = mark;
-        return mark;
+      const spoken: HTMLElement[] = [];
+      const text = passageParts(story.text, BOOKS[def.book].names).flatMap((part) => {
+        if (part.word) {
+          const mark = h('span', { class: 'passage-word' }, part.text);
+          this.chips[index.get(part.word)!] = mark;
+          spoken.push(mark);
+          return [mark];
+        }
+        const out: (string | HTMLElement)[] = [];
+        let last = 0;
+        for (const m of part.text.matchAll(SPOKEN_WORD)) {
+          if (m.index > last) out.push(part.text.slice(last, m.index));
+          const word = h('span', {}, m[0]);
+          spoken.push(word);
+          out.push(word);
+          last = m.index + m[0].length;
+        }
+        if (last < part.text.length) out.push(part.text.slice(last));
+        return out;
       });
       this.arrivals = [];
       this.passageBox = h('div', { class: 'passage-box' }, h('p', { class: 'passage', 'aria-label': t('level.passage') }, ...text));
-      this.panel = h('section', { class: 'story-panel story-panel--passage' }, this.passageBox, this.dots);
+      // Chapters with a recorded reading get a button to listen, beside the dots.
+      const narration = NARRATION[def.id];
+      let listen: HTMLButtonElement | '' = '';
+      if (narration && narration.words.length === spoken.length) {
+        const button = h(
+          'button',
+          { type: 'button', class: 'listen-btn', 'aria-label': t('level.listen'), title: t('level.listen'), onclick: () => this.narrator?.toggle() },
+          svg(ICONS.listen),
+        );
+        this.narrator = new Narrator(narration, spoken, (playing) => {
+          button.replaceChildren(svg(playing ? ICONS.pause : ICONS.listen));
+          button.classList.toggle('is-playing', playing);
+          const label = t(playing ? 'level.pause' : 'level.listen');
+          button.setAttribute('aria-label', label);
+          button.title = label;
+        });
+        listen = button;
+      }
+      this.panel = h('section', { class: 'story-panel story-panel--passage' }, this.passageBox, h('div', { class: 'passage-foot' }, this.dots, listen));
       this.decoys = new Set(decoysOf(story.text, p.words.map((w) => w.text)));
     } else {
       // The word list, as first made: the words to find, alphabetical so it doesn't spoil the
@@ -332,6 +369,7 @@ export class LevelView {
 
   destroy(): void {
     this.destroyed = true;
+    this.narrator?.destroy();
     this.resizeObserver.disconnect();
     this.pieces.destroy();
     this.desk?.destroy();

@@ -2,7 +2,8 @@ import { describe, expect, it } from 'vitest';
 import { BOOKS, unintroducedNames } from '../src/core/books.ts';
 import { generateLevel } from '../src/core/generate.ts';
 import { findPaths, isPath, turns } from '../src/core/grid.ts';
-import { decoysOf, passageParts } from '../src/core/passage.ts';
+import { existsSync } from 'node:fs';
+import { decoysOf, passageParts, passageTokens } from '../src/core/passage.ts';
 import { blanksOf, buildPuzzle, insideWord, matchTrace, validateLevel } from '../src/core/puzzle.ts';
 import type { LevelDef } from '../src/core/types.ts';
 import { Session } from '../src/game/session.ts';
@@ -273,5 +274,27 @@ describe('the passage as the clue', () => {
     expect(validateLevel(def)).toEqual([]);
     const goat = { ...def, story: { ...def.story, text: 'The {CATS} and {DOGS} met a goat.' } };
     expect(validateLevel(goat)).toEqual(['GOAT, from the passage but not hidden, can be traced on the board']);
+  });
+});
+
+describe('narration', () => {
+  const narrations = import.meta.glob<{ audio: string; words: ([number, number] | null)[] }>('../src/narration/*.json', { eager: true, import: 'default' });
+
+  it('times every word of its chapter’s passage, in order, with its recording beside it', () => {
+    for (const [path, narration] of Object.entries(narrations)) {
+      const id = path.split('/').pop()!.replace('.json', '');
+      const def = levels.find((l) => l.id === id);
+      expect(def, id).toBeDefined();
+      const words = passageTokens(passageParts(def!.story.text, BOOKS[def!.book].names));
+      expect(narration.words.length, id).toBe(words.length);
+      let last = 0;
+      for (const span of narration.words) {
+        if (!span) continue;
+        expect(span[0], id).toBeGreaterThanOrEqual(last - 0.001);
+        expect(span[1], id).toBeGreaterThanOrEqual(span[0]);
+        last = span[0];
+      }
+      expect(existsSync(new URL(`../public/${narration.audio}`, import.meta.url)), id).toBe(true);
+    }
   });
 });

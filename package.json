@@ -16,7 +16,8 @@
     "app:sync": "npm run build && cap sync",
     "app:android": "npm run app:sync && cap open android",
     "app:grid": "node scripts/icon-grid.ts",
-    "levels:check": "node scripts/check-specs.ts"
+    "levels:check": "node scripts/check-specs.ts",
+    "narrate": "node scripts/narrate.ts"
   },
   "devDependencies": {
     "@capacitor/cli": "^8.5.3",

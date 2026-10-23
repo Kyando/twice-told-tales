@@ -5,3 +5,4 @@ dist
 .tmp
 app-builds
 store/icon-candidates
+.venv-tts

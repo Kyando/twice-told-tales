@@ -15,6 +15,8 @@ export const en = {
   'level.menu': 'Chapter menu',
   'level.words': 'Find these words',
   'level.passage': 'The scene',
+  'level.listen': 'Listen to the scene',
+  'level.pause': 'Pause the reading',
   'level.decoy': 'In the story, but not hidden here',
   'level.board': 'Letters',
   'level.hint': 'Drag across the letters',

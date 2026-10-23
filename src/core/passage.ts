@@ -38,6 +38,21 @@ export function passageParts(text: string, names: readonly string[]): PassagePar
   return parts;
 }
 
+/** A spoken word in running text: letters and digits, with an inner apostrophe (don’t, Darcy’s). */
+export const SPOKEN_WORD = /[A-Za-z0-9]+(?:[’'][A-Za-z]+)*/g;
+
+/**
+ * The passage's words as read aloud, in order: each hidden word is one, and the plain text between
+ * them is split by SPOKEN_WORD. The narration's timings (src/narration) line up with this list, one
+ * [start, end] per word, so the game and the narration script must both split the passage this way.
+ */
+export function passageTokens(parts: readonly PassagePart[]): string[] {
+  return parts.flatMap((part) => (part.word ? [part.text] : [...part.text.matchAll(SPOKEN_WORD)].map((m) => m[0])));
+}
+
+/** The passage as shown, as one string: what the narrator reads. */
+export const passageText = (parts: readonly PassagePart[]): string => parts.map((p) => p.text).join('');
+
 /**
  * The passage's other words, the ones not hidden on the board: what a reader might look for and not
  * find. Upper case, without repeats.
