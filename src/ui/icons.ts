@@ -21,6 +21,7 @@ export const ICONS = {
   chapters: base('<rect x="4" y="4" width="6.5" height="7" rx="1.2"/><rect x="13.5" y="4" width="6.5" height="7" rx="1.2"/><rect x="4" y="14" width="6.5" height="6" rx="1.2"/><rect x="13.5" y="14" width="6.5" height="6" rx="1.2"/>'),
   list: base('<path d="M9 6.5h11"/><path d="M9 12h11"/><path d="M9 17.5h11"/><path d="M4.5 6.5h.01"/><path d="M4.5 12h.01"/><path d="M4.5 17.5h.01"/>'),
   listen: base('<path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path d="M15.5 9a4.5 4.5 0 0 1 0 6"/><path d="M18.5 6.5a8 8 0 0 1 0 11"/>'),
+  play: base('<path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/>'),
   pause: base('<path d="M9 6v12"/><path d="M15 6v12"/>'),
   info: base('<circle cx="12" cy="12" r="9"/><path d="M12 11v5.5"/><path d="M12 7.6h.01"/>'),
   lock: base('<rect x="5" y="10.5" width="14" height="9.5" rx="2"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/>'),

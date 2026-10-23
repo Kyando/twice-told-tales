@@ -47,7 +47,7 @@ window.addEventListener('popstate', () => {
 export const popHandled = (): boolean => handled;
 
 /** Shows a <dialog> as modal, with its own history entry; `onClose` runs once it's gone. */
-function present(dialog: HTMLDialogElement, onClose?: () => void): () => void {
+export function presentDialog(dialog: HTMLDialogElement, onClose?: () => void): () => void {
   const close = () => dialog.close();
   // Clicks on the backdrop land on the <dialog> itself.
   dialog.addEventListener('click', (e) => e.target === dialog && close());
@@ -91,7 +91,7 @@ export function openModal({ title, body, actions, className, onClose }: ModalOpt
       actions?.length ? h('div', { class: 'modal-actions' }, ...actions) : null,
     ),
   );
-  return { close: present(dialog, onClose) };
+  return { close: presentDialog(dialog, onClose) };
 }
 
 export interface SheetItem {
@@ -146,7 +146,7 @@ export function openSheet(title: string, items: SheetItem[]): { close(): void } 
     ),
   );
   // The item acts once the sheet (and its history entry) has gone, so what it opens stacks cleanly.
-  return { close: present(dialog, () => picked?.onSelect()) };
+  return { close: presentDialog(dialog, () => picked?.onSelect()) };
 }
 
 /** Asks before something that can't be undone; `onConfirm` runs once the dialog has gone. */

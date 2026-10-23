@@ -1,6 +1,6 @@
 import { BOOKS } from '../core/books.ts';
 import { adjacent, colOf, rowOf } from '../core/grid.ts';
-import { decoysOf, passageParts, SPOKEN_WORD } from '../core/passage.ts';
+import { decoysOf, passageParts } from '../core/passage.ts';
 import { HOLE_LETTER, insideWord, matchTrace, type Word } from '../core/puzzle.ts';
 import { steer } from '../core/steer.ts';
 import type { Clue } from '../game/save.ts';
@@ -18,7 +18,9 @@ import { INK_STAGGER_MS, inkDuration, PieceLayer } from './pieces.ts';
 import { pieceOutline } from './shape.ts';
 import type { Sfx } from './sfx.ts';
 import { NARRATION } from '../narration/index.ts';
-import { Narrator } from './narrator.ts';
+import { lightSpokenWord, Narrator } from './narrator.ts';
+import { buildPassage } from './passage-dom.ts';
+import { openReader } from './reader.ts';
 
 export interface LevelViewOptions {
   session: Session;
@@ -152,47 +154,53 @@ export class LevelView {
       // The scene's passage, with nothing marked: the hidden words are somewhere in it, and each one
       // found is marked where it stands, a highlighter swept across it. A dot per hidden word below it.
       // Every word is its own element (in passageTokens' order), so the narration can follow along.
-      const index = new Map(p.words.map((w) => [w.text, w.index]));
-      const spoken: HTMLElement[] = [];
-      const text = passageParts(story.text, BOOKS[def.book].names).flatMap((part) => {
-        if (part.word) {
-          const mark = h('span', { class: 'passage-word' }, part.text);
-          this.chips[index.get(part.word)!] = mark;
-          spoken.push(mark);
-          return [mark];
-        }
-        const out: (string | HTMLElement)[] = [];
-        let last = 0;
-        for (const m of part.text.matchAll(SPOKEN_WORD)) {
-          if (m.index > last) out.push(part.text.slice(last, m.index));
-          const word = h('span', {}, m[0]);
-          spoken.push(word);
-          out.push(word);
-          last = m.index + m[0].length;
-        }
-        if (last < part.text.length) out.push(part.text.slice(last));
-        return out;
-      });
+      const parts = passageParts(story.text, BOOKS[def.book].names);
+      const dom = buildPassage(parts, 'passage-sentence');
+      dom.hidden.forEach((mark, word) => (this.chips[p.words.find((w) => w.text === word)!.index] = mark));
       this.arrivals = [];
-      this.passageBox = h('div', { class: 'passage-box' }, h('p', { class: 'passage', 'aria-label': t('level.passage') }, ...text));
+      this.passageBox = h('div', { class: 'passage-box' }, h('p', { class: 'passage', 'aria-label': t('level.passage') }, ...dom.sentences));
       // Chapters with a recorded reading get a button to listen, beside the dots.
       const narration = NARRATION[def.id];
       let listen: HTMLButtonElement | '' = '';
-      if (narration && narration.words.length === spoken.length) {
+      if (narration && narration.words.length === dom.words.length) {
+        const narrator = (this.narrator = new Narrator(narration));
         const button = h(
           'button',
-          { type: 'button', class: 'listen-btn', 'aria-label': t('level.listen'), title: t('level.listen'), onclick: () => this.narrator?.toggle() },
+          { type: 'button', class: 'listen-btn', 'aria-label': t('level.listen'), title: t('level.listen'), onclick: () => narrator.toggle() },
           svg(ICONS.listen),
         );
-        this.narrator = new Narrator(narration, spoken, (playing) => {
+        let shown: boolean | null = null;
+        narrator.follow(({ playing }) => {
+          if (playing === shown) return;
+          shown = playing;
           button.replaceChildren(svg(playing ? ICONS.pause : ICONS.listen));
           button.classList.toggle('is-playing', playing);
           const label = t(playing ? 'level.pause' : 'level.listen');
           button.setAttribute('aria-label', label);
           button.title = label;
         });
+        lightSpokenWord(narrator, dom.words);
         listen = button;
       }
+      // Tapping the passage opens it full screen, to read (and listen) on its own.
+      this.passageBox.addEventListener('click', () =>
+        openReader({
+          eyebrow: t('level.eyebrow', { chapter: roman(def.chapter) }),
+          title: def.title,
+          parts,
+          found: new Set(p.words.filter((w) => this.s.isFound(w.index)).map((w) => w.text)),
+          narrator: this.narrator,
+        }),
+      );
+      this.passageBox.setAttribute('role', 'button');
+      this.passageBox.setAttribute('tabindex', '0');
+      this.passageBox.setAttribute('aria-label', t('level.readFull'));
+      this.passageBox.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          this.passageBox!.click();
+        }
+      });
       this.panel = h('section', { class: 'story-panel story-panel--passage' }, this.passageBox, h('div', { class: 'passage-foot' }, this.dots, listen));
       this.decoys = new Set(decoysOf(story.text, p.words.map((w) => w.text)));
     } else {

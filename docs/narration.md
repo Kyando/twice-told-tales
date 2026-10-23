@@ -1,6 +1,6 @@
 # Narration
 
-Each chapter's passage can be read aloud in the game. The **Listen** button sits under the passage, and the word being spoken lights up as it's read.
+Each chapter's passage can be read aloud in the game. The **Listen** button sits under the passage, and the word being spoken lights up as it's read. Tapping the passage opens the **reader**: the scene full screen, one sentence per line, read along word by word like song lyrics. Any word can be tapped to read from there, and the voice can be slowed to 0.85× or 0.7×.
 
 The recordings are made with [Kokoro](https://huggingface.co/hexgrad/Kokoro-82M). It is an open text-to-speech model under the Apache 2.0 licence, so it's free to use in a commercial game, and it runs on this computer with no account or API key. It reports when each word is spoken, which is what lets the game light words up in time.
 
@@ -37,16 +37,16 @@ npm run narrate -- 1 2 3 4 5
 ```
 
 Options:
-- `--voice <name>`: the default is `bf_emma`, a British woman.
+- `--voice <name>`: the default is `af_heart`, an American woman, chosen as the one narrator for every book for her unhurried pacing.
 - `--speed <n>`: the default is `0.95`, a little slower than normal, which helps learners.
 
 Voices that suit the books:
 
 | Voice | Who |
 |---|---|
-| `bf_emma` | British woman (default) |
-| `bf_isabella` | British woman, lighter |
+| `af_heart` | American woman, Kokoro's highest-rated voice (default) |
+| `bf_emma` | British woman |
+| `bf_isabella` | British woman, lighter; liked for its tone |
 | `bm_george` | British man |
-| `af_heart` | American woman, Kokoro's highest-rated voice |
 
 Voices starting with `b` read with British pronunciation, and those starting with `a` with American.

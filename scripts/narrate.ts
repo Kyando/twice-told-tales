@@ -27,8 +27,8 @@ const option = (name: string, fallback: string) => {
   const at = args.indexOf(`--${name}`);
   return at >= 0 ? args.splice(at, 2)[1] : fallback;
 };
-/** A warm British reader for the Regency books; Kokoro's other voices are listed in docs/narration.md. */
-const voice = option('voice', 'bf_emma');
+/** One narrator for every book: Kokoro's American af_heart, whose unhurried pacing suits reading along. Other voices: docs/narration.md. */
+const voice = option('voice', 'af_heart');
 const speed = Number(option('speed', '0.95'));
 const only = new Set(args.map(Number).filter(Boolean));
 if (!only.size) {

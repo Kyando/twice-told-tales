@@ -2307,3 +2307,259 @@ button {
     animation: none !important;
   }
 }
+
+/* ── The reader ───────────────────────────────────────────────────────────
+   The scene full screen, opened by tapping the passage: one sentence per line, large, on the
+   page's paper. With narration it reads along like sung lyrics: the line being read stands out and
+   the rest fade back; within it, the words said so far are in ink, the one being said in the
+   accent, and those still to come in pencil. Any word can be tapped to read from there. */
+
+.passage-box {
+  cursor: zoom-in;
+  border-radius: 8px;
+}
+
+.passage-box:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 4px;
+}
+
+.reader {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.reader[open] {
+  display: flex;
+  flex-direction: column;
+  animation: reader-in 0.28s ease-out;
+}
+
+.reader::backdrop {
+  background: var(--paper);
+}
+
+@keyframes reader-in {
+  from { opacity: 0; transform: translateY(14px); }
+}
+
+.reader-head {
+  flex: none;
+  display: grid;
+  grid-template-columns: 44px 1fr 44px;
+  align-items: center;
+  gap: 8px;
+  padding: calc(8px + var(--inset-top, 0px)) max(12px, var(--inset-right, 0px)) 6px max(12px, var(--inset-left, 0px));
+}
+
+.reader-title {
+  grid-column: 2;
+  text-align: center;
+  min-width: 0;
+}
+
+.reader-title h2 {
+  margin: 2px 0 0;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(17px, 4.6vw, 22px);
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+.reader-close {
+  grid-column: 3;
+  color: var(--ink);
+}
+
+.reader-close svg {
+  width: 22px;
+  height: 22px;
+}
+
+.reader-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: none;
+  mask-image: linear-gradient(transparent, #000 32px, #000 calc(100% - 48px), transparent);
+}
+
+.reader-text {
+  max-width: 30ch;
+  margin-inline: auto;
+  padding: 6vh max(22px, var(--inset-right, 0px)) 42vh max(22px, var(--inset-left, 0px));
+  font-family: 'EB Garamond', Georgia, serif;
+  font-weight: 500;
+  font-size: clamp(24px, 6.6vw, 36px);
+  line-height: 1.38;
+  text-wrap: pretty;
+}
+
+/* Each sentence a line of its own, as lyrics are. */
+.reader-line {
+  display: block;
+  margin-bottom: 0.7em;
+  transition: opacity 0.45s;
+}
+
+.reader .passage-word.is-found {
+  background-size: 100% 64%;
+}
+
+.reader.has-voice .reader-line span {
+  cursor: pointer;
+  transition: color 0.15s;
+}
+
+.reader.is-following .reader-line {
+  opacity: 0.32;
+}
+
+.reader.is-following .reader-line.is-current {
+  opacity: 1;
+}
+
+.reader.is-following .reader-line.is-current span {
+  color: var(--ink-soft);
+}
+
+.reader.is-following .reader-line span.is-read {
+  color: var(--ink);
+}
+
+.reader.is-following .reader-line span.is-now {
+  color: var(--accent);
+}
+
+@media (hover: hover) {
+  .reader.has-voice .reader-line span:hover {
+    text-decoration: underline 1.5px color-mix(in srgb, var(--accent) 60%, transparent);
+    text-underline-offset: 0.18em;
+  }
+
+  .reader.is-following .reader-line:hover {
+    opacity: 0.75;
+  }
+
+  .reader.is-following .reader-line.is-current:hover {
+    opacity: 1;
+  }
+}
+
+/* The controls, at the thumb: where the reading is, then pause and steps. */
+.reader-controls {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  max-width: 560px;
+  margin-inline: auto;
+  padding: 8px max(18px, var(--inset-right, 0px)) calc(14px + var(--inset-bottom, 0px)) max(18px, var(--inset-left, 0px));
+}
+
+.reader-track {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.reader-time {
+  flex: none;
+  min-width: 3.2em;
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--ink-soft);
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+}
+
+.reader-bar {
+  flex: 1;
+  min-width: 0;
+  accent-color: var(--accent);
+}
+
+.reader-buttons {
+  display: grid;
+  grid-template-columns: 1fr auto auto auto 1fr;
+  align-items: center;
+  gap: 14px;
+}
+
+.reader-speed {
+  justify-self: start;
+  min-width: 52px;
+  height: 36px;
+  padding: 0 10px;
+  border: 2px solid var(--stroke);
+  border-radius: 12px;
+  background: var(--panel);
+  box-shadow: 0 2px 0 var(--stroke);
+  color: var(--ink);
+  font: 800 14px var(--font-body);
+  font-variant-numeric: tabular-nums;
+  cursor: pointer;
+}
+
+.reader-step {
+  color: var(--ink);
+}
+
+.reader-step svg {
+  width: 24px;
+  height: 24px;
+}
+
+.reader-play {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  padding: 0;
+  border: 3px solid var(--stroke);
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 4px 0 var(--stroke);
+  color: var(--accent-ink);
+  cursor: pointer;
+}
+
+.reader-play svg {
+  width: 28px;
+  height: 28px;
+}
+
+.reader-play:active,
+.reader-speed:active {
+  translate: 0 2px;
+  box-shadow: 0 1px 0 var(--stroke);
+}
+
+.reader-play:focus-visible,
+.reader-speed:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reader[open] {
+    animation: none;
+  }
+
+  .reader-line,
+  .reader-line span {
+    transition: none;
+  }
+}
