@@ -18,6 +18,8 @@
   --accent: #e0704a;
   --accent-ink: #fff8ef;
   --select: #ffd36b;
+  /* The highlighter that marks found words in the passage: a warm yellow, see-through like real ink. */
+  --marker: rgb(255 199 64 / 0.55);
   --hover: #fff0cf;
   --ok: #5c9a57;
   --danger: #cf5140;
@@ -811,36 +813,20 @@ button {
 }
 
 /*
- * A hidden word, unmarked until found; then a pen draws a loose loop around it, in one stroke. The
- * loop sits over the text, so nothing around it moves, and the word stays inline, so punctuation
- * after it never breaks onto a line of its own.
+ * A hidden word, unmarked until found; then a highlighter sweeps across it, left to right. The mark
+ * covers the word's own box and nothing more, so the words beside it keep their space, and the word
+ * stays inline, so punctuation after it never breaks onto a line of its own.
  */
 .passage-word {
-  position: relative;
+  background: linear-gradient(var(--marker), var(--marker)) no-repeat 0 78% / 0% 64%;
+  border-radius: 2px;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  transition: background-size 0.45s cubic-bezier(0.45, 0, 0.3, 1);
 }
 
-.passage-word svg {
-  position: absolute;
-  left: -0.32em;
-  top: -0.12em;
-  width: calc(100% + 0.64em);
-  height: calc(100% + 0.28em);
-  overflow: visible;
-  pointer-events: none;
-}
-
-.passage-word path {
-  fill: none;
-  stroke: var(--accent);
-  stroke-width: 1.6;
-  stroke-linecap: round;
-  stroke-dasharray: 1;
-  stroke-dashoffset: 1;
-}
-
-.passage-word.is-found path {
-  stroke-dashoffset: 0;
-  transition: stroke-dashoffset 0.55s cubic-bezier(0.45, 0, 0.3, 1);
+.passage-word.is-found {
+  background-size: 100% 64%;
 }
 
 /* The dots under the passage: one per hidden word, filled as they're found. */

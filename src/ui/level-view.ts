@@ -62,23 +62,6 @@ const COMFORT_CELL = 44;
 /** The passage unfolds: when it starts (ms) and how long it takes to open. */
 const SHEET_START = 160;
 const SHEET_MS = 650;
-
-/**
- * A loose loop of ink, drawn around a hidden word once found (see .passage-word in the styles):
- * one stroke, so the pen can trace it.
- */
-function penLoop(): SVGSVGElement {
-  const loop = document.createElementNS(SVG_NS, 'svg');
-  loop.setAttribute('viewBox', '0 0 100 40');
-  loop.setAttribute('preserveAspectRatio', 'none');
-  loop.setAttribute('aria-hidden', 'true');
-  const path = document.createElementNS(SVG_NS, 'path');
-  path.setAttribute('pathLength', '1');
-  path.setAttribute('vector-effect', 'non-scaling-stroke');
-  path.setAttribute('d', 'M58 3C30 1 4 7 3 20s25 18 50 17 45-6 44-18S70 2 40 5');
-  loop.append(path);
-  return loop;
-}
 const DIAG_STEP = 110;
 const CARD_JITTER = 60;
 const CARD_FLIGHT = 600;
@@ -163,11 +146,11 @@ export class LevelView {
 
     if (reading) {
       // The scene's passage, with nothing marked: the hidden words are somewhere in it, and each one
-      // found is circled where it stands, the pen drawing a loose loop. A dot per hidden word below it.
+      // found is marked where it stands, a highlighter swept across it. A dot per hidden word below it.
       const index = new Map(p.words.map((w) => [w.text, w.index]));
       const text = passageParts(story.text, BOOKS[def.book].names).map((part) => {
         if (!part.word) return part.text;
-        const mark = h('span', { class: 'passage-word' }, part.text, penLoop());
+        const mark = h('span', { class: 'passage-word' }, part.text);
         this.chips[index.get(part.word)!] = mark;
         return mark;
       });
