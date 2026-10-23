@@ -6,53 +6,53 @@
   "rows": 6,
   "cols": 7,
   "grid": [
-    "TREEPAR",
-    "EAFRDET",
-    "HYRLGAN",
-    "MARRNIE",
-    "MOIIGLD",
-    "ERDOLOG"
+    "EELRILO",
+    "GRFGGID",
+    "OLNAHEA",
+    "EDEINDR",
+    "RYRMTET",
+    "OMRARAP"
   ],
   "words": [
     {
       "text": "GIRL",
-      "path": [32, 31, 24, 17]
+      "path": [11, 4, 3, 2]
     },
     {
       "text": "MARRY",
-      "path": [21, 22, 23, 16, 15]
+      "path": [31, 38, 37, 30, 29]
     },
     {
       "text": "IDOL",
-      "path": [30, 37, 38, 39]
+      "path": [12, 13, 6, 5]
     },
     {
       "text": "GOLDEN",
-      "path": [41, 40, 33, 34, 27, 20]
+      "path": [7, 14, 15, 22, 23, 16]
     },
     {
       "text": "GAIN",
-      "path": [18, 19, 26, 25]
+      "path": [10, 17, 24, 25]
     },
     {
       "text": "FREE",
-      "path": [9, 10, 3, 2]
+      "path": [9, 8, 1, 0]
     },
     {
       "text": "HEART",
-      "path": [14, 7, 8, 1, 0]
+      "path": [18, 19, 20, 27, 34]
     },
     {
       "text": "PARTED",
-      "path": [4, 5, 6, 13, 12, 11]
+      "path": [41, 40, 39, 32, 33, 26]
     },
     {
       "text": "MORE",
-      "path": [28, 29, 36, 35]
+      "path": [36, 35, 28, 21]
     }
   ],
   "story": {
-    "text": "Then the spirit shows him a fair young {GIRL} named Belle, whom he once meant to {MARRY}. “Another {IDOL} has displaced me,” she tells him: a {GOLDEN} one. His love of {GAIN} has mastered him. So she sets him {FREE}, with a full {HEART}, and they {PARTED}. “Spirit!” Scrooge cries. “Show me no {MORE}!”",
+    "text": "Then the spirit shows him a fair young {GIRL} named Belle, whom he once meant to {MARRY}. “Another {IDOL} has displaced me,” she tells him: a {GOLDEN} one. His love of {GAIN} has mastered him. So she sets him {FREE}, with a full {HEART}, and so they are {PARTED}. “Spirit!” Scrooge cries. “Show me no {MORE}!”",
     "image": "art/rackham-1915/017-she-left-him-and-they-parted.jpg",
     "caption": "She left him, and they parted",
     "credit": "Arthur Rackham, 1915"

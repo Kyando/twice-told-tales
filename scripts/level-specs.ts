@@ -221,7 +221,7 @@ const PRIDE: LevelSpec[] = [
     rows: 8,
     cols: 6,
     story: {
-      text: 'The morning after the ball, Mr. Collins asks for a private word with Elizabeth. He lists his {REASONS} for marrying: it is right for a {CLERGYMAN}, it will add to his {HAPPINESS}, and Lady Catherine {WANTS} it. Only then does he speak of {LOVE}. Elizabeth {REFUSES} him, but he takes it for {MODESTY}.',
+      text: 'The morning after the ball, Mr. Collins asks for a private word with Elizabeth. He lists his {REASONS} for marrying: it is right for a {CLERGYMAN}, it will add to his {HAPPINESS}, and Lady Catherine {URGES} it. Only then does he speak of {LOVE}. Elizabeth {REFUSES} him, but he takes it for {MODESTY}.',
       // Black and white, as first made: art('thomson-1894/ch19-i_161_a.jpg'), credit THOMSON, crop [0, 0, 1, 0.92].
       image: art('brock-1895/pride-and-prejudice-ch-19.jpg'),
       caption: 'Almost as soon as I entered the house, I singled you out as the companion of my future life',
@@ -466,7 +466,7 @@ const PRIDE: LevelSpec[] = [
     rows: 7,
     cols: 8,
     story: {
-      text: 'The very next day, Darcy brings {GEORGIANA} to the {INN} at Lambton. Elizabeth expected a proud girl, and finds her only {SHY}. Bingley comes too, and asks {WISTFULLY} after Jane. Darcy works {HARD} to be {AGREEABLE} to Mr. and Mrs. {GARDINER}, and that night Elizabeth lies awake, {TRYING} to understand her own {HEART}.',
+      text: 'The very next day, Darcy brings {GEORGIANA} to the {INN} at Lambton. Elizabeth expected a proud girl, and finds her only {SHY}. Bingley comes too, and asks {WISTFULLY} after Jane. Darcy takes great {PAINS} to be {AGREEABLE} to Mr. and Mrs. {GARDINER}, and that night Elizabeth lies {AWAKE}, trying to understand her own {HEART}.',
       image: art('thomson-1894/ch44-i_350.jpg'),
       caption: 'To make herself agreeable to all',
       credit: THOMSON,
@@ -912,7 +912,7 @@ const CAROL: LevelSpec[] = [
     rows: 6,
     cols: 7,
     story: {
-      text: 'Then the spirit shows him a fair young {GIRL} named Belle, whom he once meant to {MARRY}. “Another {IDOL} has displaced me,” she tells him: a {GOLDEN} one. His love of {GAIN} has mastered him. So she sets him {FREE}, with a full {HEART}, and they {PARTED}. “Spirit!” Scrooge cries. “Show me no {MORE}!”',
+      text: 'Then the spirit shows him a fair young {GIRL} named Belle, whom he once meant to {MARRY}. “Another {IDOL} has displaced me,” she tells him: a {GOLDEN} one. His love of {GAIN} has mastered him. So she sets him {FREE}, with a full {HEART}, and so they are {PARTED}. “Spirit!” Scrooge cries. “Show me no {MORE}!”',
       image: rackham('017-she-left-him-and-they-parted'),
       caption: 'She left him, and they parted',
       credit: RACKHAM,

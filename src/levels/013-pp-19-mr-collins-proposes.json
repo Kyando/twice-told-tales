@@ -6,47 +6,47 @@
   "rows": 8,
   "cols": 6,
   "grid": [
-    "STREEV",
-    "ANSALO",
-    "WNONSH",
-    "MAIPPA",
-    "YCNEYT",
-    "GLRSSS",
-    "REEFME",
-    "SESUOD"
+    "RUSENA",
+    "EFSSUM",
+    "NESGRY",
+    "IPPESG",
+    "LEAHER",
+    "OVSCLM",
+    "EANTYO",
+    "RSOSED"
   ],
   "words": [
     {
       "text": "REASONS",
-      "path": [2, 3, 9, 8, 14, 15, 16]
+      "path": [42, 36, 37, 43, 44, 38, 32]
     },
     {
       "text": "CLERGYMAN",
-      "path": [25, 31, 37, 36, 30, 24, 18, 19, 13]
+      "path": [33, 34, 28, 29, 23, 17, 11, 5, 4]
     },
     {
       "text": "HAPPINESS",
-      "path": [17, 23, 22, 21, 20, 26, 27, 33, 34]
+      "path": [27, 26, 20, 19, 18, 12, 13, 14, 8]
     },
     {
-      "text": "WANTS",
-      "path": [12, 6, 7, 1, 0]
+      "text": "URGES",
+      "path": [10, 16, 15, 21, 22]
     },
     {
       "text": "LOVE",
-      "path": [10, 11, 5, 4]
+      "path": [24, 30, 31, 25]
     },
     {
       "text": "REFUSES",
-      "path": [32, 38, 39, 45, 44, 43, 42]
+      "path": [0, 6, 7, 1, 2, 3, 9]
     },
     {
       "text": "MODESTY",
-      "path": [40, 46, 47, 41, 35, 29, 28]
+      "path": [35, 41, 47, 46, 45, 39, 40]
     }
   ],
   "story": {
-    "text": "The morning after the ball, Mr. Collins asks for a private word with Elizabeth. He lists his {REASONS} for marrying: it is right for a {CLERGYMAN}, it will add to his {HAPPINESS}, and Lady Catherine {WANTS} it. Only then does he speak of {LOVE}. Elizabeth {REFUSES} him, but he takes it for {MODESTY}.",
+    "text": "The morning after the ball, Mr. Collins asks for a private word with Elizabeth. He lists his {REASONS} for marrying: it is right for a {CLERGYMAN}, it will add to his {HAPPINESS}, and Lady Catherine {URGES} it. Only then does he speak of {LOVE}. Elizabeth {REFUSES} him, but he takes it for {MODESTY}.",
     "image": "art/brock-1895/pride-and-prejudice-ch-19.jpg",
     "caption": "Almost as soon as I entered the house, I singled you out as the companion of my future life",
     "credit": "C. E. Brock, 1895 (coloured 1907)",

@@ -10,6 +10,7 @@ import { Session } from '../src/game/session.ts';
 import { emptyProgress } from '../src/game/save.ts';
 import { en } from '../src/i18n/en.ts';
 import { SPECS } from '../scripts/level-specs.ts';
+import { fillGaps } from '../scripts/narration-gaps.ts';
 import { pieceOutline } from '../src/ui/shape.ts';
 import { steer, type SteerState } from '../src/core/steer.ts';
 
@@ -298,6 +299,7 @@ describe('narration', () => {
       expect(narration.words.length, id).toBe(words.length);
       let last = 0;
       for (const span of narration.words) {
+        expect(span, id).not.toBeNull();
         if (!span) continue;
         expect(span[0], id).toBeGreaterThanOrEqual(last - 0.001);
         expect(span[1], id).toBeGreaterThanOrEqual(span[0]);
@@ -305,6 +307,15 @@ describe('narration', () => {
       }
       expect(existsSync(new URL(`../public/${narration.audio}`, import.meta.url)), id).toBe(true);
     }
+  });
+
+  it('times words the narrator ran together from the words around them, by their letters', () => {
+    // "aged twenty-seven years": Kokoro times twenty-seven as one word.
+    expect(fillGaps(['aged', 'twenty', 'seven', 'years'], [[0, 1], null, null, [4, 5]])).toEqual([[0, 1], [1, 2.636], [2.636, 4], [4, 5]]);
+    // At the end of the passage, the recording's end stands in for the next word.
+    expect(fillGaps(['the', 'Dove', 'cote'], [[0, 1], null, null], 3.15)).toEqual([[0, 1], [1, 2], [2, 3]]);
+    // At the very start there is nothing to measure from.
+    expect(fillGaps(['twenty', 'one'], [null, [1, 2]])).toEqual([null, [1, 2]]);
   });
 });
 

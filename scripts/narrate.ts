@@ -16,6 +16,7 @@ import { join } from 'node:path';
 import { BOOKS } from '../src/core/books.ts';
 import { passageParts, passageText, passageTokens } from '../src/core/passage.ts';
 import type { LevelDef } from '../src/core/types.ts';
+import { fillGaps } from './narration-gaps.ts';
 
 const root = join(import.meta.dirname, '..');
 const levelsDir = join(root, 'src', 'levels');
@@ -60,7 +61,9 @@ for (const { id, words } of chapters) {
   // Mono, 48 kbps: a spoken passage needs no more, and it keeps each chapter near 100 KB.
   const enc = spawnSync('ffmpeg', ['-y', '-loglevel', 'error', '-i', join(work, `${id}.wav`), '-ac', '1', '-codec:a', 'libmp3lame', '-b:a', '48k', mp3], { stdio: 'inherit' });
   if (enc.status !== 0) process.exit(enc.status ?? 1);
-  const times = JSON.parse(readFileSync(join(work, `${id}.json`), 'utf8')) as ([number, number] | null)[];
+  // The few words the narrator read as one with the next (twenty-seven), timed from the words around them.
+  const probe = spawnSync('ffprobe', ['-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', mp3], { encoding: 'utf8' });
+  const times = fillGaps(words, JSON.parse(readFileSync(join(work, `${id}.json`), 'utf8')), Number(probe.stdout) || undefined);
   writeFileSync(join(timingsDir, voice, `${id}.json`), `${JSON.stringify({ voice, speed, audio: `audio/${voice}/${id}.mp3`, words: times })}\n`);
   console.log(`✓ ${id}: ${words.length} words → public/audio/${voice}/${id}.mp3`);
 }

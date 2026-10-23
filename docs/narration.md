@@ -16,7 +16,9 @@ The recordings are made with [Kokoro](https://huggingface.co/hexgrad/Kokoro-82M)
 | The recorder (Node, runs the Python reader) | `scripts/narrate.ts` |
 | The reader (Python, Kokoro) | `scripts/narrate.py` |
 
-The words come from `passageTokens` in `src/core/passage.ts`, the same split the game uses on screen. A test checks that every timing file has exactly one timing per word, and that its recording exists.
+The words come from `passageTokens` in `src/core/passage.ts`, the same split the game uses on screen. Kokoro reads a few of them as one word ("twenty-seven", "rabbit-hole", "Darcy’s" when Darcy is hidden); `scripts/narration-gaps.ts` times those from the words around them, shared out by their letters. A test checks that every timing file has exactly one timing per word, with none missing, and that its recording exists.
+
+Every chapter is recorded in both voices: about 20 MB of audio per voice in all.
 
 A chapter's timings only fit the passage they were made from. **After changing a passage, record that chapter again.** If you don't, the test fails and the game hides that chapter's Listen button.
 
