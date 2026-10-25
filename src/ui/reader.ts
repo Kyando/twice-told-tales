@@ -12,6 +12,8 @@ export interface ReaderOptions {
   parts: readonly PassagePart[];
   /** The hidden words found so far (upper case): marked as on the chapter's screen. */
   found: ReadonlySet<string>;
+  /** The words to find are marked from the start (the word list's help), as on the chapter's screen. */
+  marked?: boolean;
   /** The chapter's recorded reading; without one, the reader is just the text, large. */
   narrator: Narrator | null;
 }
@@ -71,7 +73,10 @@ const clock = (s: number) => `${Math.floor(s / 60)}:${String(Math.floor(s % 60))
  */
 export function openReader(o: ReaderOptions): void {
   const dom = buildPassage(o.parts, 'reader-line');
-  dom.hidden.forEach((el, word) => el.classList.toggle('is-found', o.found.has(word)));
+  dom.hidden.forEach((el, word) => {
+    el.classList.toggle('is-found', o.found.has(word));
+    if (o.marked) el.classList.add('is-target');
+  });
   const text = h('div', { class: 'reader-text' }, ...dom.sentences);
   const scroller = h('div', { class: 'reader-scroll' }, text);
   const dialog = h('dialog', { class: 'reader', 'aria-label': o.title });

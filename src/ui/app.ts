@@ -455,22 +455,14 @@ export class App {
       body: h(
         'div',
         { class: 'help' },
-        h('p', { class: 'help-lead' }, t(reading ? 'help.passageLead' : 'help.lead')),
+        h('p', { class: 'help-lead' }, t('help.passageLead')),
         h(
           'ol',
           { class: 'help-steps' },
-          // With the passage, reading comes first: it's where the words are found.
-          ...(reading
-            ? [
-                step(page, 'help.passageRead', 'help.passageReadBody'),
-                step(board, 'help.trace', 'help.traceBody'),
-                step(picture, 'help.reveal', 'help.passageRevealBody'),
-              ]
-            : [
-                step(board, 'help.trace', 'help.traceBody'),
-                step(picture, 'help.reveal', 'help.revealBody'),
-                step(page, 'help.read', 'help.readBody'),
-              ]),
+          // Reading comes first: the passage is where the words are found (marked, with the easier help).
+          step(page, 'help.passageRead', reading ? 'help.passageReadBody' : 'help.markedReadBody'),
+          step(board, 'help.trace', 'help.traceBody'),
+          step(picture, 'help.reveal', 'help.passageRevealBody'),
         ),
         h('p', { class: 'help-note' }, t('help.note')),
       ),

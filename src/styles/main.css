@@ -3171,3 +3171,20 @@ button {
     animation: none;
   }
 }
+
+/* ── The marked passage (the easier help): the words to find outlined from the start ── */
+
+.passage-word.is-target:not(.is-found) {
+  padding: 0 2px;
+  margin: 0 -1px;
+  border-radius: 4px;
+  box-shadow: inset 0 0 0 1.5px var(--trace-ring);
+  background-color: rgb(227 201 153 / 0.35);
+  font-weight: 600;
+}
+
+/* In the full-screen reader, the same mark, a little softer at its size. */
+.reader .passage-word.is-target:not(.is-found) {
+  box-shadow: inset 0 -2px 0 var(--trace-ring);
+  background-color: rgb(227 201 153 / 0.3);
+}
