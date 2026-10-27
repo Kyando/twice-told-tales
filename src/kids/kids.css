@@ -722,3 +722,12 @@ button {
     content: none !important;
   }
 }
+
+.k-print-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 18px;
+  color: var(--k-soft);
+  font-weight: 800;
+}

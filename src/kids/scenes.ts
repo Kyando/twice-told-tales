@@ -292,3 +292,27 @@ export const SCENES: Record<string, () => Svg> = {
   'fast-asleep': scene5,
   'here-she-is': scene6,
 };
+
+/** The book's first colouring page: everyone in the story, side by side. */
+export const cast = (): Svg =>
+  page(
+    'cast',
+    part('', at(470, 118, 1, sun(44)), at(140, 110, 1, cloud()), at(320, 190, 0.6, cloud())),
+    part('', region('M0 540 C160 510 440 516 600 540 V760 H0 Z')),
+    part('', at(60, 720, 0.9, flower()), at(560, 600, 0.8, flower(6)), at(330, 590, 1, grass()), at(200, 570, 1, grass())),
+    part('', at(132, 690, 1.12, bear({ who: 'papa' })), at(272, 698, 0.98, bear({ who: 'mama' })), at(382, 712, 0.7, bear({ who: 'baby', arms: 'wave' })),
+      at(492, 712, 1.14, girl({ arms: 'up' }))),
+  );
+
+/** A page of shapes to try pens and crayons on before the pictures. */
+export const swatches = (): Svg => {
+  const shapes = [
+    (x: number, y: number) => circle(x, y, 52),
+    (x: number, y: number) => region(heartPath(x, y + 8, 112)),
+    (x: number, y: number) => region(starPath(x, y + 6, 64)),
+    (x: number, y: number) => region(roundRect(x - 50, y - 50, 100, 100, 22)),
+  ];
+  const out: Svg[] = [];
+  [140, 300, 460].forEach((x, col) => [130, 296, 462, 628].forEach((y, row) => out.push(shapes[(row + col) % shapes.length](x, y))));
+  return page('swatches', part('', ...out));
+};

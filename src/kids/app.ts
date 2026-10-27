@@ -184,11 +184,18 @@ export class KidsApp {
       'main',
       'k-cover',
       h('header', 'k-cover-bar', h('span', 'k-brand', this.t('app')), this.langSwitch(() => this.openCover())),
-      h('section', 'k-cover-book', h('div', 'k-cover-art', cover), h('div', 'k-cover-text', h('h1', 'k-cover-title', BOOK.title[this.lang]), h('p', 'k-cover-credit', BOOK.credit[this.lang]), go)),
+      h('section', 'k-cover-book', h('div', 'k-cover-art', cover), h('div', 'k-cover-text', h('h1', 'k-cover-title', BOOK.title[this.lang]), h('p', 'k-cover-credit', BOOK.credit[this.lang]), go, this.printLink())),
       h('h2', 'k-pages-title', this.t('pages')),
       pages,
     );
     this.show(el);
+  }
+
+  /** The paper edition, in the book's language: every page, to print at home or save as a PDF. */
+  private printLink(): HTMLElement {
+    const a = h('a', 'k-print-link', icon(ICON.print), this.t('printBook'));
+    a.setAttribute('href', `kids-book.html?lang=${this.lang}`);
+    return h('p', '', a);
   }
 
   // ── a scene: the open book ─────────────────────────────────────────────
