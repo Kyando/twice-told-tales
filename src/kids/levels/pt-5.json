@@ -1,0 +1,29 @@
+{
+ "rows": 5,
+ "cols": 4,
+ "grid": [
+  "UIDS",
+  "CBOO",
+  "AURN",
+  "MSMO",
+  "ASIU"
+ ],
+ "words": [
+  {
+   "text": "SONO",
+   "path": [3, 7, 11, 15]
+  },
+  {
+   "text": "SUBIU",
+   "path": [13, 9, 5, 1, 0]
+  },
+  {
+   "text": "CAMAS",
+   "path": [4, 8, 12, 16, 17]
+  },
+  {
+   "text": "DORMIU",
+   "path": [2, 6, 10, 14, 18, 19]
+  }
+ ]
+}

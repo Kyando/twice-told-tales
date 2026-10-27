@@ -1,0 +1,34 @@
+{
+ "rows": 6,
+ "cols": 5,
+ "grid": [
+  "RAEEQ",
+  "UUSUU",
+  "RASQE",
+  "SGASN",
+  "ONPOT",
+  "SIMBE"
+ ],
+ "words": [
+  {
+   "text": "URSOS",
+   "path": [5, 10, 15, 20, 25]
+  },
+  {
+   "text": "BOSQUE",
+   "path": [28, 23, 18, 13, 8, 3]
+  },
+  {
+   "text": "MINGAU",
+   "path": [27, 26, 21, 16, 11, 6]
+  },
+  {
+   "text": "QUENTE",
+   "path": [4, 9, 14, 19, 24, 29]
+  },
+  {
+   "text": "PASSEAR",
+   "path": [22, 17, 12, 7, 2, 1, 0]
+  }
+ ]
+}

@@ -1,0 +1,29 @@
+{
+ "rows": 5,
+ "cols": 4,
+ "grid": [
+  "BUAP",
+  "AOSO",
+  "TRAR",
+  "ETCT",
+  "UNEA"
+ ],
+ "words": [
+  {
+   "text": "CASA",
+   "path": [14, 10, 6, 2]
+  },
+  {
+   "text": "BATEU",
+   "path": [0, 4, 8, 12, 16]
+  },
+  {
+   "text": "PORTA",
+   "path": [3, 7, 11, 15, 19]
+  },
+  {
+   "text": "ENTROU",
+   "path": [18, 17, 13, 9, 5, 1]
+  }
+ ]
+}

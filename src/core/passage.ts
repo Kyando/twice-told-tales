@@ -5,7 +5,7 @@
 export type PassagePart = { text: string; word?: string };
 
 /** Letters only, upper case: how a passage word would be traced on the board. */
-const LETTERS = /[A-Za-z]+/g;
+const LETTERS = /\p{L}+/gu;
 
 /** Titles written with a full stop that doesn't end the sentence: Mr. Darcy, Mrs. Bennet. */
 const TITLE_STOP = /\b(?:Mr|Mrs|Ms|Messrs|Dr|St|Rev|Col|Capt|Gen|Lt)\.\s+$/;
@@ -32,7 +32,7 @@ export function caseWord(word: string, names: readonly string[], startsSentence:
 export function passageParts(text: string, names: readonly string[]): PassagePart[] {
   const parts: PassagePart[] = [];
   let before = '';
-  text.split(/\{([A-Z]+)\}/).forEach((part, k) => {
+  text.split(/\{(\p{Lu}+)\}/u).forEach((part, k) => {
     if (k % 2 === 0) {
       if (part) parts.push({ text: part });
       before += part;
@@ -65,7 +65,7 @@ export const passageText = (parts: readonly PassagePart[]): string => parts.map(
  * find. Upper case, without repeats.
  */
 export function decoysOf(text: string, hidden: readonly string[]): string[] {
-  const plain = text.replace(/\{([A-Z]+)\}/g, ' ');
+  const plain = text.replace(/\{(\p{Lu}+)\}/gu, ' ');
   const set = new Set<string>();
   for (const m of plain.matchAll(LETTERS)) {
     const w = m[0].toUpperCase();

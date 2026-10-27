@@ -1,0 +1,33 @@
+{
+ "rows": 5,
+ "cols": 5,
+ "grid": [
+  "SPORR",
+  "RWWOI",
+  "AATOD",
+  "ELODG",
+  "BKHSE"
+ ],
+ "words": [
+  {
+   "text": "BEARS",
+   "path": [20, 15, 10, 5, 0]
+  },
+  {
+   "text": "WOODS",
+   "path": [7, 8, 13, 18, 23]
+  },
+  {
+   "text": "PORRIDGE",
+   "path": [1, 2, 3, 4, 9, 14, 19, 24]
+  },
+  {
+   "text": "HOT",
+   "path": [22, 17, 12]
+  },
+  {
+   "text": "WALK",
+   "path": [6, 11, 16, 21]
+  }
+ ]
+}

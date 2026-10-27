@@ -1,0 +1,33 @@
+{
+ "rows": 5,
+ "cols": 4,
+ "grid": [
+  "WSOR",
+  "ORPR",
+  "KAMY",
+  "ENUJ",
+  "HOME"
+ ],
+ "words": [
+  {
+   "text": "HOME",
+   "path": [16, 17, 18, 19]
+  },
+  {
+   "text": "WOKE",
+   "path": [0, 4, 8, 12]
+  },
+  {
+   "text": "JUMP",
+   "path": [15, 14, 10, 6]
+  },
+  {
+   "text": "SORRY",
+   "path": [1, 2, 3, 7, 11]
+  },
+  {
+   "text": "RAN",
+   "path": [5, 9, 13]
+  }
+ ]
+}

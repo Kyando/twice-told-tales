@@ -6,3 +6,4 @@ dist
 app-builds
 store/icon-candidates
 .venv-tts
+kids-render/

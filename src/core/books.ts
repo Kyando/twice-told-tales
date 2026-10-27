@@ -155,6 +155,21 @@ export const BOOKS: Record<string, Book> = {
     kids: true,
     names: [],
   },
+  /**
+   * The colouring book (kids.html, src/kids): its own app, in English and Portuguese, with drawings
+   * of our own to colour in. Listed here for the board generator; it has no chapters in src/levels,
+   * so it never stands on the game's shelf.
+   */
+  goldilocks: {
+    title: 'Goldilocks and the Three Bears',
+    author: 'Folk tale, after Robert Southey',
+    year: 1837,
+    cover: '',
+    blurb: 'Too hot, too cold, just right.',
+    young: true,
+    kids: true,
+    names: [],
+  },
 };
 
 /**
@@ -166,7 +181,7 @@ export function unintroducedNames(passages: string[], names: string[]): string[]
   const known = new Set<string>();
   const errors: string[] = [];
   passages.forEach((text, chapter) => {
-    text.split(/\{([A-Z]+)\}/).forEach((part, i) => {
+    text.split(/\{(\p{Lu}+)\}/u).forEach((part, i) => {
       if (i % 2 === 0) {
         for (const name of names) if (new RegExp(`\\b${name}\\b`, 'i').test(part)) known.add(name);
       } else {

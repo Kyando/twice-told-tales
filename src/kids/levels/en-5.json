@@ -1,0 +1,30 @@
+{
+ "rows": 6,
+ "cols": 4,
+ "grid": [
+  "UPSA",
+  "YPTS",
+  "SEAL",
+  "DEIE",
+  "ELRE",
+  "BSSP"
+ ],
+ "words": [
+  {
+   "text": "SLEEPY",
+   "path": [21, 17, 13, 9, 5, 4]
+  },
+  {
+   "text": "UPSTAIRS",
+   "path": [0, 1, 2, 6, 10, 14, 18, 22]
+  },
+  {
+   "text": "BEDS",
+   "path": [20, 16, 12, 8]
+  },
+  {
+   "text": "ASLEEP",
+   "path": [3, 7, 11, 15, 19, 23]
+  }
+ ]
+}

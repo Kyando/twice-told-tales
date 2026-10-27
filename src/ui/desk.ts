@@ -331,7 +331,7 @@ export class Desk {
  */
 function tokens(text: string, words: Word[], names: string[]): HTMLElement[] {
   const out: HTMLElement[] = [];
-  text.split(/\{([A-Z]+)\}/).forEach((part, k) => {
+  text.split(/\{(\p{Lu}+)\}/u).forEach((part, k) => {
     if (k % 2 === 1) {
       const known = words.some((w) => w.text === part);
       const plain = names.includes(part) ? part.charAt(0) + part.slice(1).toLowerCase() : part.toLowerCase();

@@ -1,0 +1,33 @@
+{
+ "rows": 5,
+ "cols": 5,
+ "grid": [
+  "SDCHB",
+  "ERSAR",
+  "CAOIO",
+  "EHFRK",
+  "IPTSE"
+ ],
+ "words": [
+  {
+   "text": "CHAIRS",
+   "path": [2, 3, 8, 13, 18, 23]
+  },
+  {
+   "text": "HARD",
+   "path": [16, 11, 6, 1]
+  },
+  {
+   "text": "SOFT",
+   "path": [7, 12, 17, 22]
+  },
+  {
+   "text": "BROKE",
+   "path": [4, 9, 14, 19, 24]
+  },
+  {
+   "text": "PIECES",
+   "path": [21, 20, 15, 10, 5, 0]
+  }
+ ]
+}

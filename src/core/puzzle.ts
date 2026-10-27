@@ -25,7 +25,7 @@ export interface Puzzle {
 }
 
 /** The {WORD} blanks of a passage, in reading order. */
-export const blanksOf = (text: string): string[] => [...text.matchAll(/\{([A-Z]+)\}/g)].map((m) => m[1]);
+export const blanksOf = (text: string): string[] => [...text.matchAll(/\{(\p{Lu}+)\}/gu)].map((m) => m[1]);
 
 /**
  * Everything a chapter must satisfy: every letter in exactly one word, words spelled along orthogonal
@@ -37,7 +37,7 @@ export function validateLevel(def: LevelDef): string[] {
   const { rows, cols } = def;
   const letters = def.grid.join('');
   if (def.grid.length !== rows || def.grid.some((r) => r.length !== cols)) errors.push('grid size does not match rows/cols');
-  if (!/^[A-Z.]*$/.test(letters)) errors.push('grid must be uppercase A-Z (or . for an empty cell)');
+  if (!/^[\p{Lu}.]*$/u.test(letters)) errors.push('grid must be capital letters (or . for an empty cell)');
   if (!BOOKS[def.book]) errors.push(`unknown book ${def.book}`);
 
   const owner = new Array<number>(rows * cols).fill(-1);
@@ -45,7 +45,7 @@ export function validateLevel(def: LevelDef): string[] {
   def.words.forEach((w, index) => {
     if (seen.has(w.text)) errors.push(`${w.text} appears twice`);
     seen.add(w.text);
-    if (!/^[A-Z]{2,}$/.test(w.text)) errors.push(`${w.text} is not a valid word`);
+    if (!/^\p{Lu}{2,}$/u.test(w.text)) errors.push(`${w.text} is not a valid word`);
     if (w.path.length !== w.text.length || !isPath(w.path, rows, cols)) {
       errors.push(`${w.text} has an invalid path`);
       return;

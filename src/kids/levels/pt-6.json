@@ -1,0 +1,31 @@
+{
+ "rows": 7,
+ "cols": 4,
+ "grid": [
+  "CASU",
+  "DUIO",
+  "EEND",
+  "SRHR",
+  "CRAO",
+  "UOCC",
+  "LPAA"
+ ],
+ "words": [
+  {
+   "text": "CASINHA",
+   "path": [0, 1, 2, 6, 10, 14, 18]
+  },
+  {
+   "text": "ACORDOU",
+   "path": [27, 23, 19, 15, 11, 7, 3]
+  },
+  {
+   "text": "DESCULPA",
+   "path": [4, 8, 12, 16, 20, 24, 25, 26]
+  },
+  {
+   "text": "CORREU",
+   "path": [22, 21, 17, 13, 9, 5]
+  }
+ ]
+}

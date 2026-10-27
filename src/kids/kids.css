@@ -1,0 +1,724 @@
+/* The colouring book: an open book on a warm table, big friendly letters, chunky crayons. */
+:root {
+  --k-table: #f4e7d3;
+  --k-paper: #fffdf8;
+  --k-ink: #2d2622;
+  --k-soft: #6f625a;
+  --k-line: #e7dccd;
+  --k-pencil: #d3c6b6;
+  --k-accent: #ef7d57;
+  --k-accent-ink: #fff;
+  --k-shadow: 0 1px 0 rgba(80, 50, 20, 0.08), 0 14px 34px -18px rgba(80, 50, 20, 0.45);
+  --k-radius: 22px;
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body.kids-body {
+  margin: 0;
+  min-height: 100dvh;
+  background: var(--k-table) radial-gradient(circle at 20% 0%, #fbf1e2 0, transparent 60%);
+  color: var(--k-ink);
+  font: 600 18px/1.5 Nunito, system-ui, sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+.kids svg:not(.colouring) {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ── the drawings ────────────────────────────────────────────────────── */
+
+.colouring {
+  display: block;
+  width: 100%;
+  height: auto;
+  user-select: none;
+}
+
+.colouring .r,
+.colouring .l {
+  stroke: var(--k-ink);
+  stroke-width: 4.6;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+  transition: stroke 0.5s var(--delay, 0ms), stroke-width 0.5s var(--delay, 0ms), fill 0.15s;
+}
+
+.colouring .r {
+  fill: #fff;
+}
+
+.colouring .l {
+  fill: none;
+}
+
+.colouring .thin {
+  stroke-width: 3;
+}
+
+.colouring .k {
+  fill: var(--k-ink);
+  transition: fill 0.5s var(--delay, 0ms);
+}
+
+.colouring .r.dark {
+  fill: var(--k-ink);
+}
+
+.colouring .shine {
+  fill: #fff;
+}
+
+.colouring .frame {
+  stroke-width: 5.5;
+}
+
+/* Not found yet: a faint pencil sketch, waiting for its word. */
+.colouring .part:not(.is-inked) .r,
+.colouring .part:not(.is-inked) .l {
+  stroke: var(--k-pencil);
+  stroke-width: 1.6;
+  stroke-dasharray: 5 4;
+}
+
+.colouring .part:not(.is-inked) .r {
+  fill: #fff !important;
+}
+
+.colouring .part:not(.is-inked) .k,
+.colouring .part:not(.is-inked) .r.dark {
+  fill: var(--k-pencil);
+}
+
+.colouring .part.is-inking {
+  animation: k-ink 0.9s var(--delay, 0ms) ease-out both;
+}
+
+@keyframes k-ink {
+  0% {
+    transform: translateY(0);
+  }
+  35% {
+    transform: translateY(-6px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.colouring.is-thumb .r,
+.colouring.is-thumb .l {
+  vector-effect: none;
+  stroke-width: 4;
+}
+
+.colouring.is-thumb .thin {
+  stroke-width: 2.6;
+}
+
+.colouring.is-thumb .part:not(.is-inked) .r,
+.colouring.is-thumb .part:not(.is-inked) .l {
+  stroke-width: 2;
+  stroke-dasharray: none;
+}
+
+.is-done .colouring .r {
+  cursor: pointer;
+}
+
+/* ── buttons ─────────────────────────────────────────────────────────── */
+
+.k-round {
+  display: inline-grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--k-paper);
+  box-shadow: var(--k-shadow);
+}
+
+.k-round--next {
+  background: var(--k-accent);
+  color: var(--k-accent-ink);
+}
+
+.k-btn {
+  border: 0;
+  border-radius: 999px;
+  padding: 12px 26px;
+  background: var(--k-accent);
+  color: var(--k-accent-ink);
+  font-weight: 900;
+  box-shadow: 0 4px 0 #c95d3c;
+}
+
+.k-btn:active {
+  translate: 0 3px;
+  box-shadow: 0 1px 0 #c95d3c;
+}
+
+.k-btn--big {
+  font-size: 1.25rem;
+  padding: 14px 34px;
+}
+
+.k-lang {
+  display: inline-flex;
+  padding: 4px;
+  border-radius: 999px;
+  background: var(--k-paper);
+  box-shadow: var(--k-shadow);
+}
+
+.k-lang-btn {
+  border: 0;
+  border-radius: 999px;
+  background: none;
+  padding: 8px 12px;
+  font-weight: 900;
+  font-size: 0.9rem;
+  color: var(--k-soft);
+}
+
+.k-lang-btn.is-on {
+  background: var(--k-ink);
+  color: var(--k-paper);
+}
+
+/* ── the cover ───────────────────────────────────────────────────────── */
+
+.k-cover {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 16px 16px 48px;
+}
+
+.k-cover-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.k-brand {
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  color: var(--k-accent);
+}
+
+.k-cover-book {
+  display: grid;
+  grid-template-columns: minmax(0, 360px) minmax(0, 1fr);
+  gap: 32px;
+  align-items: center;
+  margin: 24px 0 36px;
+}
+
+.k-cover-art {
+  background: var(--k-paper);
+  border-radius: var(--k-radius);
+  padding: 14px;
+  box-shadow: var(--k-shadow);
+  rotate: -1.5deg;
+}
+
+.k-cover-title {
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  line-height: 1.05;
+  font-weight: 900;
+  margin: 0 0 14px;
+}
+
+.k-cover-credit {
+  color: var(--k-soft);
+  margin: 0 0 24px;
+  max-width: 34em;
+}
+
+.k-pages-title {
+  font-size: 1.3rem;
+  font-weight: 900;
+}
+
+.k-pages {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 18px;
+}
+
+.k-page-card {
+  position: relative;
+  display: grid;
+  gap: 8px;
+  width: 100%;
+  padding: 10px 10px 12px;
+  border: 0;
+  border-radius: 18px;
+  background: var(--k-paper);
+  box-shadow: var(--k-shadow);
+  text-align: left;
+  transition: translate 0.15s;
+}
+
+.k-page-card:hover {
+  translate: 0 -3px;
+}
+
+.k-page-num {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--k-ink);
+  color: var(--k-paper);
+  font-weight: 900;
+  font-size: 0.9rem;
+}
+
+.k-page-card.is-done .k-page-num {
+  background: var(--k-accent);
+}
+
+.k-page-title {
+  font-weight: 800;
+  font-size: 0.95rem;
+  line-height: 1.2;
+}
+
+/* ── the open book ───────────────────────────────────────────────────── */
+
+.k-scene {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 12px 16px 32px;
+}
+
+.k-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.k-bar-title {
+  flex: 1;
+  min-width: 0;
+  font-weight: 900;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.k-spread {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: var(--k-paper);
+  border-radius: 14px;
+  box-shadow: var(--k-shadow), 0 0 0 6px #e9d6bb;
+  position: relative;
+}
+
+/* The fold between the pages. */
+.k-spread::after {
+  content: '';
+  position: absolute;
+  inset: 0 auto 0 50%;
+  width: 46px;
+  translate: -50% 0;
+  background: linear-gradient(90deg, transparent, rgba(110, 80, 50, 0.1) 45%, rgba(110, 80, 50, 0.16) 50%, rgba(110, 80, 50, 0.1) 55%, transparent);
+  pointer-events: none;
+}
+
+.k-leaf {
+  position: relative;
+  padding: 34px 40px 46px;
+  min-width: 0;
+}
+
+.k-leaf--left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.k-eyebrow {
+  margin: 0;
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--k-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.k-title {
+  margin: 4px 0 14px;
+  font-size: clamp(1.6rem, 3vw, 2.3rem);
+  font-weight: 900;
+  line-height: 1.1;
+  text-align: center;
+}
+
+.k-text {
+  margin: 0 0 12px;
+  font-size: clamp(1.1rem, 1.6vw, 1.32rem);
+  line-height: 1.75;
+  font-weight: 700;
+  max-width: 30em;
+}
+
+.k-w {
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+
+.k-w.is-spoken:not(.k-find) {
+  background: #fff0b8;
+}
+
+.k-find {
+  color: inherit;
+  background: none;
+  padding: 0 4px;
+  border-radius: 8px;
+  font-weight: 900;
+  box-shadow: inset 0 0 0 2.5px var(--hue);
+  background: color-mix(in srgb, var(--hue) 28%, transparent);
+  display: inline-block;
+  line-height: 1.35;
+}
+
+.k-find.is-found {
+  background: var(--hue);
+  box-shadow: none;
+}
+
+.k-find.is-found::after {
+  content: ' ✓';
+  font-size: 0.8em;
+}
+
+.k-find.is-spoken {
+  outline: 3px solid var(--k-ink);
+}
+
+.k-read {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 0;
+  border-radius: 999px;
+  padding: 8px 16px;
+  margin-bottom: 18px;
+  background: #f3ebe0;
+  font-weight: 800;
+  font-size: 0.95rem;
+}
+
+.k-read.is-on {
+  background: var(--k-ink);
+  color: var(--k-paper);
+}
+
+/* The grid of letters: big, round tiles. */
+.k-board {
+  /* Tiles measure from the board (see SceneView.toCells). */
+  position: relative;
+  --tile: clamp(44px, min(64px, calc((100vw - 64px) / var(--cols) - 8px), calc((100dvh - 430px) / var(--rows) - 8px)), 64px);
+  display: grid;
+  grid-template-columns: repeat(var(--cols), var(--tile));
+  gap: 8px;
+  padding: 12px;
+  border-radius: 20px;
+  background: #f3ebe0;
+  touch-action: none;
+  user-select: none;
+}
+
+.k-tile {
+  display: grid;
+  place-items: center;
+  width: var(--tile);
+  height: var(--tile);
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 3px 0 #e2d4c1;
+  font-weight: 900;
+  font-size: calc(var(--tile) * 0.52);
+  line-height: 1;
+  transition: background 0.15s, translate 0.15s;
+}
+
+.k-tile.is-trace {
+  background: var(--k-ink);
+  color: #fff;
+  translate: 0 -2px;
+}
+
+.k-tile.is-found {
+  background: var(--hue);
+  box-shadow: 0 3px 0 color-mix(in srgb, var(--hue) 70%, #000);
+}
+
+.k-status {
+  margin: 14px 0 0;
+  text-align: center;
+  font-weight: 800;
+  color: var(--k-soft);
+  min-height: 3em;
+  max-width: 24em;
+}
+
+.is-done .k-status {
+  color: var(--k-accent);
+}
+
+.k-folio {
+  position: absolute;
+  bottom: 14px;
+  font-size: 0.85rem;
+  color: var(--k-soft);
+}
+
+.k-leaf--left .k-folio {
+  left: 26px;
+}
+
+.k-leaf--right .k-folio {
+  right: 26px;
+}
+
+.k-leaf--right {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.k-art {
+  max-width: 520px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* The crayons. */
+.k-palette {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.k-palette[hidden] {
+  display: none;
+}
+
+.k-crayon {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 3px solid var(--k-ink);
+  background: var(--c);
+  padding: 0;
+  display: grid;
+  place-items: center;
+  transition: translate 0.12s, scale 0.12s;
+}
+
+.k-crayon.is-on {
+  translate: 0 -4px;
+  scale: 1.12;
+  box-shadow: 0 0 0 3px var(--k-paper), 0 0 0 6px var(--k-ink);
+}
+
+.k-crayon--eraser {
+  background: #fff;
+}
+
+.k-palette-hint {
+  flex-basis: 100%;
+  margin: 2px 0 0;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--k-soft);
+}
+
+.k-turns {
+  display: flex;
+  align-items: center;
+  max-width: 520px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.k-turns-gap {
+  flex: 1;
+}
+
+.k-the-end {
+  font-weight: 900;
+  font-size: 1.3rem;
+  color: var(--k-accent);
+}
+
+.particle {
+  position: fixed;
+  z-index: 50;
+  pointer-events: none;
+  font-size: 22px;
+  color: var(--k-accent);
+  translate: -50% -50%;
+}
+
+/* ── phones: one page above the other, the picture first ─────────────── */
+
+@media (max-width: 759px) {
+  .k-cover-book {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .k-cover-art {
+    max-width: 300px;
+    margin: 0 auto;
+  }
+
+  .k-cover-text {
+    text-align: center;
+  }
+
+  .k-spread {
+    grid-template-columns: 1fr;
+  }
+
+  .k-spread::after {
+    display: none;
+  }
+
+  .k-leaf {
+    padding: 22px 16px 40px;
+  }
+
+  .k-leaf--right {
+    order: -1;
+    border-bottom: 2px dashed var(--k-line);
+  }
+
+  /* Before the words are found, the picture is a small promise above them; the crayons and the
+     page turns come with the finished picture. */
+  .k-scene:not(.is-done) .k-art {
+    max-width: 150px;
+  }
+
+  .k-scene:not(.is-done) .k-palette,
+  .k-scene:not(.is-done) .k-turns,
+  .k-folio {
+    display: none;
+  }
+
+  .k-scene:not(.is-done) .k-leaf--right {
+    padding-bottom: 16px;
+  }
+
+  .k-pages {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .colouring .part.is-inking {
+    animation: none;
+  }
+}
+
+/* ── printing: the spread as two pages, ready to colour with real crayons ─ */
+
+@media print {
+  @page {
+    size: A4 landscape;
+    margin: 10mm;
+  }
+
+  body.kids-body {
+    background: #fff;
+  }
+
+  .k-bar,
+  .k-read,
+  .k-palette,
+  .k-turns,
+  .k-status {
+    display: none !important;
+  }
+
+  .k-spread {
+    box-shadow: none;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .k-spread::after {
+    display: none;
+  }
+
+  .k-leaf--right {
+    order: 0;
+  }
+
+  .k-scene .k-art {
+    max-width: 100% !important;
+  }
+
+  .colouring .part .r,
+  .colouring .part .l {
+    stroke: var(--k-ink) !important;
+    stroke-width: 4 !important;
+    stroke-dasharray: none !important;
+  }
+
+  .colouring .part .k {
+    fill: var(--k-ink) !important;
+  }
+
+  .k-tile {
+    box-shadow: none;
+    border: 2px solid var(--k-ink);
+    background: #fff !important;
+    color: var(--k-ink) !important;
+  }
+
+  .k-find {
+    background: none !important;
+    box-shadow: inset 0 0 0 2px var(--k-ink) !important;
+  }
+
+  .k-find::after {
+    content: none !important;
+  }
+}

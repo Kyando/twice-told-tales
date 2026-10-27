@@ -1,0 +1,29 @@
+{
+ "rows": 5,
+ "cols": 4,
+ "grid": [
+  "HOUK",
+  "IDSN",
+  "NOEO",
+  "SORC",
+  "IDEK"
+ ],
+ "words": [
+  {
+   "text": "HOUSE",
+   "path": [0, 1, 2, 6, 10]
+  },
+  {
+   "text": "KNOCK",
+   "path": [3, 7, 11, 15, 19]
+  },
+  {
+   "text": "DOOR",
+   "path": [5, 9, 13, 14]
+  },
+  {
+   "text": "INSIDE",
+   "path": [4, 8, 12, 16, 17, 18]
+  }
+ ]
+}
